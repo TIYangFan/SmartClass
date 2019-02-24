@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView
+    android:id="@+id/unfocusedDetailText"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textColor="@android:color/transparent"/>
+
+    <View
+        android:layout_width="@dimen/px_2"
+        android:layout_height="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_41"
+        android:layout_marginStart="@dimen/px_41"
+        android:background="@color/colorSubtitle"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="班级"
+        android:textColor="@color/colorSubtitle"
+        android:textSize="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_41"
+        android:layout_marginStart="@dimen/px_49"/>
+
+    <View
+        android:layout_width="@dimen/px_2"
+        android:layout_height="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_41"
+        android:layout_marginStart="@dimen/px_461"
+        android:background="@color/colorSubtitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="姓名"
+        android:textColor="@color/colorSubtitle"
+        android:textSize="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_41"
+        android:layout_marginStart="@dimen/px_469"/>
+
+    <View
+        android:layout_width="@dimen/px_2"
+        android:layout_height="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_41"
+        android:layout_marginStart="@dimen/px_706"
+        android:background="@color/colorSubtitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="学号"
+        android:textColor="@color/colorSubtitle"
+        android:textSize="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_41"
+        android:layout_marginStart="@dimen/px_714"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/unfocusedDetailRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px_24"
+        android:layout_marginTop="@dimen/px_112">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

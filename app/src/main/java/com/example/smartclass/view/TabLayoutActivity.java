@@ -1,0 +1,73 @@
+package com.example.smartclass.view;
+
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
+import com.example.smartclass.R;
+import com.example.smartclass.adapter.TabFragmentPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by YangFan
+ * On 2019/1/28
+ * GitHub: https://github.com/TIYangFan
+ * Email: yangfan_98@163.com
+ */
+public class TabLayoutActivity extends AppCompatActivity {
+
+    private List<Fragment> mFragments;
+    private String[] mTitles;
+    private int[] mImages = {R.drawable.ic_tab_selector_rr, R.drawable.ic_tab_selector_cc, R.drawable.ic_tab_selector_pc};
+    private ViewPager mViewPager;
+    private TabLayout mTabLayout;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tab_layout);
+        initView();
+    }
+
+    private void initView(){
+        mViewPager = (ViewPager) findViewById(R.id.tabViewPager);
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        Resources resources = getResources();
+        mTitles = resources.getStringArray(R.array.bottom_tab_bar_titles);
+
+        initFragment();
+
+        TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), mFragments);
+        mViewPager.setAdapter(adapter);
+        mViewPager.setCurrentItem(1);
+
+        mTabLayout.setupWithViewPager(mViewPager);
+        for(int i = 0; i < mTitles.length; i++){
+            View view = LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+            ImageView imageView = (ImageView)view.findViewById(R.id.tabImageView);
+            TextView textView = (TextView)view.findViewById(R.id.tabTextView);
+            textView.setText(mTitles[i]);
+            imageView.setImageResource(mImages[i]);
+            mTabLayout.getTabAt(i).setCustomView(view);
+        }
+    }
+
+    private void initFragment(){
+        mFragments = new ArrayList<>();
+
+        mFragments.add(RecentRecordFragment.newInstance());
+        mFragments.add(CurrentClassFragment.newInstance());
+        mFragments.add(PersonalCenterFragment.newInstance());
+    }
+}

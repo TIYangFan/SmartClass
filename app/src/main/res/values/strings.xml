@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">SmartClass</string>
+    
+    <string-array name="bottom_tab_bar_titles">
+        <item>近期记录</item>
+        <item>当前课堂</item>
+        <item>个人中心</item>
+    </string-array>
+
+    <string-array name="top_tab_bar_titles">
+        <item>概况</item>
+        <item>班级</item>
+    </string-array>
+
+    <!--Personal Center-->
+    <string name="title_name_prompt">姓名：杨帆</string>
+    <string name="title_job_number_prompt">工号：1033170614</string>
+    <string name="btm_my_class">我的课堂</string>
+    <string name="btm_post_assignment">作业发布</string>
+    <string name="btm_upload_material">资料上传</string>
+    <string name="btm_scan_QR_code">扫一扫</string>
+    <string name="btm_course">我的课表</string>
+    <string name="btm_class_management">班级管理</string>
+    <string name="btm_contact_us">联系我们</string>
+    <string name="btm_settings">设置</string>
+
+    <!--Login-->
+    <string name="title_login">登陆</string>
+    <string name="hint_phone_or_email">手机号或邮箱</string>
+    <string name="hint_password">密码</string>
+    <string name="hint_forget_password">忘记密码</string>
+    <string name="btm_login">登陆</string>
+    <string name="btm_registered">新用户注册</string>
+    <string name="btm_login_by_vc_code">手机验证码登录</string>
+
+    <!--Registered-->
+    <string name="title_registered">注册</string>
+    <string name="hint_vc_code">验证码</string>
+    <string name="hint_get_vc_code">获取验证码</string>
+    <string name="hint_set_password">设置密码</string>
+    <string name="btm_next_step">下一步</string>
+
+</resources>

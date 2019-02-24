@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/recentRecordToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_109"
+        android:background="@color/colorWhite">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/topTabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/px_101"
+            app:tabIndicatorHeight="0dp"
+            android:layout_marginStart="@dimen/px_372"
+            app:tabBackground="@android:color/transparent"
+            app:tabRippleColor="@android:color/transparent">
+
+        </android.support.design.widget.TabLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/recentRecordViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

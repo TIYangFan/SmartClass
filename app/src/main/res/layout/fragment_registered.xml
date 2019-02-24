@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/px_72"
+        android:textColor="@color/colorThemeTitle"
+        android:layout_marginStart="@dimen/px_57"
+        android:layout_marginTop="@dimen/px_243"
+        android:text="@string/title_registered" />
+
+    <EditText
+        android:layout_width="@dimen/px_971"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textSize="@dimen/px_40"
+        android:textColor="@color/colorText"
+        android:hint="@string/hint_phone_or_email"
+        android:textColorHint="@color/colorTextColorHint"
+        android:maxLength="48"
+        android:maxLines="1"
+        android:layout_marginStart="@dimen/px_55"
+        android:layout_marginTop="@dimen/px_420"
+        android:background="@color/colorWhite"/>
+
+    <View
+        android:layout_width="@dimen/px_971"
+        android:layout_height="@dimen/px_1"
+        android:background="@color/colorUnderLine"
+        android:layout_marginStart="@dimen/px_52"
+        android:layout_marginTop="@dimen/px_510"/>
+
+    <EditText
+        android:layout_width="@dimen/px_971"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textSize="@dimen/px_40"
+        android:textColor="@color/colorText"
+        android:hint="@string/hint_vc_code"
+        android:textColorHint="@color/colorTextColorHint"
+        android:maxLength="48"
+        android:maxLines="1"
+        android:layout_marginStart="@dimen/px_55"
+        android:layout_marginTop="@dimen/px_585"
+        android:background="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/textView711"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/px_40"
+        android:textColor="@color/colorTextColorHint"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/px_59"
+        android:layout_marginTop="@dimen/px_585"
+        android:text="@string/hint_get_vc_code" />
+
+    <View
+        android:layout_width="@dimen/px_971"
+        android:layout_height="@dimen/px_1"
+        android:background="@color/colorUnderLine"
+        android:layout_marginStart="@dimen/px_52"
+        android:layout_marginTop="@dimen/px_675"/>
+
+
+    <EditText
+        android:layout_width="@dimen/px_971"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textSize="@dimen/px_40"
+        android:textColor="@color/colorText"
+        android:hint="@string/hint_set_password"
+        android:textColorHint="@color/colorTextColorHint"
+        android:maxLength="48"
+        android:maxLines="1"
+        android:layout_marginStart="@dimen/px_55"
+        android:layout_marginTop="@dimen/px_751"
+        android:background="@color/colorWhite"/>
+
+    <ImageView
+        android:layout_width="@dimen/px_46"
+        android:layout_height="@dimen/px_27"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/px_757"
+        android:layout_marginEnd="@dimen/px_64"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <View
+        android:layout_width="@dimen/px_971"
+        android:layout_height="@dimen/px_1"
+        android:background="@color/colorUnderLine"
+        android:layout_marginStart="@dimen/px_52"
+        android:layout_marginTop="@dimen/px_840"
+        android:src="@mipmap/ic_launcher_round"/>
+
+    <Button
+        android:id="@+id/buttonLoginByPasswords"
+        android:layout_width="@dimen/px_971"
+        android:layout_height="@dimen/px_127"
+        android:layout_marginStart="@dimen/px_52"
+        android:layout_marginTop="@dimen/px_927"
+        android:text="@string/btm_next_step"
+        android:textSize="@dimen/px_42"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/bg_btm_border_radius"
+        style="?android:attr/borderlessButtonStyle" />
+
+</RelativeLayout>

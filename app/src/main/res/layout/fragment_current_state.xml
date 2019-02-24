@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="CurrentStateFragment"/>
+
+    <com.github.mikephil.charting.charts.ScatterChart
+        android:id="@+id/scatterChart"
+        android:layout_width="@dimen/px_998"
+        android:layout_height="@dimen/px_456"
+        android:layout_marginStart="@dimen/px_17">
+
+
+    </com.github.mikephil.charting.charts.ScatterChart>
+</RelativeLayout>

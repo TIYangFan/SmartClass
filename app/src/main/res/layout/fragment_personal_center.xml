@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_109"
+        android:background="@color/colorWhite"
+        android:id="@+id/personalCenterToolbar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/px_457"
+            android:text="个人中心"
+            android:textColor="@color/colorThemeTitle"
+            android:textSize="@dimen/px_42"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageViewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_710"
+        android:layout_marginTop="@dimen/px_109"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="@dimen/px_238"
+        android:layout_height="@dimen/px_238"
+        android:layout_marginTop="@dimen/px_202"
+        android:layout_marginStart="@dimen/px_79"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/px_60"
+        android:textSize="@dimen/px_48"
+        android:textColor="@color/colorText"
+        android:layout_marginTop="@dimen/px_261"
+        android:layout_marginStart="@dimen/px_358"
+        android:text="@string/title_name_prompt" />
+
+    <TextView
+        android:id="@+id/textViewJobNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/px_60"
+        android:textSize="@dimen/px_48"
+        android:textColor="@color/colorText"
+        android:layout_marginTop="@dimen/px_322"
+        android:layout_marginStart="@dimen/px_358"
+        android:text="@string/title_job_number_prompt" />
+
+    <ImageView
+        android:id="@+id/imageViewEdit"
+        android:layout_width="@dimen/px_82"
+        android:layout_height="@dimen/px_82"
+        android:layout_marginTop="@dimen/px_279"
+        android:layout_marginStart="@dimen/px_943"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <RelativeLayout
+        android:layout_width="@dimen/px_1032"
+        android:layout_height="@dimen/px_282"
+        android:layout_marginStart="@dimen/px_24"
+        android:layout_marginTop="@dimen/px_537"
+        android:background="@drawable/bg_border_radius">
+
+
+        <ImageView
+            android:id="@+id/imageViewMyClass"
+            android:layout_width="@dimen/px_145"
+            android:layout_height="@dimen/px_145"
+            android:layout_marginTop="@dimen/px_51"
+            android:layout_marginStart="@dimen/px_90"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewPostAssignment"
+            android:layout_width="@dimen/px_145"
+            android:layout_height="@dimen/px_145"
+            android:layout_marginTop="@dimen/px_51"
+            android:layout_marginStart="@dimen/px_444"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewUploadMaterials"
+            android:layout_width="@dimen/px_145"
+            android:layout_height="@dimen/px_145"
+            android:layout_marginTop="@dimen/px_51"
+            android:layout_marginStart="@dimen/px_797"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/textViewMyClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_221"
+            android:layout_marginStart="@dimen/px_92"
+            android:textSize="@dimen/px_36"
+            android:textColor="@color/colorText"
+            android:text="@string/btm_my_class" />
+
+        <TextView
+            android:id="@+id/textViewPostAssignment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_221"
+            android:layout_marginStart="@dimen/px_445"
+            android:textSize="@dimen/px_36"
+            android:textColor="@color/colorText"
+            android:text="@string/btm_post_assignment" />
+
+        <TextView
+            android:id="@+id/textViewUploadMaterials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_221"
+            android:layout_marginStart="@dimen/px_799"
+            android:textSize="@dimen/px_36"
+            android:textColor="@color/colorText"
+            android:text="@string/btm_upload_material" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/px_1032"
+        android:layout_height="@dimen/px_131"
+        android:layout_marginStart="@dimen/px_24"
+        android:layout_marginTop="@dimen/px_840"
+        android:background="@drawable/bg_border_radius">
+
+        <ImageView
+            android:id="@+id/imageViewIconScanQRCode"
+            android:layout_width="@dimen/px_81"
+            android:layout_height="@dimen/px_81"
+            android:layout_marginStart="@dimen/px_33"
+            android:layout_marginTop="@dimen/px_28"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewEnterScanQRCode"
+            android:layout_width="@dimen/px_23"
+            android:layout_height="@dimen/px_41"
+            android:layout_marginStart="@dimen/px_985"
+            android:layout_marginTop="@dimen/px_45"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/textViewScanQRCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/px_144"
+            android:layout_marginTop="@dimen/px_49"
+            android:textSize="@dimen/px_42"
+            android:textColor="@color/colorText"
+            android:text="@string/btm_scan_QR_code" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/px_1032"
+        android:layout_height="@dimen/px_261"
+        android:layout_marginStart="@dimen/px_24"
+        android:layout_marginTop="@dimen/px_993"
+        android:background="@drawable/bg_border_radius">
+
+        <ImageView
+            android:id="@+id/imageViewIconCourse"
+            android:layout_width="@dimen/px_81"
+            android:layout_height="@dimen/px_81"
+            android:layout_marginStart="@dimen/px_33"
+            android:layout_marginTop="@dimen/px_28"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewIconClassManagement"
+            android:layout_width="@dimen/px_81"
+            android:layout_height="@dimen/px_81"
+            android:layout_marginStart="@dimen/px_33"
+            android:layout_marginTop="@dimen/px_155"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewEnterCourse"
+            android:layout_width="@dimen/px_23"
+            android:layout_height="@dimen/px_41"
+            android:layout_marginStart="@dimen/px_985"
+            android:layout_marginTop="@dimen/px_45"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewEnterClassManagement"
+            android:layout_width="@dimen/px_23"
+            android:layout_height="@dimen/px_41"
+            android:layout_marginStart="@dimen/px_985"
+            android:layout_marginTop="@dimen/px_175"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/textViewCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px_42"
+            android:textColor="@color/colorText"
+            android:layout_marginStart="@dimen/px_144"
+            android:layout_marginTop="@dimen/px_49"
+            android:text="@string/btm_course" />
+
+        <TextView
+            android:id="@+id/textViewClassManagement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px_42"
+            android:textColor="@color/colorText"
+            android:layout_marginStart="@dimen/px_144"
+            android:layout_marginTop="@dimen/px_177"
+            android:text="@string/btm_class_management" />
+
+        <View
+            android:id="@+id/dividerCourseAndClassManagement"
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_2"
+            android:layout_marginStart="@dimen/px_17"
+            android:layout_marginTop="@dimen/px_129"
+            android:background="@color/colorUnderLine" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/px_1032"
+        android:layout_height="@dimen/px_261"
+        android:layout_marginStart="@dimen/px_24"
+        android:layout_marginTop="@dimen/px_1275"
+        android:background="@drawable/bg_border_radius">
+
+        <ImageView
+            android:id="@+id/imageViewIconContactUs"
+            android:layout_width="@dimen/px_81"
+            android:layout_height="@dimen/px_81"
+            android:layout_marginStart="@dimen/px_33"
+            android:layout_marginTop="@dimen/px_28"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewIconSettings"
+            android:layout_width="@dimen/px_81"
+            android:layout_height="@dimen/px_81"
+            android:layout_marginStart="@dimen/px_33"
+            android:layout_marginTop="@dimen/px_155"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewEnterContactUs"
+            android:layout_width="@dimen/px_23"
+            android:layout_height="@dimen/px_41"
+            android:layout_marginStart="@dimen/px_985"
+            android:layout_marginTop="@dimen/px_45"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:id="@+id/imageViewEnterSettings"
+            android:layout_width="@dimen/px_23"
+            android:layout_height="@dimen/px_41"
+            android:layout_marginStart="@dimen/px_985"
+            android:layout_marginTop="@dimen/px_175"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/textViewContactUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px_42"
+            android:textColor="@color/colorText"
+            android:layout_marginStart="@dimen/px_144"
+            android:layout_marginTop="@dimen/px_49"
+            android:text="@string/btm_contact_us" />
+
+        <TextView
+            android:id="@+id/textViewSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px_42"
+            android:textColor="@color/colorText"
+            android:layout_marginStart="@dimen/px_144"
+            android:layout_marginTop="@dimen/px_177"
+            android:text="@string/btm_settings" />
+
+        <View
+            android:id="@+id/dividerContactUsAndSettings"
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_2"
+            android:layout_marginStart="@dimen/px_17"
+            android:layout_marginTop="@dimen/px_129"
+            android:background="@color/colorUnderLine" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
