@@ -6,8 +6,10 @@ import com.example.smartclass.base.BaseChart;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
+import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
@@ -19,15 +21,13 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
  */
 public class ScatterChartManager extends BaseChart<ScatterChart, ScatterData> implements OnChartValueSelectedListener {
 
-
-    public ScatterChartManager(ScatterChart chart, ScatterData chartData) {
-        super(chart, chartData);
+    public ScatterChartManager(ScatterChart chart) {
+        super(chart);
     }
 
-    public ScatterChartManager(ScatterChart chart, ScatterData chartData, boolean isSingleLine) {
-        super(chart, chartData, isSingleLine);
-    }
-
+    /**
+     * 图表总体样式设置
+     */
     @Override
     protected void setChartStyle() {
         super.setChartStyle();
@@ -37,16 +37,9 @@ public class ScatterChartManager extends BaseChart<ScatterChart, ScatterData> im
         chart.getAxisRight().setEnabled(false);
     }
 
-    @Override
-    protected void setSingleDataStyle() {
-        super.setSingleDataStyle();
-    }
-
-    @Override
-    protected void setAnimate() {
-        super.setAnimate();
-    }
-
+    /**
+     * x轴样式设置
+     */
     @Override
     protected void setXAxis() {
         super.setXAxis();
@@ -57,6 +50,9 @@ public class ScatterChartManager extends BaseChart<ScatterChart, ScatterData> im
         xAxis.setDrawAxisLine(true);
     }
 
+    /**
+     * y轴样式设置
+     */
     @Override
     protected void setYAxis() {
         super.setYAxis();
@@ -66,6 +62,19 @@ public class ScatterChartManager extends BaseChart<ScatterChart, ScatterData> im
         yAxis.setDrawAxisLine(true);
     }
 
+    @Override
+    protected void setDataStyle() {
+        super.setDataStyle();
+        for(int i = 0; i < data.getDataSetCount(); i++){
+            ScatterDataSet dataSet = (ScatterDataSet)data.getDataSetByIndex(i);
+            dataSet.setColor(colorArray[i]);
+        }
+    }
+
+    /**
+     * x轴和y轴的限制线设置
+     * @param averageValue x轴数据的平均值和y轴数据的平均值
+     */
     public void setLimitLine(Entry averageValue){
 
         //设置均值

@@ -7,7 +7,7 @@
         android:text="concentrationDistribution"/>
 
     <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
+        android:id="@+id/concentrationDistributionPieChart"
         android:layout_width="@dimen/px_998"
         android:layout_height="@dimen/px_456"
         android:layout_marginStart="@dimen/px_17">

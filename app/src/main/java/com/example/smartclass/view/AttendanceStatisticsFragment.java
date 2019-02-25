@@ -1,5 +1,8 @@
 package com.example.smartclass.view;
 
+import android.graphics.Paint;
+import android.icu.text.DecimalFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,14 +12,17 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.smartclass.R;
 import com.example.smartclass.adapter.TabFragmentPagerAdapter;
+import com.example.smartclass.util.CircleBarView;
 import com.example.smartclass.util.WrapContentHeightViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.RequiresApi;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -36,6 +42,10 @@ public class AttendanceStatisticsFragment extends Fragment {
     ViewPager attendanceStatisticsViewPager;
     @BindView(R.id.unfocusedDetailViewPager)
     WrapContentHeightViewPager unfocusedDetailViewPager;
+    @BindView(R.id.attendanceStatisticsCircleProgressBar)
+    CircleBarView circleBarView;
+    @BindView(R.id.attendanceStatisticsProgressText)
+    TextView attendanceStatisticsProgressText;
 
     private List<Fragment> mFragment1;
     private List<Fragment> mFragment2;
@@ -59,6 +69,24 @@ public class AttendanceStatisticsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_attendance_statistics, container, false);
         ButterKnife.bind(this, root);
         initView();
+
+        circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
+                DecimalFormat decimalFormat=new DecimalFormat("0");
+                String s = decimalFormat.format(interpolatedTime * progressNum / maxNum * 100) + "%";
+                return s;
+            }
+
+            @Override
+            public void howTiChangeProgressColor(Paint paint, float interpolatedTime, float updateNum, float maxNum) {
+
+            }
+        });
+        circleBarView.setTextView(attendanceStatisticsProgressText);
+        circleBarView.setProgressNum(80,3000);
+
         return root;
     }
 
@@ -83,13 +111,14 @@ public class AttendanceStatisticsFragment extends Fragment {
     private void initFragment(){
 
         mFragment1 = new ArrayList<>();
-        mFragment1.add(OverallAttendanceStatisticsFragment.newInstance());
+//        mFragment1.add(OverallAttendanceStatisticsFragment.newInstance());
+        mFragment1.add(StateChangeFragment.newInstance());
         mFragment1.add(ClassAttendanceStatisticsFragment.newInstance());
 
         mFragment2 = new ArrayList<>();
-        mFragment2.add(UnfocusedDetailFragment.newInstance(mTitles2[0]));
-        mFragment2.add(UnfocusedDetailFragment.newInstance(mTitles2[1]));
-        mFragment2.add(UnfocusedDetailFragment.newInstance(mTitles2[2]));
-        mFragment2.add(UnfocusedDetailFragment.newInstance(mTitles2[3]));
+        mFragment2.add(UnfocusedDetailFragment.newInstance());
+        mFragment2.add(UnfocusedDetailFragment.newInstance());
+        mFragment2.add(UnfocusedDetailFragment.newInstance());
+        mFragment2.add(UnfocusedDetailFragment.newInstance());
     }
 }

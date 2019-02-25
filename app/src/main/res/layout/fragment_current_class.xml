@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
         android:layout_marginStart="@dimen/px_250"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/transparent"
         android:text="test"
         />
 
@@ -86,7 +88,7 @@
 
 
         <com.example.smartclass.util.CircleBarView
-            android:id="@+id/circleProgressBar"
+            android:id="@+id/currentClassCircleProgressBar"
             android:layout_width="@dimen/px_252"
             android:layout_height="@dimen/px_252"
             android:layout_marginTop="@dimen/px_49"
@@ -97,7 +99,7 @@
             app:bar_width="8dp"/>
 
         <TextView
-            android:id="@+id/text_progress"
+            android:id="@+id/currentClassProgressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px_139"

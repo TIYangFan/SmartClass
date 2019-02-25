@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.smartclass.R;
 import com.example.smartclass.adapter.ClassExpandableListAdapter;
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

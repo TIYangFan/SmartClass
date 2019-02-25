@@ -50,8 +50,9 @@ public class CurrentStateFragment extends Fragment {
         ButterKnife.bind(this, root);
 
         setScatterData();
-        ScatterChartManager scatterChartManager = new ScatterChartManager(scatterChart, scatterData);
+        ScatterChartManager scatterChartManager = new ScatterChartManager(scatterChart);
         scatterChartManager.initChartView();
+        scatterChartManager.setChartData(scatterData);
         scatterChartManager.setLimitLine(averageValue);
 
         return root;

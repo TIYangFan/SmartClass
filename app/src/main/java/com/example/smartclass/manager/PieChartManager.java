@@ -22,35 +22,23 @@ import java.util.ArrayList;
  */
 public class PieChartManager extends BaseChart<PieChart, PieData> implements OnChartValueSelectedListener {
 
-    public PieChartManager(PieChart chart, PieData chartData) {
-        super(chart, chartData);
+    public PieChartManager(PieChart chart) {
+        super(chart);
     }
 
-    public PieChartManager(PieChart chart, PieData chartData, boolean isSingleLine) {
-        super(chart, chartData, isSingleLine);
-    }
-
+    /**
+     * 图表总体样式设置
+     */
     @Override
     protected void setChartStyle() {
         super.setChartStyle();
         chart.getDescription().setEnabled(false);
+        chart.setRotationEnabled(false);
     }
 
-    @Override
-    protected void setChartData() {
-        super.setChartData();
-    }
-
-    @Override
-    protected void setXAxis() {
-        super.setXAxis();
-    }
-
-    @Override
-    protected void setYAxis() {
-        super.setYAxis();
-    }
-
+    /**
+     * 图例样式设置
+     */
     @Override
     protected void setLegend() {
         super.setLegend();
@@ -60,25 +48,27 @@ public class PieChartManager extends BaseChart<PieChart, PieData> implements OnC
         legend.setOrientation(Legend.LegendOrientation.VERTICAL);
     }
 
+    /**
+     * 单组数据样式设置
+     */
     @Override
-    protected void setSingleDataStyle() {
-        super.setSingleDataStyle();
+    protected void setDataStyle() {
+        super.setDataStyle();
         data.setDrawValues(true);
         data.setValueFormatter(new PercentFormatter());
 
         data.setValueTextSize(10f);
         data.setValueTextColor(Color.WHITE);
 
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-        colors.add(Color.BLUE);
-        colors.add(Color.RED);
-
         PieDataSet dataSet = (PieDataSet) data.getDataSet();
-        dataSet.setColors(colors);
+        dataSet.setColors(colorArray);
         dataSet.setSliceSpace(2f);
         dataSet.setSelectionShift(5f);
     }
 
+    /**
+     * 图表动画设置
+     */
     @Override
     protected void setAnimate() {
         super.setAnimate();

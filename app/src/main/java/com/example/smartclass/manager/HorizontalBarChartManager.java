@@ -5,6 +5,7 @@ import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -18,14 +19,13 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, BarData> implements OnChartValueSelectedListener {
 
 
-    public HorizontalBarChartManager(HorizontalBarChart chart, BarData chartData) {
-        super(chart, chartData);
+    public HorizontalBarChartManager(HorizontalBarChart chart) {
+        super(chart);
     }
 
-    public HorizontalBarChartManager(HorizontalBarChart chart, BarData chartData, boolean isSingleLine) {
-        super(chart, chartData, isSingleLine);
-    }
-
+    /**
+     * 图表总体样式设置
+     */
     @Override
     protected void setChartStyle() {
         super.setChartStyle();
@@ -40,6 +40,9 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
         chart.setFitBars(true);
     }
 
+    /**
+     * x轴样式设置
+     */
     @Override
     protected void setXAxis() {
         super.setXAxis();
@@ -51,6 +54,9 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
         xAxis.setGranularity(1);
     }
 
+    /**
+     * y轴样式设置
+     */
     @Override
     protected void setYAxis() {
         super.setYAxis();
@@ -61,6 +67,9 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
         yAxis.setAxisMinimum(0f);
     }
 
+    /**
+     * 图标动画设置
+     */
     @Override
     protected void setAnimate() {
         super.setAnimate();
@@ -68,11 +77,19 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
         chart.animateY(2500);
     }
 
+    /**
+     * 单组数据样式设置
+     */
     @Override
-    protected void setSingleDataStyle() {
-        super.setSingleDataStyle();
+    protected void setDataStyle() {
+        super.setDataStyle();
         data.setValueTextSize(10f);
         data.setBarWidth(0.5f);
+
+        for(int i = 0; i < data.getDataSetCount(); i++){
+            BarDataSet dataSet = (BarDataSet)data.getDataSetByIndex(i);
+            dataSet.setColor(colorArray[i]);
+        }
     }
 
     @Override

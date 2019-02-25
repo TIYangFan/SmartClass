@@ -30,9 +30,10 @@ import butterknife.ButterKnife;
  */
 public class ConcentrationDistributionFragment extends Fragment {
 
-    @BindView(R.id.pieChart)
+    @BindView(R.id.concentrationDistributionPieChart)
     PieChart pieChart;
-    private PieData mPieData;
+
+    private PieData pieData;
 
     public static ConcentrationDistributionFragment newInstance() {
 
@@ -50,8 +51,9 @@ public class ConcentrationDistributionFragment extends Fragment {
         ButterKnife.bind(this, root);
 
         setPieChartData();
-        PieChartManager pieChartManager = new PieChartManager(pieChart, mPieData);
+        PieChartManager pieChartManager = new PieChartManager(pieChart);
         pieChartManager.initChartView();
+        pieChartManager.setChartData(pieData);
 
         return root;
     }
@@ -64,6 +66,6 @@ public class ConcentrationDistributionFragment extends Fragment {
         PieDataSet dataSet = new PieDataSet(strings,"Label");
         PieData pieData = new PieData(dataSet);
 
-        mPieData = pieData;
+        this.pieData = pieData;
     }
 }

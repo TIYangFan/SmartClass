@@ -50,6 +50,7 @@ public class TabLayoutActivity extends AppCompatActivity {
 
         TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(adapter);
+        mViewPager.setOffscreenPageLimit(2);
         mViewPager.setCurrentItem(1);
 
         mTabLayout.setupWithViewPager(mViewPager);

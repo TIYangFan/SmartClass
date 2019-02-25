@@ -7,7 +7,7 @@
     android:text="ClassAttendanceStatisticsFragment"/>
 
     <com.github.mikephil.charting.charts.HorizontalBarChart
-        android:id="@+id/hBarChart"
+        android:id="@+id/classAttendanceStatisticsHorizontalBarChart"
         android:layout_width="@dimen/px_998"
         android:layout_height="@dimen/px_456"
         android:layout_marginStart="@dimen/px_17">

@@ -25,8 +25,6 @@ import butterknife.ButterKnife;
  */
 public class UnfocusedDetailFragment extends Fragment {
 
-    @BindView(R.id.unfocusedDetailText)
-    TextView unfocusedDetailText;
     @BindView(R.id.unfocusedDetailRecyclerView)
     RecyclerView unfocusedDetailRecyclerView;
 
@@ -43,10 +41,9 @@ public class UnfocusedDetailFragment extends Fragment {
             {"计科1706", "杨帆", "1033170614"},
     };
 
-    public static UnfocusedDetailFragment newInstance(String title) {
+    public static UnfocusedDetailFragment newInstance() {
 
         Bundle args = new Bundle();
-        args.putString("TITLE", title);
         UnfocusedDetailFragment fragment = new UnfocusedDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -57,9 +54,7 @@ public class UnfocusedDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_unfocused_detail, container, false);
         ButterKnife.bind(this, root);
-        unfocusedDetailText.setText(getArguments().getString("TITLE"));
-
-        unfocusedDetailRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        unfocusedDetailRecyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
         unfocusedDetailRecyclerView.setAdapter(new UnfocusedDetailRecyclerViewAdapter(data));
 
         return root;

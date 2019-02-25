@@ -5,4 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:text="StateChange"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/stateChangeLineChart"
+        android:layout_width="@dimen/px_998"
+        android:layout_height="@dimen/px_456"
+        android:layout_marginStart="@dimen/px_17">
+
+    </com.github.mikephil.charting.charts.LineChart>
+
 </RelativeLayout>

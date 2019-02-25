@@ -21,19 +21,14 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
  */
 public class LineChartManager extends BaseChart<LineChart, LineData> implements OnChartValueSelectedListener {
 
-    public LineChartManager(LineChart chart, LineData chartData) {
-        super(chart, chartData);
+
+    public LineChartManager(LineChart chart) {
+        super(chart);
     }
 
-    public LineChartManager(LineChart chart, LineData chartData, boolean isSingleLine) {
-        super(chart, chartData, isSingleLine);
-    }
-
-    @Override
-    protected void setChartData() {
-        super.setChartData();
-    }
-
+    /**
+     * 图标总体样式设置
+     */
     @Override
     protected void setChartStyle() {
         super.setChartStyle();
@@ -42,6 +37,9 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         chart.getAxisRight().setEnabled(false);
     }
 
+    /**
+     * x轴样式设置
+     */
     @Override
     protected void setXAxis() {
         super.setXAxis();
@@ -52,6 +50,9 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         xAxis.setDrawGridLines(false);
     }
 
+    /**
+     * y轴样式设置
+     */
     @Override
     protected void setYAxis() {
         super.setYAxis();
@@ -64,32 +65,29 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         yAxis.setGranularity(2);
     }
 
+    /**
+     * 图标动画设置
+     */
     @Override
     protected void setAnimate() {
         super.setAnimate();
         chart.animateX(2500);
     }
 
+    /**
+     * 单组数据样式设置
+     */
     @Override
-    protected void setSingleDataStyle() {
-        super.setSingleDataStyle();
-    }
+    protected void setDataStyle() {
+        super.setDataStyle();
 
-    @Override
-    protected void setMoreDataStyle() {
-        super.setMoreDataStyle();
-
-        LineDataSet setComp1 = (LineDataSet) data.getDataSetByIndex(0);
-        setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        setComp1.setColor(Color.RED);
-        setComp1.setDrawCircles(false);
-        setComp1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
-
-        LineDataSet setComp2 = (LineDataSet) data.getDataSetByIndex(1);
-        setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
-        setComp2.setDrawCircles(true);
-        setComp2.setColor(Color.BLUE);
-        setComp2.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        for(int i = 0; i < data.getDataSetCount(); i++){
+            LineDataSet setComp1 = (LineDataSet) data.getDataSetByIndex(i);
+            setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
+            setComp1.setColor(colorArray[i]);
+            setComp1.setDrawCircles(false);
+            setComp1.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        }
     }
 
     @Override

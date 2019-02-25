@@ -31,12 +31,11 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class OverallAttendanceStatisticsFragment extends Fragment implements OnChartValueSelectedListener {
+public class OverallAttendanceStatisticsFragment extends Fragment {
 
-    @BindView(R.id.lineChart)
+    @BindView(R.id.overallAttendanceStatisticsLineChart)
     LineChart lineChart;
 
-    private LineChartManager lineChartManager;
     private LineData lineData;
 
     public static OverallAttendanceStatisticsFragment newInstance() {
@@ -55,8 +54,9 @@ public class OverallAttendanceStatisticsFragment extends Fragment implements OnC
         ButterKnife.bind(this, root);
 
         setLineChartData();
-        lineChartManager = new LineChartManager(lineChart, lineData, false);
+        LineChartManager lineChartManager = new LineChartManager(lineChart);
         lineChartManager.initChartView();
+        lineChartManager.setChartData(lineData);
 
         return root;
     }
@@ -64,7 +64,6 @@ public class OverallAttendanceStatisticsFragment extends Fragment implements OnC
     private void setLineChartData(){
 
         List<Entry> valsComp1 = new ArrayList<>();
-        List<Entry> valsComp2 = new ArrayList<>();
 
         valsComp1.add(new Entry(0,10));
         valsComp1.add(new Entry(1, (float) 9.5));
@@ -75,30 +74,13 @@ public class OverallAttendanceStatisticsFragment extends Fragment implements OnC
         valsComp1.add(new Entry(5, (float) 5.5));
         valsComp1.add(new Entry(6, (float) 5.1));
 
-
-        valsComp2.add(new Entry(0,2));
-        valsComp2.add(new Entry(1,0));
-        valsComp2.add(new Entry(2,4));
-        valsComp2.add(new Entry(3,2));
-
         LineDataSet setComp1 = new LineDataSet(valsComp1, "Company1");
 
-        LineDataSet setComp2 = new LineDataSet(valsComp2, "Company2");
 
         List<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(setComp1);
-        dataSets.add(setComp2);
 
         lineData = new LineData(dataSets);
     }
 
-    @Override
-    public void onValueSelected(Entry e, Highlight h) {
-
-    }
-
-    @Override
-    public void onNothingSelected() {
-
-    }
 }

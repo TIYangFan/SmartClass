@@ -11,12 +11,34 @@
         android:layout_marginTop="@dimen/px_27"
         android:background="@drawable/bg_border_radius">
 
-        <ImageView
+        <com.example.smartclass.util.CircleBarView
+            android:id="@+id/overallRecentRecordCircleProgressBar"
             android:layout_width="@dimen/px_252"
             android:layout_height="@dimen/px_252"
             android:layout_marginTop="@dimen/px_49"
             android:layout_marginStart="@dimen/px_38"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:start_angle="270"
+            app:sweep_angle="360"
+            app:bg_color="@android:color/transparent"
+            app:bar_width="8dp"/>
+
+        <TextView
+            android:id="@+id/overallRecentRecordProgressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_139"
+            android:layout_marginStart="@dimen/px_114"
+            android:textSize="@dimen/px_54"
+            android:textColor="@color/colorThemeTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_194"
+            android:layout_marginStart="@dimen/px_124"
+            android:text="出勤率"
+            android:textSize="@dimen/px_28"
+            android:textColor="@color/colorBlack"/>
 
         <!--Late-->
 

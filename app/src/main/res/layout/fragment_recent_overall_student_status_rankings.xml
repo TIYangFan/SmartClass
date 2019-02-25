@@ -7,7 +7,7 @@
     android:text="RecentOverallStudentStatusRankings"/>
 
     <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
+        android:id="@+id/recentOverallStudentStatusBarChart"
         android:layout_width="@dimen/px_998"
         android:layout_height="@dimen/px_456"
         android:layout_marginStart="@dimen/px_17">

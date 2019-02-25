@@ -1,5 +1,8 @@
 package com.example.smartclass.view;
 
+import android.graphics.Paint;
+import android.icu.text.DecimalFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,13 +12,16 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.smartclass.R;
 import com.example.smartclass.adapter.TabFragmentPagerAdapter;
+import com.example.smartclass.util.CircleBarView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.RequiresApi;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,6 +41,10 @@ public class OverallRecentRecordFragment extends Fragment {
     ViewPager overallClassroomInformationRankingViewPager;
     @BindView(R.id.overallClassroomInformationViewPager)
     ViewPager overallClassroomInformationViewPager;
+    @BindView(R.id.overallRecentRecordCircleProgressBar)
+    CircleBarView circleBarView;
+    @BindView(R.id.overallRecentRecordProgressText)
+    TextView overallRecentRecordProgressText;
 
     private List<Fragment> fragments1;
     private List<Fragment> fragments2;
@@ -57,6 +67,24 @@ public class OverallRecentRecordFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_overall_recent_record, container, false);
         ButterKnife.bind(this, root);
         initView();
+
+        circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
+                DecimalFormat decimalFormat = new DecimalFormat("0");
+                String s = decimalFormat.format(interpolatedTime * progressNum / maxNum * 100) + "%";
+                return s;
+            }
+
+            @Override
+            public void howTiChangeProgressColor(Paint paint, float interpolatedTime, float updateNum, float maxNum) {
+
+            }
+        });
+        circleBarView.setTextView(overallRecentRecordProgressText);
+        circleBarView.setProgressNum(80,3000);
+
         return root;
     }
 
@@ -81,11 +109,13 @@ public class OverallRecentRecordFragment extends Fragment {
     private void initFragment(){
 
         fragments1 = new ArrayList<>();
-        fragments1.add(RecentOverallAttendanceFragment.newInstance());
+//        fragments1.add(RecentOverallAttendanceFragment.newInstance());
+        fragments1.add(RecentOverallStudentStatusFragment.newInstance());
         fragments1.add(RecentOverallStudentStatusFragment.newInstance());
 
         fragments2 = new ArrayList<>();
         fragments2.add(RecentOverallStudentStatusRankingsFragment.newInstance());
-        fragments2.add(RecentOverallAttendanceRankingsFragment.newInstance());
+        fragments2.add(RecentOverallStudentStatusRankingsFragment.newInstance());
+//        fragments2.add(RecentOverallAttendanceRankingsFragment.newInstance());
     }
 }

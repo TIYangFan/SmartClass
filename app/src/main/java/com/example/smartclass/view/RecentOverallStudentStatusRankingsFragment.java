@@ -29,8 +29,9 @@ import butterknife.ButterKnife;
  */
 public class RecentOverallStudentStatusRankingsFragment extends Fragment {
 
-    @BindView(R.id.barChart)
+    @BindView(R.id.recentOverallStudentStatusBarChart)
     BarChart barChart;
+
     private BarData barData;
 
     public static RecentOverallStudentStatusRankingsFragment newInstance() {
@@ -49,8 +50,9 @@ public class RecentOverallStudentStatusRankingsFragment extends Fragment {
         ButterKnife.bind(this, root);
 
         setBarChartData();
-        BarChartManager barChartManager = new BarChartManager(barChart, barData);
+        BarChartManager barChartManager = new BarChartManager(barChart);
         barChartManager.initChartView();
+        barChartManager.setChartData(barData);
 
         return root;
     }

@@ -1,5 +1,8 @@
 package com.example.smartclass.adapter;
 
+import android.graphics.Paint;
+import android.icu.text.DecimalFormat;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,14 +13,17 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.example.smartclass.R;
+import com.example.smartclass.util.CircleBarView;
 import com.example.smartclass.util.WrapContentHeightViewPager;
 import com.example.smartclass.view.ClassAttendanceStatisticsFragment;
+import com.example.smartclass.view.RecentOverallStudentStatusRankingsFragment;
 import com.example.smartclass.view.StateChangeFragment;
 import com.example.smartclass.view.UnfocusedDetailFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.RequiresApi;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -117,8 +123,34 @@ public class ClassExpandableListAdapter extends BaseExpandableListAdapter {
     static class GroupViewHolder{
         @BindView(R.id.parent)
         TextView textView;
+        @BindView(R.id.classRecentRecordCircleProgressBar)
+        CircleBarView circleBarView;
+        @BindView(R.id.classRecentRecordProgressText)
+        TextView classRecentRecordProgressText;
+
         GroupViewHolder(View view){
             ButterKnife.bind(this, view);
+
+            initView();
+        }
+
+        private void initView(){
+            circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
+                    DecimalFormat decimalFormat=new DecimalFormat("0");
+                    String s = decimalFormat.format(interpolatedTime * progressNum / maxNum * 100) + "%";
+                    return s;
+                }
+
+                @Override
+                public void howTiChangeProgressColor(Paint paint, float interpolatedTime, float updateNum, float maxNum) {
+
+                }
+            });
+            circleBarView.setTextView(classRecentRecordProgressText);
+            circleBarView.setProgressNum(80,3000);
         }
     }
 
@@ -151,14 +183,14 @@ public class ClassExpandableListAdapter extends BaseExpandableListAdapter {
         private void initView(){
             initFragment();
 
-            TabFragmentPagerAdapter adapter1 = new TabFragmentPagerAdapter(fragment.getChildFragmentManager(), fragments1);
+            TabFragmentPagerAdapter adapter1 = new TabFragmentPagerAdapter(fragment.getFragmentManager(), fragments1);
             recentRecordStatisticsViewPager.setAdapter(adapter1);
             recentRecordStatisticsTabLayout.setupWithViewPager(recentRecordStatisticsViewPager);
             for(int i = 0; i < title1.length; i++){
                 recentRecordStatisticsTabLayout.getTabAt(i).setText(title1[i]);
             }
 
-            TabFragmentPagerAdapter adapter2 = new TabFragmentPagerAdapter(fragment.getChildFragmentManager(), fragments2);
+            TabFragmentPagerAdapter adapter2 = new TabFragmentPagerAdapter(fragment.getFragmentManager(), fragments2);
             recentRecordStatisticsDetailViewPager.setAdapter(adapter2);
             recentRecordStatisticsDetailTabLayout.setupWithViewPager(recentRecordStatisticsDetailViewPager);
             for(int i  = 0; i < title2.length; i++){
@@ -169,14 +201,14 @@ public class ClassExpandableListAdapter extends BaseExpandableListAdapter {
         private void initFragment(){
 
             fragments1 = new ArrayList<>();
-            fragments1.add(ClassAttendanceStatisticsFragment.newInstance());
+            fragments1.add(RecentOverallStudentStatusRankingsFragment.newInstance());
             fragments1.add(StateChangeFragment.newInstance());
 
             fragments2 = new ArrayList<>();
-            fragments2.add(UnfocusedDetailFragment.newInstance(title2[0]));
-            fragments2.add(UnfocusedDetailFragment.newInstance(title2[1]));
-            fragments2.add(UnfocusedDetailFragment.newInstance(title2[2]));
-            fragments2.add(UnfocusedDetailFragment.newInstance(title2[3]));
+            fragments2.add(UnfocusedDetailFragment.newInstance());
+            fragments2.add(UnfocusedDetailFragment.newInstance());
+            fragments2.add(UnfocusedDetailFragment.newInstance());
+            fragments2.add(UnfocusedDetailFragment.newInstance());
         }
     }
 }

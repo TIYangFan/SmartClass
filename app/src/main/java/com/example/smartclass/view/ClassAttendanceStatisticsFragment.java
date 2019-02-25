@@ -30,10 +30,10 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class ClassAttendanceStatisticsFragment extends Fragment implements OnChartValueSelectedListener {
+public class ClassAttendanceStatisticsFragment extends Fragment {
 
-    @BindView(R.id.hBarChart)
-    HorizontalBarChart hBarChart;
+    @BindView(R.id.classAttendanceStatisticsHorizontalBarChart)
+    HorizontalBarChart horizontalBarChart;
 
     private BarData barData;
 
@@ -53,8 +53,9 @@ public class ClassAttendanceStatisticsFragment extends Fragment implements OnCha
         ButterKnife.bind(this, root);
 
         setHBarChartData();
-        HorizontalBarChartManager horizontalBarChartManager = new HorizontalBarChartManager(hBarChart, barData);
+        HorizontalBarChartManager horizontalBarChartManager = new HorizontalBarChartManager(horizontalBarChart);
         horizontalBarChartManager.initChartView();
+        horizontalBarChartManager.setChartData(barData);
 
         return root;
     }
@@ -95,13 +96,4 @@ public class ClassAttendanceStatisticsFragment extends Fragment implements OnCha
         barData = data;
     }
 
-    @Override
-    public void onValueSelected(Entry e, Highlight h) {
-
-    }
-
-    @Override
-    public void onNothingSelected() {
-
-    }
 }

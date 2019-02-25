@@ -106,6 +106,8 @@ public class StudentStatusFragment extends Fragment {
 
         fragments3 = new ArrayList<>();
         fragments3.add(ConcentrationDistributionFragment.newInstance());
-        fragments3.add(UnfocusedDistributionFragment.newInstance());
+        fragments3.add(ConcentrationDistributionFragment.newInstance());
+
+//        fragments3.add(UnfocusedDistributionFragment.newInstance());
     }
 }

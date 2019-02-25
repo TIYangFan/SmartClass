@@ -1,5 +1,7 @@
 package com.example.smartclass.base;
 
+import android.graphics.Color;
+
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -17,19 +19,12 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
     protected E data;
     protected XAxis xAxis;
     protected YAxis yAxis;
+    protected int[] colorArray = new int[]{ Color.parseColor("#27B197"), Color.parseColor("#00A6D5")};
     private boolean isSingleLine = true;
 
-    public BaseChart(T chart, E chartData){
+    public BaseChart(T chart){
 
         this.chart = chart;
-        this.data = chartData;
-    }
-
-    public BaseChart(T chart, E chartData, boolean isSingleLine){
-
-        this.chart = chart;
-        this.data = chartData;
-        this.isSingleLine = isSingleLine;
     }
 
     /**
@@ -39,24 +34,26 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
 
         setAxis();
         setChartStyle();
-
-        setChartData();
     };
 
     /**
      * 设置图表数据
      */
-    protected void setChartData(){
+    public void setChartData(E chartData){
 
-        if(isSingleLine){
-            setSingleDataStyle();
-        }else{
-            setMoreDataStyle();
-        }
+        this.data = chartData;
+        setDataStyle();
 
-        chart.setData(data);
+        chart.setData(chartData);
         chart.invalidate();
     };
+
+    /**
+     * 数据颜色设置
+     */
+    public void setColorArray(int[] colorArray) {
+        this.colorArray = colorArray;
+    }
 
     /**
      * 图表本身样式设置
@@ -72,14 +69,14 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
     /**
      * 滑动相关设置
      */
-    protected void setSlidingRelated(){
+    private void setSlidingRelated(){
 
     };
 
     /**
      * 高亮设置
      */
-    protected void setHighlight(){
+    private void setHighlight(){
 
     };
 
@@ -114,16 +111,9 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
     };
 
     /**
-     * 单一数据样式设置
+     * 数据样式设置
      */
-    protected void setSingleDataStyle(){
-
-    };
-
-    /**
-     * 多组数据样式设置
-     */
-    protected void setMoreDataStyle(){
+    protected void setDataStyle(){
 
     };
 
@@ -133,4 +123,5 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
     protected void setAnimate(){
 
     };
+
 }

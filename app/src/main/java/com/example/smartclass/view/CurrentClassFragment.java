@@ -41,10 +41,10 @@ public class CurrentClassFragment extends Fragment {
 
     @BindView(R.id.currentClassToolbar)
     Toolbar mCurrentClassToolbar;
-    @BindView(R.id.circleProgressBar)
-    CircleBarView circleProgressBar;
-    @BindView(R.id.text_progress)
-    TextView text_progress;
+    @BindView(R.id.currentClassCircleProgressBar)
+    CircleBarView circleBarView;
+    @BindView(R.id.currentClassProgressText)
+    TextView currentClassProgressText;
     @BindView(R.id.testButton)
     Button testButton;
 
@@ -67,7 +67,7 @@ public class CurrentClassFragment extends Fragment {
         activity.setSupportActionBar(mCurrentClassToolbar);
         mCurrentClassToolbar.setTitle("");
 
-        circleProgressBar.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
+        circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
@@ -81,8 +81,8 @@ public class CurrentClassFragment extends Fragment {
 
             }
         });
-        circleProgressBar.setTextView(text_progress);
-        circleProgressBar.setProgressNum(80,3000);
+        circleBarView.setTextView(currentClassProgressText);
+        circleBarView.setProgressNum(80,3000);
 
         return root;
     }
