@@ -12,11 +12,11 @@ import java.util.List;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class TabFragmentPagerAdapter extends FragmentPagerAdapter {
+public class TabFragmentPagerAdapter<T extends Fragment> extends FragmentPagerAdapter {
 
-    private List<Fragment> mFragments;
+    private List<T> mFragments;
 
-    public TabFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public TabFragmentPagerAdapter(FragmentManager fm, List<T> fragments) {
         super(fm);
         mFragments = fragments;
     }

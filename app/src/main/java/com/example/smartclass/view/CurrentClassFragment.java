@@ -45,8 +45,6 @@ public class CurrentClassFragment extends Fragment {
     CircleBarView circleBarView;
     @BindView(R.id.currentClassProgressText)
     TextView currentClassProgressText;
-    @BindView(R.id.testButton)
-    Button testButton;
 
     public static CurrentClassFragment newInstance() {
 
@@ -99,25 +97,6 @@ public class CurrentClassFragment extends Fragment {
         Intent intent = new Intent(getContext(), StudentStatusActivity.class);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }
-
-    @OnClick(R.id.testButton)
-    public void testNet(){
-
-        LoginModel model = new LoginModel();
-        model.login()
-                .compose(RxScheduler.<test>Flo_io_main())
-                .subscribe(new Consumer<test>() {
-                    @Override
-                    public void accept(test test) throws Exception {
-                        Toast.makeText(getContext(), test.getName(), Toast.LENGTH_SHORT).show();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-
-                    }
-                });
     }
 
 }

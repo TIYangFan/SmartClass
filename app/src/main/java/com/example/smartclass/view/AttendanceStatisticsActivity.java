@@ -1,13 +1,9 @@
 package com.example.smartclass.view;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseMvpActivity;
+import com.example.smartclass.presenter.AttendanceStatisticsPresenter;
 import com.example.smartclass.util.ActivityUtils;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by YangFan
@@ -15,14 +11,17 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class AttendanceStatisticsActivity extends AppCompatActivity {
+public class AttendanceStatisticsActivity extends BaseMvpActivity<AttendanceStatisticsPresenter> {
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public int getLayoutId() {
 
-        setContentView(R.layout.activity_attendance_statistics);
-        ButterKnife.bind(this);
+        return R.layout.activity_attendance_statistics;
+    }
+
+    @Override
+    public void initView() {
 
         AttendanceStatisticsFragment attendanceStatisticsFragment = (AttendanceStatisticsFragment)getSupportFragmentManager().
                 findFragmentById(R.id.attendanceStatisticsContentFrame);
@@ -31,11 +30,28 @@ public class AttendanceStatisticsActivity extends AppCompatActivity {
             attendanceStatisticsFragment = AttendanceStatisticsFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), attendanceStatisticsFragment, R.id.attendanceStatisticsContentFrame);
         }
+
+        mPresenter = new AttendanceStatisticsPresenter(attendanceStatisticsFragment);
     }
 
     @Override
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+
     }
 }

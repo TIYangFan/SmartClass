@@ -13,16 +13,16 @@
 
         <activity android:name="com.example.smartclass.view.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
-                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.smartclass.view.TabLayoutActivity"></activity>
-        <activity android:name="com.example.smartclass.view.RegisteredActivity"></activity>
-        <activity android:name="com.example.smartclass.view.AttendanceStatisticsActivity"></activity>
-        <activity android:name="com.example.smartclass.view.StudentStatusActivity"></activity>
-        <activity android:name="com.example.smartclass.view.VerificationCodeLoginActivity"></activity>
+        <activity android:name="com.example.smartclass.view.TabLayoutActivity"/>
+        <activity android:name="com.example.smartclass.view.RegisteredActivity"/>
+        <activity android:name="com.example.smartclass.view.AttendanceStatisticsActivity"/>
+        <activity android:name="com.example.smartclass.view.StudentStatusActivity"/>
+        <activity android:name="com.example.smartclass.view.VerificationCodeLoginActivity"/>
 
     </application>
 </manifest>

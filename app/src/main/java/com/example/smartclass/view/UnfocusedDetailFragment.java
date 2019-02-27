@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.example.smartclass.R;
 import com.example.smartclass.adapter.UnfocusedDetailRecyclerViewAdapter;
+import com.example.smartclass.base.BaseChartView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +26,7 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class UnfocusedDetailFragment extends Fragment {
+public class UnfocusedDetailFragment extends Fragment implements BaseChartView {
 
     @BindView(R.id.unfocusedDetailRecyclerView)
     RecyclerView unfocusedDetailRecyclerView;
@@ -58,5 +61,20 @@ public class UnfocusedDetailFragment extends Fragment {
         unfocusedDetailRecyclerView.setAdapter(new UnfocusedDetailRecyclerViewAdapter(data));
 
         return root;
+    }
+
+    @Override
+    public void setChartData(ArrayList chartData, String dataType) {
+
+    }
+
+    @Override
+    public void initChartView() {
+
+    }
+
+    @Override
+    public void updateChartData() {
+
     }
 }

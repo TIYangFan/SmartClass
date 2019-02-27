@@ -14,6 +14,7 @@ import io.reactivex.Flowable;
  */
 public class LoginModel implements LoginContract.Model {
 
+    @Override
     public Flowable<test> login() {
         return RetrofitClient.getInstance().getApi().login();
     }

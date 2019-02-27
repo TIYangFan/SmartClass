@@ -24,9 +24,10 @@ public class RetrofitClient {
 
     private static volatile RetrofitClient instance;
     private APIService apiService;
-    private String baseUrl = "http://wkwv4s.natappfree.cc/";
+    private String baseUrl = "http://fwwb.vipgz1.idcfengye.com/";
 
     private RetrofitClient() {
+
     }
 
     public static RetrofitClient getInstance() {

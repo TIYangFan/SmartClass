@@ -1,6 +1,5 @@
 package com.example.smartclass.contract;
 
-import com.example.smartclass.base.BasePresenter;
 import com.example.smartclass.base.BaseView;
 
 /**
@@ -11,7 +10,7 @@ import com.example.smartclass.base.BaseView;
  */
 public interface ClassRecentRecordContract {
 
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView {
 
         void showClassInformation();
 
@@ -22,14 +21,14 @@ public interface ClassRecentRecordContract {
         void showClassStatusLineChart();
 
         void showProblemStudentList();
-
-        void setLoadingIndicator(boolean active);
-
-        void showLoadingClassInformationError();
     }
 
-    interface Presenter extends BasePresenter{
+    interface Presenter {
 
         void LoadClassDetails();
+    }
+
+    interface Model {
+
     }
 }

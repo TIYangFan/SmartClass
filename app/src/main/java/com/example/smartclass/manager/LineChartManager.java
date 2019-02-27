@@ -4,11 +4,13 @@ import android.graphics.Color;
 
 import com.example.smartclass.base.BaseChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
@@ -21,6 +23,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
  */
 public class LineChartManager extends BaseChart<LineChart, LineData> implements OnChartValueSelectedListener {
 
+    private float minOfYAxis;
 
     public LineChartManager(LineChart chart) {
         super(chart);
@@ -48,6 +51,10 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1f);
         xAxis.setDrawGridLines(false);
+
+        if(xAxisValueFormatter != null){
+            xAxis.setValueFormatter(xAxisValueFormatter);
+        }
     }
 
     /**
@@ -60,9 +67,9 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
 
         yAxis.setLabelCount(8, false);
         yAxis.setSpaceTop(15f);
-        yAxis.setAxisMinimum(0f);
+        yAxis.setAxisMinimum(minOfYAxis);
         yAxis.setDrawGridLines(false);
-        yAxis.setGranularity(2);
+        yAxis.setGranularity(1);
     }
 
     /**
@@ -91,6 +98,15 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
     }
 
     @Override
+    protected void setLegend() {
+        super.setLegend();
+        if (data != null && data.getDataSetCount() == 1){
+            Legend legend = chart.getLegend();
+            legend.setEnabled(false);
+        }
+    }
+
+    @Override
     public void onValueSelected(Entry e, Highlight h) {
 
     }
@@ -98,6 +114,14 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
     @Override
     public void onNothingSelected() {
 
+    }
+
+    public void setMinOfYAxis(float minOfYAxis){
+        this.minOfYAxis = minOfYAxis;
+    }
+
+    public void setXAxisValueFormatter(IAxisValueFormatter iAxisValueFormatter){
+        this.xAxisValueFormatter = iAxisValueFormatter;
     }
 
 }

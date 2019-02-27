@@ -1,7 +1,13 @@
 package com.example.smartclass.contract;
 
-import com.example.smartclass.base.BasePresenter;
 import com.example.smartclass.base.BaseView;
+import com.example.smartclass.bean.AttendanceProfileBean;
+import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
+
+import java.util.ArrayList;
+
+import io.reactivex.Flowable;
 
 /**
  * Created by YangFan
@@ -11,24 +17,37 @@ import com.example.smartclass.base.BaseView;
  */
 public interface AttendanceStatisticsContract {
 
-    interface View extends BaseView<Presenter>{
+    interface Model {
 
-        void showTheMainInformationOfTheClass();
+        /**
+         * 向后端请求关于当前课堂的出勤概况
+         * @return 当前课堂的出勤概况
+         */
+        Flowable<AttendanceProfileBean> loadAttendanceProfile(String jobNumber);
 
-        void showOverallAttendanceLineChart();
+        Flowable<BaseArrayBean<TimeAndNumberOfPeopleBean>> loadOverallAttendanceStatistics(String jobNumber);
+
+        Flowable<ArrayList> loadClassAttendanceStatistics();
+
+        Flowable<ArrayList<ArrayList>> loadProblemStudentStatistics();
+    }
+
+    interface View extends BaseView {
+
+        void showAttendanceProfile(AttendanceProfileBean bean);
+
+        void showOverallAttendanceLineChart(BaseArrayBean<TimeAndNumberOfPeopleBean> bean);
 
         void showClassAttendanceHorizontalBarChart();
 
         void showProblemStudentList();
-
-        void setLoadingIndicator(boolean active);
-
-        void showLoadingClassInformationError();
     }
 
-    interface Presenter extends BasePresenter{
+    interface Presenter {
 
-        void loadTheMainInformationOfTheClass();
+        void loadAllStatisticsOnThePage();
+
+        void loadAttendanceProfile();
 
         void loadOverallAttendanceStatistics();
 

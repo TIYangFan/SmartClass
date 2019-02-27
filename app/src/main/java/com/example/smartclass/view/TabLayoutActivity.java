@@ -1,5 +1,6 @@
 package com.example.smartclass.view;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,9 @@ import com.example.smartclass.adapter.TabFragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by YangFan
  * On 2019/1/28
@@ -27,28 +31,30 @@ import java.util.List;
  */
 public class TabLayoutActivity extends AppCompatActivity {
 
-    private List<Fragment> mFragments;
+    private List<Fragment> fragments;
     private String[] mTitles;
     private int[] mImages = {R.drawable.ic_tab_selector_rr, R.drawable.ic_tab_selector_cc, R.drawable.ic_tab_selector_pc};
-    private ViewPager mViewPager;
-    private TabLayout mTabLayout;
+
+    @BindView(R.id.tabViewPager)
+    ViewPager mViewPager;
+    @BindView(R.id.tabLayout)
+    TabLayout mTabLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_layout);
+        ButterKnife.bind(this);
         initView();
     }
 
     private void initView(){
-        mViewPager = (ViewPager) findViewById(R.id.tabViewPager);
-        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         Resources resources = getResources();
         mTitles = resources.getStringArray(R.array.bottom_tab_bar_titles);
 
         initFragment();
 
-        TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), mFragments);
+        TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(2);
         mViewPager.setCurrentItem(1);
@@ -65,10 +71,11 @@ public class TabLayoutActivity extends AppCompatActivity {
     }
 
     private void initFragment(){
-        mFragments = new ArrayList<>();
 
-        mFragments.add(RecentRecordFragment.newInstance());
-        mFragments.add(CurrentClassFragment.newInstance());
-        mFragments.add(PersonalCenterFragment.newInstance());
+        fragments = new ArrayList<>();
+        fragments.add(RecentRecordFragment.newInstance());
+        fragments.add(CurrentClassFragment.newInstance());
+        fragments.add(PersonalCenterFragment.newInstance());
     }
+
 }

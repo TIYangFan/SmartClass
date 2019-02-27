@@ -2,20 +2,21 @@ package com.example.smartclass.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseMvpFragment;
+import com.example.smartclass.bean.test;
 import com.example.smartclass.contract.LoginContract;
+import com.example.smartclass.presenter.LoginPresenter;
+import com.example.smartclass.util.PageSwitchingAnimation;
+import com.example.smartclass.util.SharedPreferencesUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by YangFan
@@ -23,7 +24,7 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class LoginFragment extends Fragment implements LoginContract.View {
+public class LoginFragment extends BaseMvpFragment<LoginPresenter> implements LoginContract.View {
 
     @BindView(R.id.buttonLoginByPassword)
     Button mButtonLoginByPassword;
@@ -31,8 +32,6 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     TextView mTextViewRegistered;
     @BindView(R.id.textViewVerificationCodeLogin)
     TextView mTextViewVerificationCodeLogin;
-
-    private LoginContract.Presenter mPresenter;
 
     public static LoginFragment newInstance() {
 
@@ -44,45 +43,61 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     }
 
     @Override
-    public void setPresenter(LoginContract.Presenter presenter) {
-        mPresenter = presenter;
+    protected void initView(View view) {
+
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_login, container, false);
-        ButterKnife.bind(this, root);
-
-        mButtonLoginByPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getContext(), TabLayoutActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
-
-        mTextViewRegistered.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getContext(), RegisteredActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
-
-        mTextViewVerificationCodeLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), VerificationCodeLoginActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
-
-        return root;
+    protected int getLayoutId() {
+        return R.layout.fragment_login;
     }
+
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+
+    }
+
+    public void test(test bean){
+        Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), bean.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.buttonLoginByPassword)
+    public void loginByPassword() {
+
+        //mPresenter.login();
+        SharedPreferencesUtil.setStoreJobNumber(getActivity(), "1030416601");
+        Intent intent = new Intent(getContext(), TabLayoutActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        PageSwitchingAnimation.startActivityAnimation(getActivity());
+    }
+
+    @OnClick(R.id.textViewRegistered)
+    public void registered(){
+
+        Intent intent = new Intent(getContext(), RegisteredActivity.class);
+        startActivity(intent);
+        PageSwitchingAnimation.startActivityAnimation(getActivity());
+    }
+
+    @OnClick(R.id.textViewVerificationCodeLogin)
+    public void loginByVerificationCode(){
+
+        Intent intent = new Intent(getContext(), VerificationCodeLoginActivity.class);
+        startActivity(intent);
+        PageSwitchingAnimation.startActivityAnimation(getActivity());
+    }
+
 }

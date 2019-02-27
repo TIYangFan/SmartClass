@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseChartView;
 import com.example.smartclass.manager.HorizontalBarChartManager;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class ClassAttendanceStatisticsFragment extends Fragment {
+public class ClassAttendanceStatisticsFragment extends Fragment implements BaseChartView {
 
     @BindView(R.id.classAttendanceStatisticsHorizontalBarChart)
     HorizontalBarChart horizontalBarChart;
@@ -96,4 +97,18 @@ public class ClassAttendanceStatisticsFragment extends Fragment {
         barData = data;
     }
 
+    @Override
+    public void setChartData(ArrayList chartData, String dataType) {
+
+    }
+
+    @Override
+    public void initChartView() {
+
+    }
+
+    @Override
+    public void updateChartData() {
+
+    }
 }

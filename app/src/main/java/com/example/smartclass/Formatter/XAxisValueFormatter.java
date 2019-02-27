@@ -11,15 +11,17 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
  */
 public class XAxisValueFormatter implements IAxisValueFormatter {
 
-    private String[] xStrs = new String[]{"春", "夏", "秋", "冬"};
-
+    private final String[] mLabels;
+    public XAxisValueFormatter(String[] labels) {
+        mLabels = labels;
+    }
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-
-        int position = (int) value;
-        if (position >= 4) {
-            position = 0;
+        try {
+            return mLabels[(int) value];
+        } catch (Exception e) {
+            e.printStackTrace();
+            return mLabels[0];
         }
-        return xStrs[position];
     }
 }

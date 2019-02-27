@@ -1,6 +1,5 @@
 package com.example.smartclass.contract;
 
-import com.example.smartclass.base.BasePresenter;
 import com.example.smartclass.base.BaseView;
 
 /**
@@ -11,10 +10,16 @@ import com.example.smartclass.base.BaseView;
  */
 public interface StudentStatusContract {
 
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView {
 
+        /**
+         * 显示当前学生状态的散点图
+         */
         void showCurrentStatusScatterChart();
 
+        /**
+         * 显示一段时间内学生状态变化的曲线图
+         */
         void showStateChangeLineChart();
 
         void showConcentrationDistributionPieChart();
@@ -22,13 +27,9 @@ public interface StudentStatusContract {
         void showUnfocusedDistributionPieChart();
 
         void showUnfocusedStudentList();
-
-        void setLoadingIndicator(boolean active);
-
-        void showLoadingClassInformationError();
     }
 
-    interface Presenter extends BasePresenter{
+    interface Presenter {
 
         void loadCurrentStatusStatistics();
 
@@ -39,5 +40,9 @@ public interface StudentStatusContract {
         void loadUnfocusedDistributionStatistics();
 
         void loadUnfocusedStudentStatistics();
+    }
+
+    interface Model {
+
     }
 }

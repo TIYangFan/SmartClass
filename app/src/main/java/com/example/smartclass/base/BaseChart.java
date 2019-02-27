@@ -6,6 +6,7 @@ import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.ChartData;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 /**
  * Created by YangFan
@@ -19,8 +20,10 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
     protected E data;
     protected XAxis xAxis;
     protected YAxis yAxis;
+    protected IAxisValueFormatter xAxisValueFormatter;
+    protected IAxisValueFormatter yAxisValueFormatter;
     protected int[] colorArray = new int[]{ Color.parseColor("#27B197"), Color.parseColor("#00A6D5")};
-    private boolean isSingleLine = true;
+    protected boolean isSingleLine = true;
 
     public BaseChart(T chart){
 
@@ -42,9 +45,9 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
     public void setChartData(E chartData){
 
         this.data = chartData;
+        chart.setData(chartData);
         setDataStyle();
 
-        chart.setData(chartData);
         chart.invalidate();
     };
 

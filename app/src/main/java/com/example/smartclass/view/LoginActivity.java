@@ -1,13 +1,9 @@
 package com.example.smartclass.view;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseMvpActivity;
+import com.example.smartclass.presenter.LoginPresenter;
 import com.example.smartclass.util.ActivityUtils;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by YangFan
@@ -15,13 +11,16 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseMvpActivity<LoginPresenter> {
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+    public int getLayoutId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    public void initView() {
 
         LoginFragment loginFragment = (LoginFragment)getSupportFragmentManager().findFragmentById(R.id.loginByPasswordContentFrame);
         if (loginFragment == null){
@@ -29,6 +28,23 @@ public class LoginActivity extends AppCompatActivity {
 
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), loginFragment, R.id.loginByPasswordContentFrame);
         }
+
+        mPresenter = new LoginPresenter(loginFragment);
+    }
+
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
 
     }
 }
