@@ -20,12 +20,12 @@ public class YAxisValueFormatter implements IAxisValueFormatter {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public YAxisValueFormatter(){
-        mFormat = new DecimalFormat("###,###,###,##0.000");
+        mFormat = new DecimalFormat("0.0");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-         return mFormat.format(value) + " $";
+         return mFormat.format(value * 100) + "%";
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:wheel="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -219,6 +220,28 @@
         android:layout_marginStart="@dimen/px_24"
         android:background="@drawable/bg_border_radius">
 
+        <LinearLayout
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="@dimen/px_121"
+                android:layout_height="@dimen/px_121"
+                android:layout_gravity="center"
+                android:visibility="visible"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/px_30"
+                android:text="数据加载中"/>
+
+        </LinearLayout>
+
         <android.support.design.widget.TabLayout
             android:id="@+id/attendanceStatisticsTabLayout"
             android:layout_width="@dimen/px_998"
@@ -259,7 +282,7 @@
         android:background="@drawable/bg_border_radius">
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/unfocusedDetailTabLayout"
+            android:id="@+id/studentsWithAttendanceProblemsTabLayout"
             android:layout_width="@dimen/px_998"
             android:layout_height="@dimen/px_93"
             android:layout_marginStart="@dimen/px_17"
@@ -279,7 +302,7 @@
             android:background="@color/colorUnderLine"/>
 
         <com.example.smartclass.util.WrapContentHeightViewPager
-            android:id="@+id/unfocusedDetailViewPager"
+            android:id="@+id/studentsWithAttendanceProblemsViewPager"
             android:layout_width="@dimen/px_1032"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px_95">

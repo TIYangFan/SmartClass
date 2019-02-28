@@ -7,15 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.smartclass.Formatter.XAxisValueFormatter;
+import com.example.smartclass.Formatter.StringAxisValueFormatter;
 import com.example.smartclass.R;
 import com.example.smartclass.base.BaseChartView;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.manager.LineChartManager;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -67,7 +65,6 @@ public class StateChangeFragment extends Fragment implements BaseChartView {
         if(OVERALL_ATTENDANCE_STATISTICS.equals(dataType)){
             setOverallAttendanceStatisticsData(chartData);
         }
-
     }
 
     @Override
@@ -92,7 +89,7 @@ public class StateChangeFragment extends Fragment implements BaseChartView {
     private void setXAxisValueFormatter(LineChartManager lineChartManager){
 
         if(XAxisValue != null){
-            XAxisValueFormatter xAxisValueFormatter = new XAxisValueFormatter(XAxisValue);
+            StringAxisValueFormatter xAxisValueFormatter = new StringAxisValueFormatter(XAxisValue);
             lineChartManager.setXAxisValueFormatter(xAxisValueFormatter);
         }
     }

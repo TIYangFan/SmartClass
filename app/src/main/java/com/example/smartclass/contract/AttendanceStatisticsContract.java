@@ -3,6 +3,8 @@ package com.example.smartclass.contract;
 import com.example.smartclass.base.BaseView;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 
 import java.util.ArrayList;
@@ -19,17 +21,13 @@ public interface AttendanceStatisticsContract {
 
     interface Model {
 
-        /**
-         * 向后端请求关于当前课堂的出勤概况
-         * @return 当前课堂的出勤概况
-         */
         Flowable<AttendanceProfileBean> loadAttendanceProfile(String jobNumber);
 
         Flowable<BaseArrayBean<TimeAndNumberOfPeopleBean>> loadOverallAttendanceStatistics(String jobNumber);
 
-        Flowable<ArrayList> loadClassAttendanceStatistics();
+        Flowable<BaseArrayBean<ClassAndPercentBean>> loadClassAttendanceStatistics(String jobNumber);
 
-        Flowable<ArrayList<ArrayList>> loadProblemStudentStatistics();
+        Flowable<StudentsWithAttendanceProblemsBean> loadProblemStudentStatistics();
     }
 
     interface View extends BaseView {
@@ -38,9 +36,9 @@ public interface AttendanceStatisticsContract {
 
         void showOverallAttendanceLineChart(BaseArrayBean<TimeAndNumberOfPeopleBean> bean);
 
-        void showClassAttendanceHorizontalBarChart();
+        void showClassAttendanceHorizontalBarChart(BaseArrayBean<ClassAndPercentBean> bean);
 
-        void showProblemStudentList();
+        void showProblemStudentList(StudentsWithAttendanceProblemsBean bean);
     }
 
     interface Presenter {

@@ -39,10 +39,10 @@ public class UnfocusedStudentDetailsFragment extends Fragment {
             {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
     };
 
-    public static UnfocusedStudentDetailsFragment newInstance(String title) {
+    public static UnfocusedStudentDetailsFragment newInstance() {
 
         Bundle args = new Bundle();
-        args.putString("TITLE", title);
+
         UnfocusedStudentDetailsFragment fragment = new UnfocusedStudentDetailsFragment();
         fragment.setArguments(args);
         return fragment;
@@ -53,7 +53,6 @@ public class UnfocusedStudentDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_unfocused_student_details, container, false);
         ButterKnife.bind(this, root);
-        UnfocusedStudentDetailsText.setText(getArguments().getString("TITLE"));
 
         unfocusedDetailStudentRecyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
         unfocusedDetailStudentRecyclerView.setAdapter(new UnfocusedDetailStudentRecyclerViewAdapter(data));

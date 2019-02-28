@@ -9,12 +9,13 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class XAxisValueFormatter implements IAxisValueFormatter {
+public class StringAxisValueFormatter implements IAxisValueFormatter {
 
     private final String[] mLabels;
-    public XAxisValueFormatter(String[] labels) {
+    public StringAxisValueFormatter(String[] labels) {
         mLabels = labels;
     }
+
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         try {

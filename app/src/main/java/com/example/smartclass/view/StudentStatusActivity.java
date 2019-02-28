@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseMvpActivity;
+import com.example.smartclass.presenter.StudentStatusPresenter;
 import com.example.smartclass.util.ActivityUtils;
 
 import butterknife.ButterKnife;
@@ -15,25 +17,45 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class StudentStatusActivity extends AppCompatActivity {
+public class StudentStatusActivity extends BaseMvpActivity<StudentStatusPresenter> {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_status);
-        ButterKnife.bind(this);
+    public int getLayoutId() {
+        return R.layout.activity_student_status;
+    }
+
+    @Override
+    public void initView() {
 
         StudentStatusFragment studentStatusFragment = (StudentStatusFragment)getSupportFragmentManager().
                 findFragmentById(R.id.studentStatusContentFrame);
+
         if(studentStatusFragment == null){
             studentStatusFragment = StudentStatusFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), studentStatusFragment, R.id.studentStatusContentFrame);
         }
+
+        mPresenter = new StudentStatusPresenter(studentStatusFragment);
     }
 
     @Override
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+
     }
 }

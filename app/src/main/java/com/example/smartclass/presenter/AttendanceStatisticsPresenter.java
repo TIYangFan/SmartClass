@@ -3,14 +3,14 @@ package com.example.smartclass.presenter;
 import com.example.smartclass.base.BaseMvpPresenter;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.contract.AttendanceStatisticsContract;
 import com.example.smartclass.model.AttendanceStatisticsModel;
 import com.example.smartclass.net.RxScheduler;
 import com.example.smartclass.util.SharedPreferencesUtil;
 import com.example.smartclass.view.AttendanceStatisticsFragment;
-
-import java.util.ArrayList;
 
 import io.reactivex.functions.Consumer;
 
@@ -47,8 +47,11 @@ public class AttendanceStatisticsPresenter extends BaseMvpPresenter<AttendanceSt
     @Override
     public void loadAllStatisticsOnThePage() {
 
+        mView.showLoading();
         loadAttendanceProfile();
         loadOverallAttendanceStatistics();
+        loadClassAttendanceStatistics();
+        loadProblemStudentStatistics();
     }
 
     @Override
@@ -58,7 +61,6 @@ public class AttendanceStatisticsPresenter extends BaseMvpPresenter<AttendanceSt
         if (!isViewAttached()) {
             return;
         }
-        mView.showLoading();
         model.loadAttendanceProfile(jobNumber)
                 .compose(RxScheduler.<AttendanceProfileBean>Flo_io_main())
                 .as(mView.<AttendanceProfileBean>bindAutoDispose())
@@ -81,7 +83,6 @@ public class AttendanceStatisticsPresenter extends BaseMvpPresenter<AttendanceSt
         if (!isViewAttached()) {
             return;
         }
-        mView.showLoading();
         model.loadOverallAttendanceStatistics(jobNumber)
                 .compose(RxScheduler.<BaseArrayBean<TimeAndNumberOfPeopleBean>>Flo_io_main())
                 .as(mView.<BaseArrayBean<TimeAndNumberOfPeopleBean>>bindAutoDispose())
@@ -89,6 +90,7 @@ public class AttendanceStatisticsPresenter extends BaseMvpPresenter<AttendanceSt
                     @Override
                     public void accept(BaseArrayBean<TimeAndNumberOfPeopleBean> bean) throws Exception {
                         mView.showOverallAttendanceLineChart(bean);
+                        mView.hideLoading();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -100,10 +102,46 @@ public class AttendanceStatisticsPresenter extends BaseMvpPresenter<AttendanceSt
     @Override
     public void loadClassAttendanceStatistics() {
 
+        //View是否绑定 如果没有绑定，就不执行网络请求
+        if (!isViewAttached()) {
+            return;
+        }
+        model.loadClassAttendanceStatistics(jobNumber)
+                .compose(RxScheduler.<BaseArrayBean<ClassAndPercentBean>>Flo_io_main())
+                .as(mView.<BaseArrayBean<ClassAndPercentBean>>bindAutoDispose())
+                .subscribe(new Consumer<BaseArrayBean<ClassAndPercentBean>>() {
+                    @Override
+                    public void accept(BaseArrayBean<ClassAndPercentBean> bean) throws Exception {
+                        mView.showClassAttendanceHorizontalBarChart(bean);
+                        mView.hideLoading();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                    }
+                });
     }
 
     @Override
     public void loadProblemStudentStatistics() {
 
+        //View是否绑定 如果没有绑定，就不执行网络请求
+        if (!isViewAttached()) {
+            return;
+        }
+        model.loadProblemStudentStatistics()
+                .compose(RxScheduler.<StudentsWithAttendanceProblemsBean>Flo_io_main())
+                .as(mView.<StudentsWithAttendanceProblemsBean>bindAutoDispose())
+                .subscribe(new Consumer<StudentsWithAttendanceProblemsBean>() {
+                    @Override
+                    public void accept(StudentsWithAttendanceProblemsBean bean) throws Exception {
+                        mView.showProblemStudentList(bean);
+                        mView.hideLoading();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                    }
+                });
     }
 }

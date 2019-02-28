@@ -34,6 +34,7 @@ public class PieChartManager extends BaseChart<PieChart, PieData> implements OnC
         super.setChartStyle();
         chart.getDescription().setEnabled(false);
         chart.setRotationEnabled(false);
+        chart.setDrawEntryLabels(false);
     }
 
     /**
@@ -58,12 +59,17 @@ public class PieChartManager extends BaseChart<PieChart, PieData> implements OnC
         data.setValueFormatter(new PercentFormatter());
 
         data.setValueTextSize(10f);
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK);
 
         PieDataSet dataSet = (PieDataSet) data.getDataSet();
         dataSet.setColors(colorArray);
         dataSet.setSliceSpace(2f);
         dataSet.setSelectionShift(5f);
+
+        dataSet.setValueLinePart1OffsetPercentage(80.f);
+        dataSet.setValueLinePart1Length(0.5f);
+        dataSet.setValueLinePart2Length(1.5f);
+        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
     }
 
     /**

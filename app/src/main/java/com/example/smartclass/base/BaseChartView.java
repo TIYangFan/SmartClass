@@ -13,7 +13,8 @@ public interface BaseChartView {
 
     /**
      * 设置图表数据
-     * @param chartData 图标数据
+     * @param chartData 图表数据
+     * @param dataType 图表数据类别
      */
     void setChartData(ArrayList chartData, String dataType);
 

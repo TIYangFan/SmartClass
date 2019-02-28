@@ -2,8 +2,14 @@ package com.example.smartclass.net;
 
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.ConcentrationDistributionBean;
+import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
+import com.example.smartclass.bean.TimeAndConcentrationBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.bean.test;
+
+import java.util.ArrayList;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
@@ -26,4 +32,16 @@ public interface APIService {
 
     @GET("courses/current_lesson/attendance/total/")
     Flowable<BaseArrayBean<TimeAndNumberOfPeopleBean>> getOverallAttendanceStatistics(@Query("job_no")String jobNumber);
+
+    @GET("courses/current_lesson/attendance/per_class/")
+    Flowable<BaseArrayBean<ClassAndPercentBean>> getClassAttendanceStatistics(@Query("job_no")String jobNumber);
+
+    @GET("courses/current_lesson/student_state/focus_rate/")
+    Flowable<ConcentrationDistributionBean> getConcentrationDistributionStatistics(@Query("job_no")String jobNumber);
+
+    @GET("courses/absent_students/")
+    Flowable<StudentsWithAttendanceProblemsBean> getProblemStudentStatistics();
+
+    @GET("courses/current_lesson/student_state/trend/")
+    Flowable<BaseArrayBean<TimeAndConcentrationBean>> getStateChangeStatistics(@Query("job_no")String jobNumber);
 }

@@ -2,11 +2,13 @@ package com.example.smartclass.manager;
 
 import com.example.smartclass.base.BaseChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
@@ -18,6 +20,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
  */
 public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, BarData> implements OnChartValueSelectedListener {
 
+    private float minOfYAxis;
 
     public HorizontalBarChartManager(HorizontalBarChart chart) {
         super(chart);
@@ -52,6 +55,11 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
         xAxis.setDrawAxisLine(true);
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1);
+        xAxis.setTextSize(11f);
+
+        if(xAxisValueFormatter != null){
+            xAxis.setValueFormatter(xAxisValueFormatter);
+        }
     }
 
     /**
@@ -64,7 +72,13 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
 
         yAxis.setDrawAxisLine(true);
         yAxis.setDrawGridLines(false);
+        yAxis.setGranularity(0.05f);
         yAxis.setAxisMinimum(0f);
+        yAxis.setAxisMaximum(1f);
+
+        if(yAxisValueFormatter != null){
+            yAxis.setValueFormatter(yAxisValueFormatter);
+        }
     }
 
     /**
@@ -93,6 +107,15 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
     }
 
     @Override
+    protected void setLegend() {
+        super.setLegend();
+        if (data != null && data.getDataSetCount() == 1){
+            Legend legend = chart.getLegend();
+            legend.setEnabled(false);
+        }
+    }
+
+    @Override
     public void onValueSelected(Entry e, Highlight h) {
 
     }
@@ -100,5 +123,18 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
     @Override
     public void onNothingSelected() {
 
+    }
+
+    public void setMinOfYAxis(float minOfYAxis){
+        this.minOfYAxis = minOfYAxis;
+    }
+
+
+    public void setXAxisValueFormatter(IAxisValueFormatter iAxisValueFormatter){
+        this.xAxisValueFormatter = iAxisValueFormatter;
+    }
+
+    public void setYAxisValueFormatter(IAxisValueFormatter iAxisValueFormatter){
+        this.yAxisValueFormatter = iAxisValueFormatter;
     }
 }

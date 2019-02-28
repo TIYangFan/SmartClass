@@ -1,6 +1,13 @@
 package com.example.smartclass.contract;
 
 import com.example.smartclass.base.BaseView;
+import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.ConcentrationDistributionBean;
+import com.example.smartclass.bean.TimeAndConcentrationBean;
+
+import java.util.ArrayList;
+
+import io.reactivex.Flowable;
 
 /**
  * Created by YangFan
@@ -10,19 +17,24 @@ import com.example.smartclass.base.BaseView;
  */
 public interface StudentStatusContract {
 
+    interface Model {
+
+        void loadCurrentStatusStatistics();
+
+        Flowable<BaseArrayBean<TimeAndConcentrationBean>> loadStateChangeStatistics(String jobNumber);
+
+        Flowable<ConcentrationDistributionBean> loadConcentrationDistributionStatistics(String jobNumber);
+
+        void loadUnfocusedStudentStatistics();
+    }
+
     interface View extends BaseView {
 
-        /**
-         * 显示当前学生状态的散点图
-         */
         void showCurrentStatusScatterChart();
 
-        /**
-         * 显示一段时间内学生状态变化的曲线图
-         */
-        void showStateChangeLineChart();
+        void showStateChangeLineChart(BaseArrayBean<TimeAndConcentrationBean> bean);
 
-        void showConcentrationDistributionPieChart();
+        void showConcentrationDistributionPieChart(ConcentrationDistributionBean bean);
 
         void showUnfocusedDistributionPieChart();
 
@@ -31,18 +43,14 @@ public interface StudentStatusContract {
 
     interface Presenter {
 
+        void loadAllStatisticsOnThePage();
+
         void loadCurrentStatusStatistics();
 
         void loadStateChangeStatistics();
 
         void loadConcentrationDistributionStatistics();
 
-        void loadUnfocusedDistributionStatistics();
-
         void loadUnfocusedStudentStatistics();
-    }
-
-    interface Model {
-
     }
 }

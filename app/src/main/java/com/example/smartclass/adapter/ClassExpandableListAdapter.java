@@ -15,10 +15,9 @@ import android.widget.TextView;
 import com.example.smartclass.R;
 import com.example.smartclass.util.CircleBarView;
 import com.example.smartclass.util.WrapContentHeightViewPager;
-import com.example.smartclass.view.ClassAttendanceStatisticsFragment;
 import com.example.smartclass.view.RecentOverallStudentStatusRankingsFragment;
 import com.example.smartclass.view.StateChangeFragment;
-import com.example.smartclass.view.UnfocusedDetailFragment;
+import com.example.smartclass.view.StudentsWithAttendanceProblemsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -205,10 +204,10 @@ public class ClassExpandableListAdapter extends BaseExpandableListAdapter {
             fragments1.add(StateChangeFragment.newInstance());
 
             fragments2 = new ArrayList<>();
-            fragments2.add(UnfocusedDetailFragment.newInstance());
-            fragments2.add(UnfocusedDetailFragment.newInstance());
-            fragments2.add(UnfocusedDetailFragment.newInstance());
-            fragments2.add(UnfocusedDetailFragment.newInstance());
+            fragments2.add(StudentsWithAttendanceProblemsFragment.newInstance());
+            fragments2.add(StudentsWithAttendanceProblemsFragment.newInstance());
+            fragments2.add(StudentsWithAttendanceProblemsFragment.newInstance());
+            fragments2.add(StudentsWithAttendanceProblemsFragment.newInstance());
         }
     }
 }

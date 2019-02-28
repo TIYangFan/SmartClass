@@ -2,6 +2,8 @@ package com.example.smartclass.model;
 
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.contract.AttendanceStatisticsContract;
 import com.example.smartclass.net.RetrofitClient;
@@ -29,12 +31,12 @@ public class AttendanceStatisticsModel implements AttendanceStatisticsContract.M
     }
 
     @Override
-    public Flowable<ArrayList> loadClassAttendanceStatistics() {
-        return null;
+    public Flowable<BaseArrayBean<ClassAndPercentBean>> loadClassAttendanceStatistics(String jobNumber) {
+        return RetrofitClient.getInstance().getApi().getClassAttendanceStatistics(jobNumber);
     }
 
     @Override
-    public Flowable<ArrayList<ArrayList>> loadProblemStudentStatistics() {
-        return null;
+    public Flowable<StudentsWithAttendanceProblemsBean> loadProblemStudentStatistics() {
+        return RetrofitClient.getInstance().getApi().getProblemStudentStatistics();
     }
 }

@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +17,11 @@ import com.example.smartclass.R;
 import com.example.smartclass.adapter.TabFragmentPagerAdapter;
 import com.example.smartclass.base.BaseChartView;
 import com.example.smartclass.base.BaseMvpFragment;
+import com.example.smartclass.base.BaseTabLayoutView;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.contract.AttendanceStatisticsContract;
 import com.example.smartclass.presenter.AttendanceStatisticsPresenter;
@@ -37,16 +41,16 @@ import butterknife.BindView;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStatisticsPresenter> implements AttendanceStatisticsContract.View {
+public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStatisticsPresenter> implements AttendanceStatisticsContract.View, BaseTabLayoutView {
 
     @BindView(R.id.attendanceStatisticsTabLayout)
     TabLayout attendanceStatisticsTabLayout;
-    @BindView(R.id.unfocusedDetailTabLayout)
-    TabLayout unfocusedDetailTabLayout;
+    @BindView(R.id.studentsWithAttendanceProblemsTabLayout)
+    TabLayout studentsWithAttendanceProblemsTabLayout;
     @BindView(R.id.attendanceStatisticsViewPager)
     ViewPager attendanceStatisticsViewPager;
-    @BindView(R.id.unfocusedDetailViewPager)
-    WrapContentHeightViewPager unfocusedDetailViewPager;
+    @BindView(R.id.studentsWithAttendanceProblemsViewPager)
+    WrapContentHeightViewPager studentsWithAttendanceProblemsViewPager;
     @BindView(R.id.attendanceStatisticsCircleProgressBar)
     CircleBarView circleBarView;
     @BindView(R.id.attendanceStatisticsProgressText)
@@ -69,8 +73,11 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     @BindView(R.id.currentOverallPersonOfAbnormalTextView)
     TextView currentOverallPersonOfAbnormalTextView;
 
-    private List<BaseChartView> attendanceStatisticsFragments;
-    private List<BaseChartView> attendanceStatisticsDetailsFragments;
+    @BindView(R.id.loadingProgressBar)
+    LinearLayout loadingProgressBar;
+
+    private List<Fragment> attendanceStatisticsFragments;
+    private List<Fragment> studentsWithAttendanceProblemsFragments;
 
     private String[] attendanceStatisticsTitles;
     private String[] attendanceStatisticsDetailsTitles;
@@ -100,9 +107,7 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     @Override
     protected void initView(View view) {
 
-        initTitles();
-        initFragment();
-        initTabLayout();
+        initTabLayoutView();
     }
 
     @Override
@@ -120,29 +125,41 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     @Override
     public void showOverallAttendanceLineChart(BaseArrayBean<TimeAndNumberOfPeopleBean> bean) {
 
-        BaseChartView chartView = attendanceStatisticsFragments.get(0);
+        BaseChartView chartView = (BaseChartView) attendanceStatisticsFragments.get(0);
         chartView.setChartData(bean.getArrayList(), StateChangeFragment.OVERALL_ATTENDANCE_STATISTICS);
         chartView.initChartView();
     }
 
     @Override
-    public void showClassAttendanceHorizontalBarChart() {
+    public void showClassAttendanceHorizontalBarChart(BaseArrayBean<ClassAndPercentBean> bean) {
 
+        BaseChartView chartView = (BaseChartView) attendanceStatisticsFragments.get(1);
+        chartView.setChartData(bean.getArrayList(), ClassAttendanceStatisticsFragment.CLASS_ATTENDANCE_STATISTICS);
+        chartView.initChartView();
     }
 
     @Override
-    public void showProblemStudentList() {
+    public void showProblemStudentList(StudentsWithAttendanceProblemsBean bean) {
 
+        StudentsWithAttendanceProblemsFragment fragment;
+        fragment = (StudentsWithAttendanceProblemsFragment)studentsWithAttendanceProblemsFragments.get(0);
+        fragment.setListData(bean.getEarly());
+        fragment = (StudentsWithAttendanceProblemsFragment)studentsWithAttendanceProblemsFragments.get(1);
+        fragment.setListData(bean.getAbsent());
+        fragment = (StudentsWithAttendanceProblemsFragment)studentsWithAttendanceProblemsFragments.get(2);
+        fragment.setListData(bean.getEarly());
+        fragment = (StudentsWithAttendanceProblemsFragment)studentsWithAttendanceProblemsFragments.get(3);
+        fragment.setListData(bean.getQingjia());
     }
 
     @Override
     public void showLoading() {
-
+        loadingProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        loadingProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -150,48 +167,56 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
 
     }
 
+    @Override
+    public void initTabLayoutView() {
+
+        initTitles();
+        initFragments();
+        initTabLayout();
+    }
+
     /**
      * 初始化各部分标题
      */
-    private void initTitles(){
+    public void initTitles(){
 
         Resources resources = Objects.requireNonNull(getActivity()).getResources();
-        attendanceStatisticsTitles = resources.getStringArray(R.array.attendance_statistics);
-        attendanceStatisticsDetailsTitles = resources.getStringArray(R.array.attendance_statistics_details);
+        attendanceStatisticsTitles = resources.getStringArray(R.array.attendance_statistics_titles);
+        attendanceStatisticsDetailsTitles = resources.getStringArray(R.array.attendance_statistics_details_titles);
     }
 
     /**
      * 初始化图表部分的 fragment
      */
-    private void initFragment(){
+    public void initFragments(){
 
-        attendanceStatisticsFragments = new ArrayList<BaseChartView>();
+        attendanceStatisticsFragments = new ArrayList<>();
 //        mFragment1.add(OverallAttendanceStatisticsFragment.newInstance());
         attendanceStatisticsFragments.add(StateChangeFragment.newInstance());
         attendanceStatisticsFragments.add(ClassAttendanceStatisticsFragment.newInstance());
 
-        attendanceStatisticsDetailsFragments = new ArrayList<BaseChartView>();
+        studentsWithAttendanceProblemsFragments = new ArrayList<>();
         for(int i = 0; i < attendanceStatisticsDetailsTitles.length; i++){
-            attendanceStatisticsDetailsFragments.add(UnfocusedDetailFragment.newInstance());
+            studentsWithAttendanceProblemsFragments.add(StudentsWithAttendanceProblemsFragment.newInstance());
         }
     }
 
     /**
      * 初始化 ViewPagerAdapter
      */
-    private void initViewPagerAdapter(){
+    public void initViewPagerAdapter(){
 
         TabFragmentPagerAdapter attendanceStatisticsAdapter = new TabFragmentPagerAdapter(getFragmentManager(), attendanceStatisticsFragments);
         attendanceStatisticsViewPager.setAdapter(attendanceStatisticsAdapter);
 
-        TabFragmentPagerAdapter attendanceStatisticsDetailsAdapter = new TabFragmentPagerAdapter(getFragmentManager(), attendanceStatisticsDetailsFragments);
-        unfocusedDetailViewPager.setAdapter(attendanceStatisticsDetailsAdapter);
+        TabFragmentPagerAdapter attendanceStatisticsDetailsAdapter = new TabFragmentPagerAdapter(getFragmentManager(), studentsWithAttendanceProblemsFragments);
+        studentsWithAttendanceProblemsViewPager.setAdapter(attendanceStatisticsDetailsAdapter);
     }
 
     /**
      * 初始化 TabLayout
      */
-    private void initTabLayout(){
+    public void initTabLayout(){
 
         initViewPagerAdapter();
         attendanceStatisticsTabLayout.setupWithViewPager(attendanceStatisticsViewPager);
@@ -199,9 +224,9 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
             Objects.requireNonNull(attendanceStatisticsTabLayout.getTabAt(i)).setText(attendanceStatisticsTitles[i]);
         }
 
-        unfocusedDetailTabLayout.setupWithViewPager(unfocusedDetailViewPager);
+        studentsWithAttendanceProblemsTabLayout.setupWithViewPager(studentsWithAttendanceProblemsViewPager);
         for(int i = 0; i < attendanceStatisticsDetailsTitles.length; i++){
-            Objects.requireNonNull(unfocusedDetailTabLayout.getTabAt(i)).setText(attendanceStatisticsDetailsTitles[i]);
+            Objects.requireNonNull(studentsWithAttendanceProblemsTabLayout.getTabAt(i)).setText(attendanceStatisticsDetailsTitles[i]);
         }
     }
 

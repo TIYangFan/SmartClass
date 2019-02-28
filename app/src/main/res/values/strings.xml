@@ -12,17 +12,36 @@
         <item>班级</item>
     </string-array>
 
+
     <!--Attendance Statistics-->
-    <string-array name="attendance_statistics">
+    <string-array name="attendance_statistics_titles">
         <item>总体出勤统计</item>
         <item>班级出勤统计</item>
     </string-array>
 
-    <string-array name="attendance_statistics_details">
+    <string-array name="attendance_statistics_details_titles">
         <item>迟到</item>
         <item>旷课</item>
         <item>早退</item>
         <item>请假</item>
+    </string-array>
+
+
+    <!--Student Status-->
+    <string-array name="student_status_titles">
+        <item>当前状态</item>
+        <item>状态变化</item>
+    </string-array>
+
+    <string-array name="concentration_distribution_titles">
+        <item>专注度分布</item>
+        <item>未专注分布</item>
+    </string-array>
+
+    <string-array name="unfocused_student_details_titles">
+        <item>睡觉</item>
+        <item>玩手机</item>
+        <item>走神</item>
     </string-array>
 
 

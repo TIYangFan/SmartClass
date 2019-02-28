@@ -44,10 +44,11 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
      */
     public void setChartData(E chartData){
 
+        chart.clear();
         this.data = chartData;
         chart.setData(chartData);
         setDataStyle();
-
+        chart.notifyDataSetChanged();
         chart.invalidate();
     };
 

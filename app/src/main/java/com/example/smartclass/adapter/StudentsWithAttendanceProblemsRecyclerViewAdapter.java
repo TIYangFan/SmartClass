@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.smartclass.R;
+import com.example.smartclass.bean.StudentInformationBean;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,9 +21,9 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class UnfocusedDetailRecyclerViewAdapter extends RecyclerView.Adapter<UnfocusedDetailRecyclerViewAdapter.holder> {
+public class StudentsWithAttendanceProblemsRecyclerViewAdapter extends RecyclerView.Adapter<StudentsWithAttendanceProblemsRecyclerViewAdapter.holder> {
 
-    private String[][] datas;
+    private ArrayList<StudentInformationBean> listData;
 
     public static class holder extends RecyclerView.ViewHolder{
 
@@ -36,32 +39,39 @@ public class UnfocusedDetailRecyclerViewAdapter extends RecyclerView.Adapter<Unf
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(String[] data){
-            className.setText(data[0]);
-            name.setText(data[1]);
-            studentId.setText(data[2]);
+        public void bind(StudentInformationBean itemData){
+
+            setTextOfView(itemData);
+        }
+
+        private void setTextOfView(StudentInformationBean itemData){
+
+            className.setText(itemData.getClass_no());
+            name.setText(itemData.getName());
+            studentId.setText(itemData.getStu_id());
         }
     }
 
-    public UnfocusedDetailRecyclerViewAdapter(String[][] data){
-        datas = data;
+    public StudentsWithAttendanceProblemsRecyclerViewAdapter(@NonNull ArrayList<StudentInformationBean> listData){
+        this.listData = listData;
     }
 
     @NonNull
     @Override
     public holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_unfocused_detail, viewGroup, false);
         return new holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull holder holder, int i) {
-        holder.bind(datas[i]);
+        holder.bind(listData.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return datas.length;
+        return listData == null ? 0 : listData.size();
     }
 
 }
