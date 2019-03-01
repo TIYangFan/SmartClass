@@ -24,6 +24,8 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 public class LineChartManager extends BaseChart<LineChart, LineData> implements OnChartValueSelectedListener {
 
     private float minOfYAxis;
+    private float maxOfYAxis;
+    private boolean isPercentage = false;
 
     public LineChartManager(LineChart chart) {
         super(chart);
@@ -69,7 +71,15 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         yAxis.setSpaceTop(15f);
         yAxis.setAxisMinimum(minOfYAxis);
         yAxis.setDrawGridLines(false);
-        yAxis.setGranularity(1);
+
+        if(isPercentage){
+            yAxis.setAxisMinimum(minOfYAxis);
+            yAxis.setAxisMaximum(maxOfYAxis);
+        }
+
+        if(yAxisValueFormatter != null){
+            yAxis.setValueFormatter(yAxisValueFormatter);
+        }
     }
 
     /**
@@ -120,8 +130,19 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         this.minOfYAxis = minOfYAxis;
     }
 
+    public void setMaxOfYAxis(float maxOfYAxis){
+        this.maxOfYAxis = maxOfYAxis;
+    }
+
+    public void setPercentage(Boolean isPercentage){
+        this.isPercentage = isPercentage;
+    }
+
     public void setXAxisValueFormatter(IAxisValueFormatter iAxisValueFormatter){
         this.xAxisValueFormatter = iAxisValueFormatter;
     }
 
+    public void setYAxisValueFormatter(IAxisValueFormatter iAxisValueFormatter){
+        this.yAxisValueFormatter = iAxisValueFormatter;
+    }
 }

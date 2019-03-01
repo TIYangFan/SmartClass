@@ -6,7 +6,7 @@ package com.example.smartclass.bean;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class ClassAndPercentBean {
+public class ClassAndPercentageBean {
 
     private String class_no;
     private float percent;

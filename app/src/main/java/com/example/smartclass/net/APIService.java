@@ -2,14 +2,15 @@ package com.example.smartclass.net;
 
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
-import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.ClassAndPercentageBean;
+import com.example.smartclass.bean.ClassInfoAboutTimeAndRelatedInfoBean;
+import com.example.smartclass.bean.ClassRankingBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
-import com.example.smartclass.bean.TimeAndConcentrationBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
+import com.example.smartclass.bean.DateAndPercentageBean;
+import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 import com.example.smartclass.bean.test;
-
-import java.util.ArrayList;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
@@ -34,7 +35,7 @@ public interface APIService {
     Flowable<BaseArrayBean<TimeAndNumberOfPeopleBean>> getOverallAttendanceStatistics(@Query("job_no")String jobNumber);
 
     @GET("courses/current_lesson/attendance/per_class/")
-    Flowable<BaseArrayBean<ClassAndPercentBean>> getClassAttendanceStatistics(@Query("job_no")String jobNumber);
+    Flowable<BaseArrayBean<ClassAndPercentageBean>> getClassAttendanceStatistics(@Query("job_no")String jobNumber);
 
     @GET("courses/current_lesson/student_state/focus_rate/")
     Flowable<ConcentrationDistributionBean> getConcentrationDistributionStatistics(@Query("job_no")String jobNumber);
@@ -43,5 +44,17 @@ public interface APIService {
     Flowable<StudentsWithAttendanceProblemsBean> getProblemStudentStatistics();
 
     @GET("courses/current_lesson/student_state/trend/")
-    Flowable<BaseArrayBean<TimeAndConcentrationBean>> getStateChangeStatistics(@Query("job_no")String jobNumber);
+    Flowable<BaseArrayBean<TimeAndNumberOfPeopleBean>> getStateChangeStatistics(@Query("job_no")String jobNumber);
+
+    @GET("courses/unfocused_students/")
+    Flowable<UnfocusedStudentDetailsBean> getUnfocusedStudentStatistics();
+
+    @GET("courses/recent_lesson/attendance/")
+    Flowable<BaseArrayBean<ClassInfoAboutTimeAndRelatedInfoBean<DateAndPercentageBean>>> getAttendanceStatistics(@Query("job_no")String jobNumber);
+
+    @GET("courses/recent_lesson/lesson_state/")
+    Flowable<BaseArrayBean<ClassInfoAboutTimeAndRelatedInfoBean<DateAndPercentageBean>>> getClassStatusStatistics(@Query("job_no")String jobNumber);
+
+    @GET("courses/recent_lesson/attendance/ranking/")
+    Flowable<ClassRankingBean> getClassRankingStatistics(@Query("job_no")String jobNumber);
 }

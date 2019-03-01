@@ -1,6 +1,13 @@
 package com.example.smartclass.contract;
 
 import com.example.smartclass.base.BaseView;
+import com.example.smartclass.bean.AttendanceProfileBean;
+import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.ClassInfoAboutTimeAndRelatedInfoBean;
+import com.example.smartclass.bean.ClassRankingBean;
+import com.example.smartclass.bean.DateAndPercentageBean;
+
+import io.reactivex.Flowable;
 
 /**
  * Created by YangFan
@@ -10,37 +17,38 @@ import com.example.smartclass.base.BaseView;
  */
 public interface OverallRecentRecordContract {
 
+    interface Model {
+
+        Flowable<AttendanceProfileBean> loadAttendanceProfile(String jobNumber);
+
+        Flowable<BaseArrayBean<ClassInfoAboutTimeAndRelatedInfoBean<DateAndPercentageBean>>> loadAttendanceStatistics(String jobNumber);
+
+        Flowable<BaseArrayBean<ClassInfoAboutTimeAndRelatedInfoBean<DateAndPercentageBean>>> loadClassStatusStatistics(String jobNumber);
+
+        Flowable<ClassRankingBean> loadClassRankingStatistics(String jobNumber);
+    }
+
     interface View extends BaseView {
 
-        void showTheMainInformationOfTheClass();
+        void showAttendanceProfile(AttendanceProfileBean bean);
 
-        void showAttendanceLineChart();
+        void showAttendanceLineChart(BaseArrayBean<ClassInfoAboutTimeAndRelatedInfoBean<DateAndPercentageBean>> bean);
 
-        void showClassStatusLineChart();
+        void showClassStatusLineChart(BaseArrayBean<ClassInfoAboutTimeAndRelatedInfoBean<DateAndPercentageBean>> bean);
 
-        void showAttendanceStatusRankingBarChart();
-
-        void showClassStatusRankingBarChart();
-
-        void setLoadingIndicator(boolean active);
-
-        void showLoadingClassInformationError();
+        void showClassRankingBarChart(ClassRankingBean bean);
     }
 
     interface Presenter {
 
-        void loadTheMainInformationOfTheClass();
+        void loadAllStatisticsOnThePage();
+
+        void loadAttendanceProfile();
 
         void loadAttendanceStatistics();
 
         void loadClassStatusStatistics();
 
-        void loadAttendanceStatusRankingStatistics();
-
-        void loadClassStatusRankingStatistics();
-    }
-
-    interface Model {
-
+        void loadClassRankingStatistics();
     }
 }

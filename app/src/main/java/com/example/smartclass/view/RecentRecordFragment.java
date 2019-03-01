@@ -1,5 +1,6 @@
 package com.example.smartclass.view;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.http.PUT;
 
 /**
  * Created by YangFan
@@ -42,13 +45,19 @@ public class RecentRecordFragment extends Fragment {
     private List<Fragment> mFragments;
     private String[] mTitles;
 
-    public static RecentRecordFragment newInstance() {
+    public static RecentRecordFragment newInstance(List<Fragment> fragments) {
 
         Bundle args = new Bundle();
 
-        RecentRecordFragment fragment = new RecentRecordFragment();
+        RecentRecordFragment fragment = new RecentRecordFragment(fragments);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @SuppressLint("ValidFragment")
+    public RecentRecordFragment(List<Fragment> fragments){
+
+        this.mFragments = fragments;
     }
 
     @Nullable
@@ -69,7 +78,6 @@ public class RecentRecordFragment extends Fragment {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(mRecentRecordToolbar);
         mRecentRecordToolbar.setTitle("");
-        initFragment();
         TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getChildFragmentManager(), mFragments);
         mRecentRecordViewPager.setAdapter(adapter);
         mTopTabLayout.setupWithViewPager(mRecentRecordViewPager);
@@ -81,12 +89,19 @@ public class RecentRecordFragment extends Fragment {
         }
     }
 
-    private void initFragment(){
+    public void initFragment(){
 
         mFragments = new ArrayList<>();
         mFragments.add(OverallRecentRecordFragment.newInstance());
         mFragments.add(ClassRecentRecordFragment.newInstance());
     }
 
+    public Fragment getFragmentByIndex(int index){
 
+        if(mFragments == null){
+            Log.e("TAB","TAB");
+            return null;
+        }
+        return mFragments.get(index);
+    }
 }

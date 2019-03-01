@@ -3,11 +3,9 @@ package com.example.smartclass.contract;
 import com.example.smartclass.base.BaseView;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
-import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.ClassAndPercentageBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
-
-import java.util.ArrayList;
 
 import io.reactivex.Flowable;
 
@@ -25,7 +23,7 @@ public interface AttendanceStatisticsContract {
 
         Flowable<BaseArrayBean<TimeAndNumberOfPeopleBean>> loadOverallAttendanceStatistics(String jobNumber);
 
-        Flowable<BaseArrayBean<ClassAndPercentBean>> loadClassAttendanceStatistics(String jobNumber);
+        Flowable<BaseArrayBean<ClassAndPercentageBean>> loadClassAttendanceStatistics(String jobNumber);
 
         Flowable<StudentsWithAttendanceProblemsBean> loadProblemStudentStatistics();
     }
@@ -36,7 +34,7 @@ public interface AttendanceStatisticsContract {
 
         void showOverallAttendanceLineChart(BaseArrayBean<TimeAndNumberOfPeopleBean> bean);
 
-        void showClassAttendanceHorizontalBarChart(BaseArrayBean<ClassAndPercentBean> bean);
+        void showClassAttendanceHorizontalBarChart(BaseArrayBean<ClassAndPercentageBean> bean);
 
         void showProblemStudentList(StudentsWithAttendanceProblemsBean bean);
     }

@@ -109,10 +109,8 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
     @Override
     protected void setLegend() {
         super.setLegend();
-        if (data != null && data.getDataSetCount() == 1){
-            Legend legend = chart.getLegend();
-            legend.setEnabled(false);
-        }
+        Legend legend = chart.getLegend();
+        legend.setEnabled(false);
     }
 
     @Override

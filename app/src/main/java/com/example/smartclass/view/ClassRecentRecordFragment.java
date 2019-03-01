@@ -1,20 +1,16 @@
 package com.example.smartclass.view;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.example.smartclass.R;
-import com.example.smartclass.adapter.ClassExpandableListAdapter;
+import com.example.smartclass.adapter.ClassRecentRecordExpandableListAdapter;
+import com.example.smartclass.base.BaseMvpFragment;
+import com.example.smartclass.contract.ClassRecentRecordContract;
+import com.example.smartclass.presenter.ClassRecentRecordPresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by YangFan
@@ -22,19 +18,12 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class ClassRecentRecordFragment extends Fragment {
+public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecordPresenter> implements ClassRecentRecordContract.View {
 
     @BindView(R.id.classExpandableListView)
-    ExpandableListView mClassExpandableListView;
+    ExpandableListView expandableListView;
 
-    public String[] groupString = {"射手", "辅助", "坦克", "法师"};
-    public String[][] childString = {
-            {"孙尚香", "后羿", "马可波罗", "狄仁杰"},
-            {"孙膑", "蔡文姬", "鬼谷子", "杨玉环"},
-            {"张飞", "廉颇", "牛魔", "项羽"},
-            {"诸葛亮", "王昭君", "安琪拉", "干将"}
-
-    };
+    private ClassRecentRecordExpandableListAdapter expandableListAdapter;
 
     public static ClassRecentRecordFragment newInstance() {
 
@@ -45,34 +34,62 @@ public class ClassRecentRecordFragment extends Fragment {
         return fragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_class_recent_record, container, false);
-        ButterKnife.bind(this, root);
+    protected void initView(View view) {
 
-        mClassExpandableListView.setGroupIndicator(null);
-        mClassExpandableListView.setDivider(null);
-
-        mClassExpandableListView.setAdapter(new ClassExpandableListAdapter(this));
-
-        mClassExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                v.findViewById(R.id.classGroupViewRoot).setBackground(getResources().getDrawable(R.drawable.bg_top_border_radius));
-                Toast.makeText(getActivity().getApplicationContext(), groupString[groupPosition], Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-        mClassExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Toast.makeText(getActivity().getApplicationContext(), childString[groupPosition][childPosition], Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-
-        return root;
+        initExpandableListView();
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_class_recent_record;
+    }
+
+    @Override
+    public void showClassInformation() {
+
+    }
+
+    @Override
+    public void showAttendanceProfile() {
+
+    }
+
+    @Override
+    public void showAttendanceLineChart() {
+
+    }
+
+    @Override
+    public void showClassStatusLineChart() {
+
+    }
+
+    @Override
+    public void showProblemStudentsList() {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+
+    }
+
+    private void initExpandableListView(){
+
+        expandableListAdapter = new ClassRecentRecordExpandableListAdapter(this);
+        expandableListView.setAdapter(expandableListAdapter);
+        expandableListView.setGroupIndicator(null);
+        expandableListView.setDivider(null);
+    }
 }

@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.smartclass.Formatter.StringAxisValueFormatter;
-import com.example.smartclass.Formatter.YAxisValueFormatter;
+import com.example.smartclass.Formatter.PercentageAxisValueFormatter;
 import com.example.smartclass.R;
 import com.example.smartclass.base.BaseChartView;
-import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.ClassAndPercentageBean;
 import com.example.smartclass.manager.HorizontalBarChartManager;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -105,19 +105,19 @@ public class ClassAttendanceStatisticsFragment extends Fragment implements BaseC
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setYAxisValueFormatter(HorizontalBarChartManager horizontalBarChartManager){
 
-        YAxisValueFormatter yAxisValueFormatter = new YAxisValueFormatter();
-        horizontalBarChartManager.setYAxisValueFormatter(yAxisValueFormatter);
+        PercentageAxisValueFormatter percentageAxisValueFormatter = new PercentageAxisValueFormatter();
+        horizontalBarChartManager.setYAxisValueFormatter(percentageAxisValueFormatter);
     }
 
     private void setClassAttendanceStatisticsData(ArrayList chartData){
 
         List<BarEntry> chartDataList = new ArrayList<>();
         XAxisValue = new String[chartData.size()];
-        ClassAndPercentBean bean;
+        ClassAndPercentageBean bean;
 
         for(int i = 0; i < chartData.size(); i++){
 
-            bean = (ClassAndPercentBean)chartData.get(i);
+            bean = (ClassAndPercentageBean)chartData.get(i);
             XAxisValue[i] = bean.getClass_no();
             chartDataList.add(new BarEntry(i, bean.getPercent()));
             minOfYAxis = Math.min(minOfYAxis, bean.getPercent());

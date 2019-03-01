@@ -45,6 +45,18 @@
     </string-array>
 
 
+    <!--Overall Recent Record-->
+    <string-array name="overall_student_recent_status_titles">
+        <item>出勤情况</item>
+        <item>课堂状态</item>
+    </string-array>
+
+    <string-array name="overall_student_recent_status_ranking_titles">
+        <item>出勤情况排行</item>
+        <item>课堂状态排行</item>
+    </string-array>
+
+
     <!--Personal Center-->
     <string name="title_name_prompt">姓名：杨帆</string>
     <string name="title_job_number_prompt">工号：1033170614</string>

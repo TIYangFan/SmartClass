@@ -3,7 +3,8 @@ package com.example.smartclass.presenter;
 import com.example.smartclass.base.BaseMvpPresenter;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
-import com.example.smartclass.bean.TimeAndConcentrationBean;
+import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
+import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 import com.example.smartclass.contract.StudentStatusContract;
 import com.example.smartclass.model.StudentStatusModel;
 import com.example.smartclass.net.RxScheduler;
@@ -47,6 +48,7 @@ public class StudentStatusPresenter extends BaseMvpPresenter<StudentStatusFragme
 
         loadStateChangeStatistics();
         loadConcentrationDistributionStatistics();
+        loadUnfocusedStudentStatistics();
     }
 
     @Override
@@ -62,11 +64,11 @@ public class StudentStatusPresenter extends BaseMvpPresenter<StudentStatusFragme
             return;
         }
         model.loadStateChangeStatistics(jobNumber)
-                .compose(RxScheduler.<BaseArrayBean<TimeAndConcentrationBean>>Flo_io_main())
-                .as(mView.<BaseArrayBean<TimeAndConcentrationBean>>bindAutoDispose())
-                .subscribe(new Consumer<BaseArrayBean<TimeAndConcentrationBean>>() {
+                .compose(RxScheduler.<BaseArrayBean<TimeAndNumberOfPeopleBean>>Flo_io_main())
+                .as(mView.<BaseArrayBean<TimeAndNumberOfPeopleBean>>bindAutoDispose())
+                .subscribe(new Consumer<BaseArrayBean<TimeAndNumberOfPeopleBean>>() {
                     @Override
-                    public void accept(BaseArrayBean<TimeAndConcentrationBean> bean) throws Exception {
+                    public void accept(BaseArrayBean<TimeAndNumberOfPeopleBean> bean) throws Exception {
                         mView.showStateChangeLineChart(bean);
                         mView.hideLoading();
                     }
@@ -103,5 +105,23 @@ public class StudentStatusPresenter extends BaseMvpPresenter<StudentStatusFragme
     @Override
     public void loadUnfocusedStudentStatistics() {
 
+        //View是否绑定 如果没有绑定，就不执行网络请求
+        if (!isViewAttached()) {
+            return;
+        }
+        model.loadUnfocusedStudentStatistics()
+                .compose(RxScheduler.<UnfocusedStudentDetailsBean>Flo_io_main())
+                .as(mView.<UnfocusedStudentDetailsBean>bindAutoDispose())
+                .subscribe(new Consumer<UnfocusedStudentDetailsBean>() {
+                    @Override
+                    public void accept(UnfocusedStudentDetailsBean bean) throws Exception {
+                        mView.showUnfocusedStudentList(bean);
+                        mView.hideLoading();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                    }
+                });
     }
 }

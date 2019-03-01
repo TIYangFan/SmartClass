@@ -14,12 +14,12 @@ import androidx.annotation.RequiresApi;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class YAxisValueFormatter implements IAxisValueFormatter {
+public class PercentageAxisValueFormatter implements IAxisValueFormatter {
 
     private DecimalFormat mFormat;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public YAxisValueFormatter(){
+    public PercentageAxisValueFormatter(){
         mFormat = new DecimalFormat("0.0");
     }
 

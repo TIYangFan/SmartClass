@@ -1,5 +1,6 @@
 package com.example.smartclass.view;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,7 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.smartclass.Formatter.StringAxisValueFormatter;
+import com.example.smartclass.Formatter.PercentageAxisValueFormatter;
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseChartView;
+import com.example.smartclass.bean.ClassAndPercentageBean;
 import com.example.smartclass.manager.BarChartManager;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -17,7 +22,9 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import androidx.annotation.RequiresApi;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,12 +34,17 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class RecentOverallStudentStatusRankingsFragment extends Fragment {
+public class RecentOverallStudentStatusRankingsFragment extends Fragment implements BaseChartView {
 
     @BindView(R.id.recentOverallStudentStatusBarChart)
     BarChart barChart;
 
     private BarData barData;
+    private String[] XAxisValue;
+    private float minOfYAxis = Integer.MAX_VALUE;
+
+    public static final String RECENT_OVERALL_ATTENDANCE_RANKING_STATISTICS = "recentOverallAttendanceRankingStatistics";
+    public static final String RECENT_OVERALL_STUDENT_STATUS_RANKING_STATISTICS = "recentOverallStudentStatusRankingStatistics";
 
     public static RecentOverallStudentStatusRankingsFragment newInstance() {
 
@@ -48,48 +60,74 @@ public class RecentOverallStudentStatusRankingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_recent_overall_student_status_rankings, container, false);
         ButterKnife.bind(this, root);
-
-        setBarChartData();
-        BarChartManager barChartManager = new BarChartManager(barChart);
-        barChartManager.initChartView();
-        barChartManager.setChartData(barData);
-
         return root;
     }
 
-    private void setBarChartData(){
+    @Override
+    public void setChartData(ArrayList chartData, String dataType) {
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<>();
-        yVals1.add(new BarEntry(0, 4));
-        yVals1.add(new BarEntry(1, 2));
-        yVals1.add(new BarEntry(2, 6));
-        yVals1.add(new BarEntry(3, 1));
+        if(RECENT_OVERALL_ATTENDANCE_RANKING_STATISTICS.equals(dataType) ||
+                RECENT_OVERALL_STUDENT_STATUS_RANKING_STATISTICS.equals(dataType)){
 
-        BarDataSet set1;
-//        if(hBarChart.getData() != null && hBarChart.getData().getDataSetCount() > 0){
-//            set1 = (BarDataSet) hBarChart.getData().getDataSetByIndex(0);
-//            set1.setValues(yVals1);
-//            hBarChart.getData().notifyDataChanged();
-//            hBarChart.notifyDataSetChanged();
-//        }else{
-//            set1 = new BarDataSet(yVals1, "DataSet1");
-//            set1.setDrawIcons(false);
-//
-//            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-//            dataSets.add(set1);
-//
-//            BarData data = new BarData(dataSets);
-//            data.setValueTextSize(10f);
-//            data.setBarWidth(0.5f);
-//
-//            hBarChart.setData(data);
-//        }
+            setClassRankingStatistics(chartData);
+        }
+    }
 
-        set1 = new BarDataSet(yVals1, "DataSet1");
-        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-        dataSets.add(set1);
-        BarData data = new BarData(dataSets);
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void initChartView() {
 
-        barData = data;
+        BarChartManager barChartManager = new BarChartManager(barChart);
+        barChartManager.setChartData(barData);
+        barChartManager.setMinOfYAxis(minOfYAxis);
+        setXAxisValueFormatter(barChartManager);
+        setYAxisValueFormatter(barChartManager);
+        barChartManager.initChartView();
+    }
+
+    @Override
+    public void updateChartData() {
+
+    }
+
+    private void setXAxisValueFormatter(BarChartManager barChartManager){
+
+        if(XAxisValue != null){
+            StringAxisValueFormatter xAxisValueFormatter = new StringAxisValueFormatter(XAxisValue);
+            barChartManager.setXAxisValueFormatter(xAxisValueFormatter);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void setYAxisValueFormatter(BarChartManager barChartManager){
+
+        PercentageAxisValueFormatter percentageAxisValueFormatter = new PercentageAxisValueFormatter();
+        barChartManager.setYAxisValueFormatter(percentageAxisValueFormatter);
+    }
+
+    private void setClassRankingStatistics(ArrayList chartData){
+
+        List<BarEntry> chartDataList = new ArrayList<>();
+        XAxisValue = new String[chartData.size()];
+        ClassAndPercentageBean bean;
+
+        for(int i = 0; i < chartData.size(); i++){
+
+            bean = (ClassAndPercentageBean)chartData.get(i);
+            XAxisValue[i] = bean.getClass_no();
+            chartDataList.add(new BarEntry(i, bean.getPercent()));
+            minOfYAxis = Math.min(minOfYAxis, bean.getPercent());
+        }
+
+        BarDataSet barDataSet = new BarDataSet(chartDataList, "classRankingStatistics");
+        setBarData(barDataSet);
+    }
+
+
+    private void setBarData(BarDataSet barDataSet){
+
+        List<IBarDataSet> dataSets = new ArrayList<>();
+        dataSets.add(barDataSet);
+        barData = new BarData(dataSets);
     }
 }

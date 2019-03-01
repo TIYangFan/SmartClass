@@ -12,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.smartclass.R;
-import com.example.smartclass.adapter.UnfocusedDetailStudentRecyclerViewAdapter;
+import com.example.smartclass.adapter.UnfocusedStudentDetailsRecyclerViewAdapter;
+import com.example.smartclass.bean.StudentStatusDetailsBean;
+import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,19 +29,19 @@ import butterknife.ButterKnife;
  */
 public class UnfocusedStudentDetailsFragment extends Fragment {
 
-    @BindView(R.id.UnfocusedStudentDetailsText)
-    TextView UnfocusedStudentDetailsText;
     @BindView(R.id.unfocusedDetailStudentRecyclerView)
     RecyclerView unfocusedDetailStudentRecyclerView;
 
-    private String[][] data = {
-            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-    };
+    private UnfocusedStudentDetailsRecyclerViewAdapter recyclerViewAdapter;
+
+//    private String[][] data = {
+//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
+//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
+//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
+//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
+//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
+//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
+//    };
 
     public static UnfocusedStudentDetailsFragment newInstance() {
 
@@ -53,10 +57,19 @@ public class UnfocusedStudentDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_unfocused_student_details, container, false);
         ButterKnife.bind(this, root);
-
-        unfocusedDetailStudentRecyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
-        unfocusedDetailStudentRecyclerView.setAdapter(new UnfocusedDetailStudentRecyclerViewAdapter(data));
-
         return root;
+    }
+
+    public void initRecyclerView(ArrayList<StudentStatusDetailsBean> listData){
+
+        recyclerViewAdapter = new UnfocusedStudentDetailsRecyclerViewAdapter(listData);
+        unfocusedDetailStudentRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        unfocusedDetailStudentRecyclerView.setAdapter(recyclerViewAdapter);
+    }
+
+    public void updateListData(ArrayList<StudentStatusDetailsBean> listData){
+
+        recyclerViewAdapter.setListData(listData);
+        recyclerViewAdapter.notifyDataSetChanged();
     }
 }

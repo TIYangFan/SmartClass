@@ -238,7 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_30"
-                android:text="数据加载中"/>
+                android:text="数据装载中"/>
 
         </LinearLayout>
 

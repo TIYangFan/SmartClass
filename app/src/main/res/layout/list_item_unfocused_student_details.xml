@@ -9,14 +9,14 @@
         android:layout_marginStart="@dimen/px_26">
         
         <TextView
-            android:id="@+id/time1"
+            android:id="@+id/unfocusedTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
             android:textSize="@dimen/px_36"/>
 
         <TextView
-            android:id="@+id/time2"
+            android:id="@+id/totalTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorLightText"
@@ -25,7 +25,7 @@
     </LinearLayout>
     
     <TextView
-        android:id="@+id/detail_name"
+        android:id="@+id/studentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorText"
@@ -34,7 +34,7 @@
         android:layout_marginStart="@dimen/px_300"/>
 
     <TextView
-        android:id="@+id/detail_class"
+        android:id="@+id/studentClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorText"
@@ -43,7 +43,7 @@
         android:layout_marginStart="@dimen/px_486"/>
 
     <TextView
-        android:id="@+id/detail_id"
+        android:id="@+id/studentId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorText"

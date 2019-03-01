@@ -3,7 +3,7 @@ package com.example.smartclass.presenter;
 import com.example.smartclass.base.BaseMvpPresenter;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
-import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.ClassAndPercentageBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.contract.AttendanceStatisticsContract;
@@ -107,11 +107,11 @@ public class AttendanceStatisticsPresenter extends BaseMvpPresenter<AttendanceSt
             return;
         }
         model.loadClassAttendanceStatistics(jobNumber)
-                .compose(RxScheduler.<BaseArrayBean<ClassAndPercentBean>>Flo_io_main())
-                .as(mView.<BaseArrayBean<ClassAndPercentBean>>bindAutoDispose())
-                .subscribe(new Consumer<BaseArrayBean<ClassAndPercentBean>>() {
+                .compose(RxScheduler.<BaseArrayBean<ClassAndPercentageBean>>Flo_io_main())
+                .as(mView.<BaseArrayBean<ClassAndPercentageBean>>bindAutoDispose())
+                .subscribe(new Consumer<BaseArrayBean<ClassAndPercentageBean>>() {
                     @Override
-                    public void accept(BaseArrayBean<ClassAndPercentBean> bean) throws Exception {
+                    public void accept(BaseArrayBean<ClassAndPercentageBean> bean) throws Exception {
                         mView.showClassAttendanceHorizontalBarChart(bean);
                         mView.hideLoading();
                     }

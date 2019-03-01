@@ -10,22 +10,22 @@ import java.util.ArrayList;
  */
 public class ConcentrationDistributionBean {
 
-    private ArrayList<ClassAndPercentBean> focus;
-    private ArrayList<ClassAndPercentBean> unfocus;
+    private ArrayList<ClassAndPercentageBean> focus;
+    private ArrayList<ClassAndPercentageBean> unfocus;
 
-    public ArrayList<ClassAndPercentBean> getFocus() {
+    public ArrayList<ClassAndPercentageBean> getFocus() {
         return focus;
     }
 
-    public void setFocus(ArrayList<ClassAndPercentBean> focus) {
+    public void setFocus(ArrayList<ClassAndPercentageBean> focus) {
         this.focus = focus;
     }
 
-    public ArrayList<ClassAndPercentBean> getUnfocus() {
+    public ArrayList<ClassAndPercentageBean> getUnfocus() {
         return unfocus;
     }
 
-    public void setUnfocus(ArrayList<ClassAndPercentBean> unfocus) {
+    public void setUnfocus(ArrayList<ClassAndPercentageBean> unfocus) {
         this.unfocus = unfocus;
     }
 }

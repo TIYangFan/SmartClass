@@ -10,25 +10,26 @@ import com.example.smartclass.base.BaseView;
  */
 public interface ClassRecentRecordContract {
 
+    interface Model {
+
+        void loadClassRecentRecord();
+    }
+
     interface View extends BaseView {
 
         void showClassInformation();
 
-        void showTheMainInformationOfTheClass();
+        void showAttendanceProfile();
 
         void showAttendanceLineChart();
 
         void showClassStatusLineChart();
 
-        void showProblemStudentList();
+        void showProblemStudentsList();
     }
 
     interface Presenter {
 
-        void LoadClassDetails();
-    }
-
-    interface Model {
-
+        void loadClassRecentRecord();
     }
 }

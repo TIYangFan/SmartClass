@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.smartclass.R;
-import com.example.smartclass.bean.StudentInformationBean;
+import com.example.smartclass.bean.StudentStatusDetailsBean;
 
 import java.util.ArrayList;
 
@@ -21,16 +21,20 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class StudentsWithAttendanceProblemsRecyclerViewAdapter extends RecyclerView.Adapter<StudentsWithAttendanceProblemsRecyclerViewAdapter.holder> {
+public class UnfocusedStudentDetailsRecyclerViewAdapter extends RecyclerView.Adapter<UnfocusedStudentDetailsRecyclerViewAdapter.holder> {
 
-    private ArrayList<StudentInformationBean> listData;
+    private ArrayList<StudentStatusDetailsBean> listData;
 
     public static class holder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.className)
-        TextView className;
-        @BindView(R.id.name)
-        TextView name;
+        @BindView(R.id.unfocusedTime)
+        TextView unfocusedTime;
+        @BindView(R.id.totalTime)
+        TextView totalTime;
+        @BindView(R.id.studentName)
+        TextView studentName;
+        @BindView(R.id.studentClass)
+        TextView studentClass;
         @BindView(R.id.studentId)
         TextView studentId;
 
@@ -39,20 +43,22 @@ public class StudentsWithAttendanceProblemsRecyclerViewAdapter extends RecyclerV
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(StudentInformationBean itemData){
+        public void bind(StudentStatusDetailsBean itemData){
 
-            setTextOfView(itemData);
+            setText(itemData);
         }
 
-        private void setTextOfView(StudentInformationBean itemData){
+        private void setText(StudentStatusDetailsBean itemData){
 
-            className.setText(itemData.getClass_no());
-            name.setText(itemData.getName());
+            unfocusedTime.setText(itemData.getDuring());
+            totalTime.setText(itemData.getLesson_duration());
+            studentName.setText(itemData.getName());
+            studentClass.setText(itemData.getClass_no());
             studentId.setText(itemData.getStu_id());
         }
     }
 
-    public StudentsWithAttendanceProblemsRecyclerViewAdapter(@NonNull ArrayList<StudentInformationBean> listData){
+    public UnfocusedStudentDetailsRecyclerViewAdapter(ArrayList<StudentStatusDetailsBean> listData){
         this.listData = listData;
     }
 
@@ -60,7 +66,7 @@ public class StudentsWithAttendanceProblemsRecyclerViewAdapter extends RecyclerV
     @Override
     public holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_unfocused_detail, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_unfocused_student_details, viewGroup, false);
         return new holder(view);
     }
 
@@ -74,7 +80,7 @@ public class StudentsWithAttendanceProblemsRecyclerViewAdapter extends RecyclerV
         return listData.size();
     }
 
-    public void setListData(ArrayList<StudentInformationBean> listData){
+    public void setListData(ArrayList<StudentStatusDetailsBean> listData){
         this.listData = listData;
     }
 }

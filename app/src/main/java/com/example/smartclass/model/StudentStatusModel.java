@@ -2,7 +2,8 @@ package com.example.smartclass.model;
 
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
-import com.example.smartclass.bean.TimeAndConcentrationBean;
+import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
+import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 import com.example.smartclass.contract.StudentStatusContract;
 import com.example.smartclass.net.RetrofitClient;
 
@@ -24,7 +25,7 @@ public class StudentStatusModel implements StudentStatusContract.Model {
     }
 
     @Override
-    public Flowable<BaseArrayBean<TimeAndConcentrationBean>> loadStateChangeStatistics(String jobNumber) {
+    public Flowable<BaseArrayBean<TimeAndNumberOfPeopleBean>> loadStateChangeStatistics(String jobNumber) {
         return RetrofitClient.getInstance().getApi().getStateChangeStatistics(jobNumber);
     }
 
@@ -34,7 +35,7 @@ public class StudentStatusModel implements StudentStatusContract.Model {
     }
 
     @Override
-    public void loadUnfocusedStudentStatistics() {
-
+    public Flowable<UnfocusedStudentDetailsBean> loadUnfocusedStudentStatistics() {
+        return RetrofitClient.getInstance().getApi().getUnfocusedStudentStatistics();
     }
 }

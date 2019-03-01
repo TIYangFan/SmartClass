@@ -1,6 +1,5 @@
 package com.example.smartclass.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,14 +10,12 @@ import android.view.ViewGroup;
 
 import com.example.smartclass.R;
 import com.example.smartclass.base.BaseChartView;
-import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.ClassAndPercentageBean;
 import com.example.smartclass.manager.PieChartManager;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,11 +83,11 @@ public class ConcentrationDistributionFragment extends Fragment implements BaseC
     private void setConcentrationDistributionData(ArrayList chartData) {
 
         List<PieEntry> pieDataList = new ArrayList<>();
-        ClassAndPercentBean bean;
+        ClassAndPercentageBean bean;
 
         for(int i = 0; i < chartData.size(); i++){
 
-            bean = (ClassAndPercentBean)chartData.get(i);
+            bean = (ClassAndPercentageBean)chartData.get(i);
             pieDataList.add(new PieEntry(bean.getPercent() * 100, bean.getClass_no()));
         }
 

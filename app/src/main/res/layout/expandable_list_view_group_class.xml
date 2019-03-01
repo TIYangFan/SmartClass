@@ -13,7 +13,7 @@
         android:background="@drawable/bg_top_border_radius">
 
         <TextView
-            android:id="@+id/parent"
+            android:id="@+id/expandableListItemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/px_42"
@@ -46,34 +46,41 @@
         android:layout_marginTop="@dimen/px_138"
         android:background="@drawable/bg_bottom_border_radius">
 
-        <com.example.smartclass.util.CircleBarView
-            android:id="@+id/classRecentRecordCircleProgressBar"
-            android:layout_width="@dimen/px_252"
-            android:layout_height="@dimen/px_252"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px_49"
             android:layout_marginStart="@dimen/px_38"
-            app:start_angle="270"
-            app:sweep_angle="360"
-            app:bg_color="@android:color/transparent"
-            app:bar_width="8dp"/>
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/classRecentRecordProgressText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_139"
-            android:layout_marginStart="@dimen/px_114"
-            android:textSize="@dimen/px_54"
-            android:textColor="@color/colorThemeTitle"/>
+            <com.example.smartclass.util.CircleBarView
+                android:id="@+id/classRecentRecordCircleProgressBar"
+                android:layout_width="@dimen/px_252"
+                android:layout_height="@dimen/px_252"
+                app:start_angle="270"
+                app:sweep_angle="360"
+                app:bg_color="@android:color/transparent"
+                app:bar_width="8dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_194"
-            android:layout_marginStart="@dimen/px_124"
-            android:text="出勤率"
-            android:textSize="@dimen/px_28"
-            android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/classRecentRecordProgressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_91"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/px_54"
+                android:textColor="@color/colorThemeTitle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_145"
+                android:layout_centerHorizontal="true"
+                android:text="出勤率"
+                android:textSize="@dimen/px_28"
+                android:textColor="@color/colorBlack"/>
+
+        </RelativeLayout>
 
         <!--Late-->
 
@@ -91,7 +98,7 @@
             android:layout_marginStart="@dimen/px_467">
 
             <TextView
-                android:id="@+id/currentPersonOfLateTextView"
+                android:id="@+id/recentRecordPersonOfLateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
@@ -106,7 +113,7 @@
                 android:text="/" />
 
             <TextView
-                android:id="@+id/currentOverallPersonOfLateTextView"
+                android:id="@+id/recentRecordOverallPersonOfLateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
@@ -131,7 +138,7 @@
             android:layout_marginStart="@dimen/px_814">
 
             <TextView
-                android:id="@+id/currentPersonOfAbsenteeTextView"
+                android:id="@+id/recentRecordPersonOfAbsenteeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
@@ -146,7 +153,7 @@
                 android:text="/" />
 
             <TextView
-                android:id="@+id/currentOverallPersonOfAbsenteeTextView"
+                android:id="@+id/recentRecordOverallPersonOfAbsenteeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
@@ -171,7 +178,7 @@
             android:layout_marginStart="@dimen/px_467">
 
             <TextView
-                android:id="@+id/currentPersonOfLeaveEarlyTextView"
+                android:id="@+id/recentRecordPersonOfLeaveEarlyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
@@ -186,7 +193,7 @@
                 android:text="/" />
 
             <TextView
-                android:id="@+id/currentOverallPersonOfLeaveEarlyTextView"
+                android:id="@+id/recentRecordOverallPersonOfLeaveEarlyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
@@ -211,7 +218,7 @@
             android:layout_marginStart="@dimen/px_814">
 
             <TextView
-                android:id="@+id/currentPersonOfAbnormalTextView"
+                android:id="@+id/recentRecordPersonOfAbnormalTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
@@ -226,7 +233,7 @@
                 android:text="/" />
 
             <TextView
-                android:id="@+id/currentOverallPersonOfAbnormalTextView"
+                android:id="@+id/recentRecordOverallPersonOfAbnormalTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"

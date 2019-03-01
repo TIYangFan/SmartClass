@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.smartclass.R;
 import com.example.smartclass.adapter.TabFragmentPagerAdapter;
@@ -20,7 +19,7 @@ import com.example.smartclass.base.BaseMvpFragment;
 import com.example.smartclass.base.BaseTabLayoutView;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
-import com.example.smartclass.bean.ClassAndPercentBean;
+import com.example.smartclass.bean.ClassAndPercentageBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.contract.AttendanceStatisticsContract;
@@ -80,7 +79,7 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     private List<Fragment> studentsWithAttendanceProblemsFragments;
 
     private String[] attendanceStatisticsTitles;
-    private String[] attendanceStatisticsDetailsTitles;
+    private String[] studentsWithAttendanceProblemsTitles;
 
 
     public static AttendanceStatisticsFragment newInstance() {
@@ -131,7 +130,7 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     }
 
     @Override
-    public void showClassAttendanceHorizontalBarChart(BaseArrayBean<ClassAndPercentBean> bean) {
+    public void showClassAttendanceHorizontalBarChart(BaseArrayBean<ClassAndPercentageBean> bean) {
 
         BaseChartView chartView = (BaseChartView) attendanceStatisticsFragments.get(1);
         chartView.setChartData(bean.getArrayList(), ClassAttendanceStatisticsFragment.CLASS_ATTENDANCE_STATISTICS);
@@ -143,13 +142,13 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
 
         StudentsWithAttendanceProblemsFragment fragment;
         fragment = (StudentsWithAttendanceProblemsFragment)studentsWithAttendanceProblemsFragments.get(0);
-        fragment.setListData(bean.getEarly());
+        fragment.initRecyclerView(bean.getEarly());
         fragment = (StudentsWithAttendanceProblemsFragment)studentsWithAttendanceProblemsFragments.get(1);
-        fragment.setListData(bean.getAbsent());
+        fragment.initRecyclerView(bean.getAbsent());
         fragment = (StudentsWithAttendanceProblemsFragment)studentsWithAttendanceProblemsFragments.get(2);
-        fragment.setListData(bean.getEarly());
+        fragment.initRecyclerView(bean.getEarly());
         fragment = (StudentsWithAttendanceProblemsFragment)studentsWithAttendanceProblemsFragments.get(3);
-        fragment.setListData(bean.getQingjia());
+        fragment.initRecyclerView(bean.getQingjia());
     }
 
     @Override
@@ -178,16 +177,18 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     /**
      * 初始化各部分标题
      */
+    @Override
     public void initTitles(){
 
         Resources resources = Objects.requireNonNull(getActivity()).getResources();
         attendanceStatisticsTitles = resources.getStringArray(R.array.attendance_statistics_titles);
-        attendanceStatisticsDetailsTitles = resources.getStringArray(R.array.attendance_statistics_details_titles);
+        studentsWithAttendanceProblemsTitles = resources.getStringArray(R.array.attendance_statistics_details_titles);
     }
 
     /**
      * 初始化图表部分的 fragment
      */
+    @Override
     public void initFragments(){
 
         attendanceStatisticsFragments = new ArrayList<>();
@@ -196,7 +197,7 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         attendanceStatisticsFragments.add(ClassAttendanceStatisticsFragment.newInstance());
 
         studentsWithAttendanceProblemsFragments = new ArrayList<>();
-        for(int i = 0; i < attendanceStatisticsDetailsTitles.length; i++){
+        for(int i = 0; i < studentsWithAttendanceProblemsTitles.length; i++){
             studentsWithAttendanceProblemsFragments.add(StudentsWithAttendanceProblemsFragment.newInstance());
         }
     }
@@ -204,6 +205,7 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     /**
      * 初始化 ViewPagerAdapter
      */
+    @Override
     public void initViewPagerAdapter(){
 
         TabFragmentPagerAdapter attendanceStatisticsAdapter = new TabFragmentPagerAdapter(getFragmentManager(), attendanceStatisticsFragments);
@@ -211,11 +213,13 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
 
         TabFragmentPagerAdapter attendanceStatisticsDetailsAdapter = new TabFragmentPagerAdapter(getFragmentManager(), studentsWithAttendanceProblemsFragments);
         studentsWithAttendanceProblemsViewPager.setAdapter(attendanceStatisticsDetailsAdapter);
+        studentsWithAttendanceProblemsViewPager.setOffscreenPageLimit(3);
     }
 
     /**
      * 初始化 TabLayout
      */
+    @Override
     public void initTabLayout(){
 
         initViewPagerAdapter();
@@ -225,8 +229,8 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         }
 
         studentsWithAttendanceProblemsTabLayout.setupWithViewPager(studentsWithAttendanceProblemsViewPager);
-        for(int i = 0; i < attendanceStatisticsDetailsTitles.length; i++){
-            Objects.requireNonNull(studentsWithAttendanceProblemsTabLayout.getTabAt(i)).setText(attendanceStatisticsDetailsTitles[i]);
+        for(int i = 0; i < studentsWithAttendanceProblemsTitles.length; i++){
+            Objects.requireNonNull(studentsWithAttendanceProblemsTabLayout.getTabAt(i)).setText(studentsWithAttendanceProblemsTitles[i]);
         }
     }
 

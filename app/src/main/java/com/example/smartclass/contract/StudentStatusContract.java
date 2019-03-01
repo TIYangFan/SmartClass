@@ -3,9 +3,8 @@ package com.example.smartclass.contract;
 import com.example.smartclass.base.BaseView;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
-import com.example.smartclass.bean.TimeAndConcentrationBean;
-
-import java.util.ArrayList;
+import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
+import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 
 import io.reactivex.Flowable;
 
@@ -21,24 +20,24 @@ public interface StudentStatusContract {
 
         void loadCurrentStatusStatistics();
 
-        Flowable<BaseArrayBean<TimeAndConcentrationBean>> loadStateChangeStatistics(String jobNumber);
+        Flowable<BaseArrayBean<TimeAndNumberOfPeopleBean>> loadStateChangeStatistics(String jobNumber);
 
         Flowable<ConcentrationDistributionBean> loadConcentrationDistributionStatistics(String jobNumber);
 
-        void loadUnfocusedStudentStatistics();
+        Flowable<UnfocusedStudentDetailsBean> loadUnfocusedStudentStatistics();
     }
 
     interface View extends BaseView {
 
         void showCurrentStatusScatterChart();
 
-        void showStateChangeLineChart(BaseArrayBean<TimeAndConcentrationBean> bean);
+        void showStateChangeLineChart(BaseArrayBean<TimeAndNumberOfPeopleBean> bean);
 
         void showConcentrationDistributionPieChart(ConcentrationDistributionBean bean);
 
         void showUnfocusedDistributionPieChart();
 
-        void showUnfocusedStudentList();
+        void showUnfocusedStudentList(UnfocusedStudentDetailsBean bean);
     }
 
     interface Presenter {

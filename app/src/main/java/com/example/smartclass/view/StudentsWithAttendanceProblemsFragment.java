@@ -31,7 +31,7 @@ public class StudentsWithAttendanceProblemsFragment extends Fragment {
     @BindView(R.id.studentsWithAttendanceProblemsRecyclerView)
     RecyclerView studentsWithAttendanceProblemsRecyclerView;
 
-    private ArrayList<StudentInformationBean> listData;
+    private StudentsWithAttendanceProblemsRecyclerViewAdapter recyclerViewAdapter;
 
 //    private String[][] data = {
 //            {"计科1706", "杨帆", "1033170614"},
@@ -60,19 +60,20 @@ public class StudentsWithAttendanceProblemsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_unfocused_detail, container, false);
         ButterKnife.bind(this, root);
-        initRecyclerView(Objects.requireNonNull(container));
         return root;
     }
 
-    private void initRecyclerView(ViewGroup container){
+    public void initRecyclerView(ArrayList<StudentInformationBean> listData){
 
-        studentsWithAttendanceProblemsRecyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
-        studentsWithAttendanceProblemsRecyclerView.setAdapter(new StudentsWithAttendanceProblemsRecyclerViewAdapter(listData));
+        recyclerViewAdapter = new StudentsWithAttendanceProblemsRecyclerViewAdapter(listData);
+        studentsWithAttendanceProblemsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        studentsWithAttendanceProblemsRecyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    public void setListData(ArrayList<StudentInformationBean> listData){
+    public void updateListData(ArrayList<StudentInformationBean> listData){
 
-        this.listData = listData;
+        recyclerViewAdapter.setListData(listData);
+        recyclerViewAdapter.notifyDataSetChanged();
     }
 
 }

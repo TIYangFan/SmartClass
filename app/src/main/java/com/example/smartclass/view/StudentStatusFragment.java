@@ -2,15 +2,10 @@ package com.example.smartclass.view;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.smartclass.R;
@@ -20,7 +15,8 @@ import com.example.smartclass.base.BaseMvpFragment;
 import com.example.smartclass.base.BaseTabLayoutView;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
-import com.example.smartclass.bean.TimeAndConcentrationBean;
+import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
+import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 import com.example.smartclass.contract.StudentStatusContract;
 import com.example.smartclass.presenter.StudentStatusPresenter;
 import com.example.smartclass.util.WrapContentHeightViewPager;
@@ -30,7 +26,6 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by YangFan
@@ -99,8 +94,11 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
     }
 
     @Override
-    public void showStateChangeLineChart(BaseArrayBean<TimeAndConcentrationBean> bean) {
-        Toast.makeText(getActivity(), bean.getArrayList().get(0).getTime(), Toast.LENGTH_SHORT).show();
+    public void showStateChangeLineChart(BaseArrayBean<TimeAndNumberOfPeopleBean> bean) {
+
+        BaseChartView chartView = (BaseChartView) studentStatusFragments.get(1);
+        chartView.setChartData(bean.getArrayList(), StateChangeFragment.STATE_CHANGE_STATISTICS);
+        chartView.initChartView();
     }
 
     @Override
@@ -121,8 +119,15 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
     }
 
     @Override
-    public void showUnfocusedStudentList() {
+    public void showUnfocusedStudentList(UnfocusedStudentDetailsBean bean) {
 
+        UnfocusedStudentDetailsFragment fragment;
+        fragment = (UnfocusedStudentDetailsFragment)unfocusedStudentDetailsFragments.get(0);
+        fragment.initRecyclerView(bean.getSleep());
+        fragment = (UnfocusedStudentDetailsFragment)unfocusedStudentDetailsFragments.get(1);
+        fragment.initRecyclerView(bean.getCheck_out_phone());
+        fragment = (UnfocusedStudentDetailsFragment)unfocusedStudentDetailsFragments.get(2);
+        fragment.initRecyclerView(bean.getDistracted());
     }
 
     @Override
@@ -187,6 +192,7 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
 
         TabFragmentPagerAdapter unfocusedStudentStatisticsAdapter = new TabFragmentPagerAdapter(getFragmentManager(), unfocusedStudentDetailsFragments);
         unfocusedStudentStatisticsViewPager.setAdapter(unfocusedStudentStatisticsAdapter);
+        unfocusedStudentStatisticsViewPager.setOffscreenPageLimit(2);
 
     }
 
