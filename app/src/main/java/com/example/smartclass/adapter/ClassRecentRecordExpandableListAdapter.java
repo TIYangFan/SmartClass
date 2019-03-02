@@ -18,6 +18,8 @@ import com.example.smartclass.base.BaseTabLayoutView;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.contract.ClassRecentRecordContract;
 import com.example.smartclass.util.CircleBarView;
+import com.example.smartclass.util.NoScrollAndWrapContentHeightViewPager;
+import com.example.smartclass.util.NoScrollViewPager;
 import com.example.smartclass.util.WrapContentHeightViewPager;
 import com.example.smartclass.view.RecentOverallStudentStatusRankingsFragment;
 import com.example.smartclass.view.StateChangeFragment;
@@ -39,13 +41,7 @@ import butterknife.ButterKnife;
  */
 public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private String[] groupString = {"2017级/设计/1班", "2017级/设计/2班", "2017级/设计/3班", "2017级/设计/3班"};
-    private String[][] childString = {
-            {"孙尚香"},
-            {"孙膑"},
-            {"张飞"},
-            {"张飞"},
-    };
+    private List<String> groupString = new ArrayList<>();
 
     private Fragment parentFragment;
     private GroupViewHolder groupViewHolder;
@@ -57,22 +53,22 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
 
     @Override
     public int getGroupCount() {
-        return groupString.length;
+        return groupString.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return childString[groupPosition].length;
+        return 1;
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return groupString[groupPosition];
+        return groupString.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return childString[groupPosition][childPosition];
+        return null;
     }
 
     @Override
@@ -101,7 +97,7 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         }else{
             groupViewHolder = (GroupViewHolder)convertView.getTag();
         }
-        groupViewHolder.expandableListItemTitle.setText(groupString[groupPosition]);
+        groupViewHolder.expandableListItemTitle.setText(groupString.get(groupPosition));
         return convertView;
     }
 
@@ -122,6 +118,10 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public void addTitleToGroup(String title){
+        groupString.add(title);
     }
 
     public void showClassInformation() {
@@ -251,9 +251,9 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         @BindView(R.id.recentRecordStatisticsDetailTabLayout)
         TabLayout recentRecordStatisticsDetailTabLayout;
         @BindView(R.id.recentRecordStatisticsViewPager)
-        ViewPager recentRecordStatisticsViewPager;
+        NoScrollViewPager recentRecordStatisticsViewPager;
         @BindView(R.id.recentRecordStatisticsDetailViewPager)
-        WrapContentHeightViewPager recentRecordStatisticsDetailViewPager;
+        NoScrollAndWrapContentHeightViewPager recentRecordStatisticsDetailViewPager;
 
         private List<Fragment> studentStatusFragments;
         private List<Fragment> studentsWithAttendanceProblemsFragments;
@@ -299,7 +299,7 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
 
             Resources resources = parentFragment.getResources();
             studentStatusTitles = resources.getStringArray(R.array.overall_student_recent_status_titles);
-            studentsWithAttendanceProblemsTitles = resources.getStringArray(R.array.overall_student_recent_status_ranking_titles);
+            studentsWithAttendanceProblemsTitles = resources.getStringArray(R.array.attendance_statistics_details_titles);
         }
 
         @Override

@@ -1,5 +1,7 @@
 package com.example.smartclass.contract;
 
+import android.content.Context;
+
 import com.example.smartclass.base.BaseView;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
@@ -18,6 +20,8 @@ import io.reactivex.Flowable;
 public interface AttendanceStatisticsContract {
 
     interface Model {
+
+        String loadJobNumber(Context context);
 
         Flowable<AttendanceProfileBean> loadAttendanceProfile(String jobNumber);
 
@@ -40,6 +44,8 @@ public interface AttendanceStatisticsContract {
     }
 
     interface Presenter {
+
+        void loadJobNumber();
 
         void loadAllStatisticsOnThePage();
 

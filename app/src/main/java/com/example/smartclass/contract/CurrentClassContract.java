@@ -1,6 +1,11 @@
 package com.example.smartclass.contract;
 
+import android.content.Context;
+
 import com.example.smartclass.base.BaseView;
+import com.example.smartclass.bean.AttendanceProfileBean;
+
+import io.reactivex.Flowable;
 
 /**
  * Created by YangFan
@@ -10,17 +15,22 @@ import com.example.smartclass.base.BaseView;
  */
 public interface CurrentClassContract {
 
+    interface Model {
+
+        String loadJobNumber(Context context);
+
+        Flowable<AttendanceProfileBean> loadAttendanceProfile(String jobNumber);
+    }
+
     interface View extends BaseView {
 
-        void showTheMainInformationOfTheClass();
+        void showAttendanceProfile(AttendanceProfileBean bean);
     }
 
     interface Presenter {
 
-        void loadTheMainInformationOfTheClass();
-    }
+        void loadJobNumber();
 
-    interface Model {
-
+        void loadAttendanceProfile();
     }
 }

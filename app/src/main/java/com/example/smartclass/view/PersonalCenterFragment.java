@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseMvpFragment;
+import com.example.smartclass.contract.PersonalCenterContract;
+import com.example.smartclass.presenter.PersonalCenterPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,10 +26,14 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class PersonalCenterFragment extends Fragment {
+public class PersonalCenterFragment extends BaseMvpFragment<PersonalCenterPresenter> implements PersonalCenterContract.View {
 
     @BindView(R.id.personalCenterToolbar)
-    Toolbar mPersonalCenterToolbar;
+    Toolbar personalCenterToolbar;
+    @BindView(R.id.userName)
+    TextView userName;
+    @BindView(R.id.userJobNumber)
+    TextView userJobNumber;
 
 
     public static PersonalCenterFragment newInstance() {
@@ -38,16 +45,41 @@ public class PersonalCenterFragment extends Fragment {
         return fragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_personal_center, container, false);
-        ButterKnife.bind(this, root);
+    protected void initView(View view) {
+
+        initToolbar();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_personal_center;
+    }
+
+    @Override
+    public void showUserInformation() {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+
+    }
+
+    private void initToolbar(){
 
         AppCompatActivity activity = (AppCompatActivity)getActivity();
-        activity.setSupportActionBar(mPersonalCenterToolbar);
-        mPersonalCenterToolbar.setTitle("");
-
-        return root;
+        activity.setSupportActionBar(personalCenterToolbar);
+        personalCenterToolbar.setTitle("");
     }
 }

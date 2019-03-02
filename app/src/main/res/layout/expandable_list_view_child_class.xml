@@ -30,14 +30,14 @@
             android:layout_marginStart="@dimen/px_17"
             android:background="@color/colorUnderLine"/>
 
-        <android.support.v4.view.ViewPager
+        <com.example.smartclass.util.NoScrollViewPager
             android:id="@+id/recentRecordStatisticsViewPager"
             android:layout_width="@dimen/px_998"
             android:layout_height="@dimen/px_457"
             android:layout_marginTop="@dimen/px_95"
             android:layout_marginStart="@dimen/px_17">
 
-        </android.support.v4.view.ViewPager>
+        </com.example.smartclass.util.NoScrollViewPager>
 
     </RelativeLayout>
 
@@ -69,13 +69,13 @@
             android:layout_marginStart="@dimen/px_17"
             android:background="@color/colorUnderLine"/>
 
-        <com.example.smartclass.util.WrapContentHeightViewPager
+        <com.example.smartclass.util.NoScrollAndWrapContentHeightViewPager
             android:id="@+id/recentRecordStatisticsDetailViewPager"
             android:layout_width="@dimen/px_1032"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px_95">
 
-        </com.example.smartclass.util.WrapContentHeightViewPager>
+        </com.example.smartclass.util.NoScrollAndWrapContentHeightViewPager>
 
     </RelativeLayout>
 

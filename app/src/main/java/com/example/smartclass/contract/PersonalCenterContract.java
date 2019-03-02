@@ -10,21 +10,18 @@ import com.example.smartclass.base.BaseView;
  */
 public interface PersonalCenterContract {
 
+    interface Model {
+
+        void loadUserInformation();
+    }
+
     interface View extends BaseView {
 
         void showUserInformation();
-
-        void setLoadingIndicator(boolean active);
-
-        void showLoadingClassInformationError();
     }
 
     interface Presenter {
 
         void loadUserInformation();
-    }
-
-    interface Model {
-
     }
 }

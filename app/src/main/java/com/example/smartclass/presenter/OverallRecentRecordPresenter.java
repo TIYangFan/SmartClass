@@ -35,7 +35,8 @@ public class OverallRecentRecordPresenter extends BaseMvpPresenter<OverallRecent
     public void subscribe() {
         super.subscribe();
 
-        jobNumber = SharedPreferencesUtil.getStoreJobNumber(mView.getActivity());
+        mView.showLoading();
+        loadJobNumber();
         loadAllStatisticsOnThePage();
     }
 
@@ -45,8 +46,15 @@ public class OverallRecentRecordPresenter extends BaseMvpPresenter<OverallRecent
     }
 
     @Override
+    public void loadJobNumber() {
+
+        jobNumber = model.loadJobNumber(mView.getActivity());
+    }
+
+    @Override
     public void loadAllStatisticsOnThePage() {
 
+        mView.showLoading();
         loadAttendanceProfile();
         loadAttendanceStatistics();
         loadClassStatusStatistics();
@@ -67,6 +75,7 @@ public class OverallRecentRecordPresenter extends BaseMvpPresenter<OverallRecent
                     @Override
                     public void accept(AttendanceProfileBean bean) throws Exception {
                         mView.showAttendanceProfile(bean);
+                        mView.hideLoading();
                     }
                 }, new Consumer<Throwable>() {
                     @Override

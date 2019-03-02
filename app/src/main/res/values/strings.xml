@@ -57,9 +57,29 @@
     </string-array>
 
 
+    <string name="personal_center">个人中心</string>
+    <string name="current_class">当前课堂</string>
+    <string name="attendance">出勤率</string>
+    <string name="backslash">/</string>
+    <string name="loading_text">数据加载中</string>
+
+
+    <!--Current Class-->
+    <string name="common_tools">常用工具</string>
+    <string name="classroom_application">课堂应用</string>
+    <string name="one_click_name">一键点名</string>
+    <string name="student_status">学生状态</string>
+    <string name="attendance_statistics">出勤统计</string>
+    <string name="reissue_application">补签申请</string>
+    <string name="absence_reminder">缺勤提醒</string>
+    <string name="leave_management">请假管理</string>
+    <string name="class_discussion">课堂讨论</string>
+    <string name="other_check_in_methods">其他签到</string>
+    <string name="data_sharing">资料共享</string>
+    <string name="post_assignment">发布作业</string>
+    <string name="more_applications">更多应用</string>
+
     <!--Personal Center-->
-    <string name="title_name_prompt">姓名：杨帆</string>
-    <string name="title_job_number_prompt">工号：1033170614</string>
     <string name="btm_my_class">我的课堂</string>
     <string name="btm_post_assignment">作业发布</string>
     <string name="btm_upload_material">资料上传</string>

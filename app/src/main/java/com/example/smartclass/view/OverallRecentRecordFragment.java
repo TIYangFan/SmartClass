@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.smartclass.R;
@@ -28,6 +29,7 @@ import com.example.smartclass.bean.DateAndPercentageBean;
 import com.example.smartclass.contract.OverallRecentRecordContract;
 import com.example.smartclass.presenter.OverallRecentRecordPresenter;
 import com.example.smartclass.util.CircleBarView;
+import com.example.smartclass.util.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,9 +52,9 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
     @BindView(R.id.overallClassroomInformationTabLayout)
     TabLayout overallClassroomInformationTabLayout;
     @BindView(R.id.overallClassroomInformationRankingViewPager)
-    ViewPager overallClassroomInformationRankingViewPager;
+    NoScrollViewPager overallClassroomInformationRankingViewPager;
     @BindView(R.id.overallClassroomInformationViewPager)
-    ViewPager overallClassroomInformationViewPager;
+    NoScrollViewPager overallClassroomInformationViewPager;
     @BindView(R.id.overallRecentRecordCircleProgressBar)
     CircleBarView circleBarView;
     @BindView(R.id.overallRecentRecordProgressText)
@@ -75,6 +77,9 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
     TextView recentPersonOfAbnormalTextView;
     @BindView(R.id.recentOverallPersonOfAbnormalTextView)
     TextView recentOverallPersonOfAbnormalTextView;
+
+    @BindView(R.id.overallRecentRecordLoadingProgressBar)
+    LinearLayout loadingProgressBar;
 
     private List<Fragment> studentStatusFragments;
     private List<Fragment> studentStatusRankingFragments;
@@ -151,12 +156,12 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
 
     @Override
     public void showLoading() {
-
+        loadingProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        loadingProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override

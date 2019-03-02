@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -41,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_145"
                 android:layout_centerHorizontal="true"
-                android:text="出勤率"
+                android:text="@string/attendance"
                 android:textSize="@dimen/px_28"
                 android:textColor="@color/colorBlack"/>
 
@@ -54,7 +55,8 @@
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_38"
             android:layout_marginStart="@dimen/px_321"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -67,23 +69,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
-                android:textColor="@color/colorBlack"
-                android:text="10人" />
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
                 android:textColor="@color/colorLightText"
-                android:text="/" />
+                android:text="@string/backslash" />
 
             <TextView
                 android:id="@+id/recentOverallPersonOfLateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
-                android:text="100" />
+                android:textColor="@color/colorLightText"/>
 
         </LinearLayout>
 
@@ -94,7 +94,8 @@
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_38"
             android:layout_marginStart="@dimen/px_668"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -107,23 +108,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
-                android:textColor="@color/colorBlack"
-                android:text="10人" />
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
                 android:textColor="@color/colorLightText"
-                android:text="/" />
+                android:text="@string/backslash" />
 
             <TextView
                 android:id="@+id/recentOverallPersonOfAbsenteeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
-                android:text="100" />
+                android:textColor="@color/colorLightText"/>
 
         </LinearLayout>
 
@@ -134,7 +133,8 @@
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_198"
             android:layout_marginStart="@dimen/px_321"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -147,23 +147,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
-                android:textColor="@color/colorBlack"
-                android:text="10人" />
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
                 android:textColor="@color/colorLightText"
-                android:text="/" />
+                android:text="@string/backslash" />
 
             <TextView
                 android:id="@+id/recentOverallPersonOfLeaveEarlyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
-                android:text="100" />
+                android:textColor="@color/colorLightText"/>
 
         </LinearLayout>
 
@@ -174,7 +172,8 @@
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_198"
             android:layout_marginStart="@dimen/px_668"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -187,23 +186,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
-                android:textColor="@color/colorBlack"
-                android:text="10人" />
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
                 android:textColor="@color/colorLightText"
-                android:text="/" />
+                android:text="@string/backslash" />
 
             <TextView
                 android:id="@+id/recentOverallPersonOfAbnormalTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
-                android:text="100" />
+                android:textColor="@color/colorLightText"/>
 
         </LinearLayout>
 
@@ -217,6 +214,9 @@
         android:layout_marginTop="@dimen/px_408"
         android:layout_marginStart="@dimen/px_24"
         android:background="@drawable/bg_border_radius">
+
+        <include layout="@layout/loading"
+            android:id="@+id/overallRecentRecordLoadingProgressBar"/>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/overallClassroomInformationTabLayout"
@@ -238,13 +238,13 @@
             android:layout_marginStart="@dimen/px_17"
             android:background="@color/colorUnderLine"/>
 
-        <android.support.v4.view.ViewPager
+        <com.example.smartclass.util.NoScrollViewPager
             android:id="@+id/overallClassroomInformationViewPager"
             android:layout_width="@dimen/px_1032"
             android:layout_height="@dimen/px_479"
             android:layout_marginTop="@dimen/px_95">
 
-        </android.support.v4.view.ViewPager>
+        </com.example.smartclass.util.NoScrollViewPager>
 
     </RelativeLayout>
 
@@ -275,13 +275,13 @@
             android:layout_marginStart="@dimen/px_17"
             android:background="@color/colorUnderLine"/>
 
-        <android.support.v4.view.ViewPager
+        <com.example.smartclass.util.NoScrollViewPager
             android:id="@+id/overallClassroomInformationRankingViewPager"
             android:layout_width="@dimen/px_1032"
             android:layout_height="@dimen/px_479"
             android:layout_marginTop="@dimen/px_95">
 
-        </android.support.v4.view.ViewPager>
+        </com.example.smartclass.util.NoScrollViewPager>
 
     </RelativeLayout>
 

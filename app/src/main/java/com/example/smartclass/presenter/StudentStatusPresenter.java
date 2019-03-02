@@ -34,13 +34,20 @@ public class StudentStatusPresenter extends BaseMvpPresenter<StudentStatusFragme
     public void subscribe() {
         super.subscribe();
 
-        jobNumber = SharedPreferencesUtil.getStoreJobNumber(mView.getActivity());
+        mView.showLoading();
+        loadJobNumber();
         loadAllStatisticsOnThePage();
     }
 
     @Override
     public void unsubscribe() {
         super.unsubscribe();
+    }
+
+    @Override
+    public void loadJobNumber() {
+
+        jobNumber = model.loadJobNumber(mView.getActivity());
     }
 
     @Override

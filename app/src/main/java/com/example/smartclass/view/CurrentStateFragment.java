@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseChartView;
 import com.example.smartclass.manager.ScatterChartManager;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
@@ -27,12 +28,14 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class CurrentStateFragment extends Fragment {
+public class CurrentStateFragment extends Fragment implements BaseChartView {
 
     @BindView(R.id.scatterChart)
     ScatterChart scatterChart;
     private ScatterData scatterData;
     private Entry averageValue;
+
+    public static final String CURRENT_CLASS_STATISTICS = "currentClassStatistics";
 
     public static CurrentStateFragment newInstance() {
 
@@ -48,13 +51,6 @@ public class CurrentStateFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_current_state, container, false);
         ButterKnife.bind(this, root);
-
-        setScatterData();
-        ScatterChartManager scatterChartManager = new ScatterChartManager(scatterChart);
-        scatterChartManager.initChartView();
-        scatterChartManager.setChartData(scatterData);
-        scatterChartManager.setLimitLine(averageValue);
-
         return root;
     }
 
@@ -91,4 +87,34 @@ public class CurrentStateFragment extends Fragment {
         averageValue =  new Entry(avX, avY);
     }
 
+    @Override
+    public void setChartData(ArrayList chartData, String dataType) {
+
+        if(CURRENT_CLASS_STATISTICS.equals(dataType)){
+            setCurrentClassStatistics(chartData);
+        }
+    }
+
+    @Override
+    public void initChartView() {
+
+        ScatterChartManager scatterChartManager = new ScatterChartManager(scatterChart);
+        scatterChartManager.setChartData(scatterData);
+        scatterChartManager.setLimitLine(averageValue);
+        scatterChartManager.initChartView();
+    }
+
+    @Override
+    public void updateChartData() {
+
+    }
+
+    private void setCurrentClassStatistics(ArrayList chartData){
+
+    }
+
+    private void setScatterData(ScatterDataSet scatterDataSet){
+
+        scatterData = new ScatterData(scatterDataSet);
+    }
 }

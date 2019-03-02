@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/px_457"
-            android:text="当前课堂"
+            android:text="@string/current_class"
             android:textColor="@color/colorThemeTitle"
             android:textSize="@dimen/px_42"/>
 
@@ -31,12 +31,12 @@
         android:background="@drawable/bg_top_border_radius">
 
         <TextView
+            android:id="@+id/currentClassName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px_37"
             android:textSize="@dimen/px_50"
-            android:textColor="@color/colorThemeTitle"
-            android:text="毛泽东思想概论"/>
+            android:textColor="@color/colorThemeTitle"/>
 
     </RelativeLayout>
     
@@ -49,9 +49,9 @@
         android:background="@drawable/bg_bottom_border_radius">
 
         <TextView
+            android:id="@+id/currentClassClassesName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2017级设计1班/设计2班/物联网1班"
             android:textSize="@dimen/px_38"
             android:textColor="@color/colorSubtitle"
             android:maxLines="1"
@@ -66,14 +66,8 @@
         android:layout_marginTop="@dimen/px_334"
         android:background="@drawable/bg_border_radius">
 
-        <!-->
-        <ImageView
-            android:layout_width="@dimen/px_252"
-            android:layout_height="@dimen/px_252"
-            android:layout_marginTop="@dimen/px_49"
-            android:layout_marginStart="@dimen/px_38"
-            app:srcCompat="@mipmap/ic_launcher_round" />
-        -->
+        <include layout="@layout/loading"
+            android:id="@+id/currentClassLoadingProgressBar"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -105,20 +99,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px_145"
                 android:layout_centerHorizontal="true"
-                android:text="出勤率"
+                android:text="@string/attendance"
                 android:textSize="@dimen/px_28"
                 android:textColor="@color/colorBlack"/>
 
         </RelativeLayout>
 
         <!--Late-->
-
         <ImageView
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_38"
             android:layout_marginStart="@dimen/px_321"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            lh2:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -127,38 +121,36 @@
             android:layout_marginStart="@dimen/px_467">
 
             <TextView
-                android:id="@+id/currentPersonOfLateTextView"
+                android:id="@+id/currentClassPersonOfLateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
-                android:textColor="@color/colorBlack"
-                android:text="10人" />
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
                 android:textColor="@color/colorLightText"
-                android:text="/" />
+                android:text="@string/backslash" />
 
             <TextView
-                android:id="@+id/currentOverallPersonOfLateTextView"
+                android:id="@+id/currentClassOverallPersonOfLateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
-                android:text="100" />
+                android:textColor="@color/colorLightText"/>
 
         </LinearLayout>
 
         <!--Absentee-->
-
         <ImageView
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_38"
             android:layout_marginStart="@dimen/px_668"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            lh2:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -167,38 +159,36 @@
             android:layout_marginStart="@dimen/px_814">
 
             <TextView
-                android:id="@+id/currentPersonOfAbsenteeTextView"
+                android:id="@+id/currentClassPersonOfAbsenteeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
-                android:textColor="@color/colorBlack"
-                android:text="10人" />
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
                 android:textColor="@color/colorLightText"
-                android:text="/" />
+                android:text="@string/backslash" />
 
             <TextView
-                android:id="@+id/currentOverallPersonOfAbsenteeTextView"
+                android:id="@+id/currentClassOverallPersonOfAbsenteeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
-                android:text="100" />
+                android:textColor="@color/colorLightText" />
 
         </LinearLayout>
 
         <!--LeaveEarly-->
-
         <ImageView
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_198"
             android:layout_marginStart="@dimen/px_321"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            lh2:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -207,27 +197,25 @@
             android:layout_marginStart="@dimen/px_467">
 
             <TextView
-                android:id="@+id/currentPersonOfLeaveEarlyTextView"
+                android:id="@+id/currentClassPersonOfLeaveEarlyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
-                android:textColor="@color/colorBlack"
-                android:text="10人" />
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
                 android:textColor="@color/colorLightText"
-                android:text="/" />
+                android:text="@string/backslash" />
 
             <TextView
-                android:id="@+id/currentOverallPersonOfLeaveEarlyTextView"
+                android:id="@+id/currentClassOverallPersonOfLeaveEarlyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
-                android:text="100" />
+                android:textColor="@color/colorLightText"/>
 
         </LinearLayout>
 
@@ -238,7 +226,8 @@
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_198"
             android:layout_marginStart="@dimen/px_668"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            lh2:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -247,27 +236,25 @@
             android:layout_marginStart="@dimen/px_814">
 
             <TextView
-                android:id="@+id/currentPersonOfAbnormalTextView"
+                android:id="@+id/currentClassPersonOfAbnormalTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_48"
-                android:textColor="@color/colorBlack"
-                android:text="10人" />
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
                 android:textColor="@color/colorLightText"
-                android:text="/" />
+                android:text="@string/backslash" />
 
             <TextView
-                android:id="@+id/currentOverallPersonOfAbnormalTextView"
+                android:id="@+id/currentClassOverallPersonOfAbnormalTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
-                android:text="100" />
+                android:textColor="@color/colorLightText"/>
 
         </LinearLayout>
 
@@ -285,11 +272,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="常用工具"
+            android:text="@string/common_tools"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/px_42"
             android:layout_marginTop="@dimen/px_37"
-            android:layout_marginStart="@dimen/px_36"/>
+            android:layout_marginStart="@dimen/px_36"
+            lh2:ignore="RelativeOverlap" />
         
         <View
             android:layout_width="@dimen/px_998"
@@ -303,15 +291,18 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_131"
             android:layout_marginStart="@dimen/px_90"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/one_click_name" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="一键点名"
+            android:text="@string/one_click_name"
             android:textSize="@dimen/px_36"
             android:textColor="@color/colorBlack"
             android:layout_marginTop="@dimen/px_301"
-            android:layout_marginStart="@dimen/px_92"/>
+            android:layout_marginStart="@dimen/px_92"
+            lh2:ignore="RelativeOverlap" />
 
         <ImageView
             android:id="@+id/studentStatusImageView"
@@ -319,16 +310,19 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_131"
             android:layout_marginStart="@dimen/px_444"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/student_status" />
+
         <TextView
             android:id="@+id/studentStatusTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="学生状态"
+            android:text="@string/student_status"
             android:textSize="@dimen/px_36"
             android:textColor="@color/colorBlack"
             android:layout_marginTop="@dimen/px_301"
-            android:layout_marginStart="@dimen/px_446"/>
+            android:layout_marginStart="@dimen/px_446"
+            lh2:ignore="RelativeOverlap" />
 
         <ImageView
             android:id="@+id/attendanceStatisticsImageView"
@@ -337,17 +331,20 @@
             android:layout_marginTop="@dimen/px_131"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_90"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/attendance_statistics" />
+
         <TextView
             android:id="@+id/attendanceStatisticsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="出勤统计"
+            android:text="@string/attendance_statistics"
             android:textSize="@dimen/px_36"
             android:textColor="@color/colorBlack"
             android:layout_marginTop="@dimen/px_301"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/px_92"/>
+            android:layout_marginEnd="@dimen/px_92"
+            lh2:ignore="RelativeOverlap" />
 
     </RelativeLayout>
     
@@ -361,11 +358,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="课堂应用"
+            android:text="@string/classroom_application"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/px_42"
             android:layout_marginTop="@dimen/px_37"
-            android:layout_marginStart="@dimen/px_36"/>
+            android:layout_marginStart="@dimen/px_36"
+            lh2:ignore="RelativeOverlap" />
 
         <View
             android:layout_width="@dimen/px_998"
@@ -379,30 +377,36 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_136"
             android:layout_marginStart="@dimen/px_72"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/reissue_application" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="补签申请"
+            android:text="@string/reissue_application"
             android:textSize="@dimen/px_32"
             android:textColor="@color/colorText"
             android:layout_marginTop="@dimen/px_294"
-            android:layout_marginStart="@dimen/px_81"/>
+            android:layout_marginStart="@dimen/px_81"
+            lh2:ignore="RelativeOverlap" />
 
         <ImageView
             android:layout_width="@dimen/px_145"
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_136"
             android:layout_marginStart="@dimen/px_319"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/absence_reminder" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="缺勤提醒"
+            android:text="@string/absence_reminder"
             android:textSize="@dimen/px_32"
             android:textColor="@color/colorText"
             android:layout_marginTop="@dimen/px_294"
-            android:layout_marginStart="@dimen/px_333"/>
+            android:layout_marginStart="@dimen/px_333"
+            lh2:ignore="RelativeOverlap" />
 
         <ImageView
             android:layout_width="@dimen/px_145"
@@ -410,16 +414,19 @@
             android:layout_marginTop="@dimen/px_136"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_320"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/leave_management" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="请假管理"
+            android:text="@string/leave_management"
             android:textSize="@dimen/px_32"
             android:textColor="@color/colorText"
             android:layout_marginTop="@dimen/px_294"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/px_330"/>
+            android:layout_marginEnd="@dimen/px_330"
+            lh2:ignore="RelativeOverlap" />
 
         <ImageView
             android:layout_width="@dimen/px_145"
@@ -427,16 +434,20 @@
             android:layout_marginTop="@dimen/px_136"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_72"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/class_discussion" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="课堂问答"
+            android:text="@string/class_discussion"
             android:textSize="@dimen/px_32"
             android:textColor="@color/colorText"
             android:layout_marginTop="@dimen/px_294"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/px_78"/>
+            android:layout_marginEnd="@dimen/px_78"
+            lh2:ignore="RelativeOverlap" />
+
 
         <!--SecondLine-->
         <ImageView
@@ -444,30 +455,36 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_372"
             android:layout_marginStart="@dimen/px_72"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/other_check_in_methods" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="其他签到"
+            android:text="@string/other_check_in_methods"
             android:textSize="@dimen/px_32"
             android:textColor="@color/colorText"
             android:layout_marginTop="@dimen/px_531"
-            android:layout_marginStart="@dimen/px_81"/>
+            android:layout_marginStart="@dimen/px_81"
+            lh2:ignore="RelativeOverlap" />
 
         <ImageView
             android:layout_width="@dimen/px_145"
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_372"
             android:layout_marginStart="@dimen/px_319"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/data_sharing" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="资料共享"
+            android:text="@string/data_sharing"
             android:textSize="@dimen/px_32"
             android:textColor="@color/colorText"
             android:layout_marginTop="@dimen/px_531"
-            android:layout_marginStart="@dimen/px_333"/>
+            android:layout_marginStart="@dimen/px_333"
+            lh2:ignore="RelativeOverlap" />
 
         <ImageView
             android:layout_width="@dimen/px_145"
@@ -475,16 +492,19 @@
             android:layout_marginTop="@dimen/px_372"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_320"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/post_assignment" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发布公告"
+            android:text="@string/post_assignment"
             android:textSize="@dimen/px_32"
             android:textColor="@color/colorText"
             android:layout_marginTop="@dimen/px_531"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/px_330"/>
+            android:layout_marginEnd="@dimen/px_330"
+            lh2:ignore="RelativeOverlap" />
 
         <ImageView
             android:layout_width="@dimen/px_145"
@@ -492,16 +512,19 @@
             android:layout_marginTop="@dimen/px_372"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_72"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/more_applications" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="师生互动"
+            android:text="@string/more_applications"
             android:textSize="@dimen/px_32"
             android:textColor="@color/colorText"
             android:layout_marginTop="@dimen/px_531"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/px_78"/>
+            android:layout_marginEnd="@dimen/px_78"
+            lh2:ignore="RelativeOverlap" />
 
     </RelativeLayout>
 

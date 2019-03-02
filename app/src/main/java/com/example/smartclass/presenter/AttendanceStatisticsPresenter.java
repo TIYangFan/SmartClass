@@ -1,5 +1,7 @@
 package com.example.smartclass.presenter;
 
+import android.content.Context;
+
 import com.example.smartclass.base.BaseMvpPresenter;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
@@ -35,13 +37,19 @@ public class AttendanceStatisticsPresenter extends BaseMvpPresenter<AttendanceSt
     public void subscribe() {
         super.subscribe();
 
-        jobNumber = SharedPreferencesUtil.getStoreJobNumber(mView.getActivity());
+        loadJobNumber();
         loadAllStatisticsOnThePage();
     }
 
     @Override
     public void unsubscribe() {
         super.unsubscribe();
+    }
+
+    @Override
+    public void loadJobNumber() {
+
+        jobNumber = model.loadJobNumber(mView.getActivity());
     }
 
     @Override

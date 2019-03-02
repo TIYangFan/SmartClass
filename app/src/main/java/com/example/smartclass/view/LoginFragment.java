@@ -14,6 +14,9 @@ import com.example.smartclass.contract.LoginContract;
 import com.example.smartclass.presenter.LoginPresenter;
 import com.example.smartclass.util.PageSwitchingAnimation;
 import com.example.smartclass.util.SharedPreferencesUtil;
+import com.example.smartclass.util.SmartClass;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -78,6 +81,7 @@ public class LoginFragment extends BaseMvpFragment<LoginPresenter> implements Lo
 
         //mPresenter.login();
         SharedPreferencesUtil.setStoreJobNumber(getActivity(), "1030416601");
+        //((SmartClass) Objects.requireNonNull(getActivity()).getApplication()).setJobNumber("1030416601");
         Intent intent = new Intent(getContext(), TabLayoutActivity.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

@@ -24,4 +24,9 @@ public class SharedPreferencesUtil {
                 .putString(JOB_NUMBER, jobNumber)
                 .apply();
     }
+
+    public static void clearStoreJobNumber(Context context){
+
+        setStoreJobNumber(context, null);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.smartclass.view;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.icu.text.DecimalFormat;
@@ -16,14 +17,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartclass.R;
+import com.example.smartclass.base.BaseMvpFragment;
+import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.test;
+import com.example.smartclass.contract.CurrentClassContract;
 import com.example.smartclass.model.LoginModel;
 import com.example.smartclass.net.RxScheduler;
+import com.example.smartclass.presenter.CurrentClassPresenter;
 import com.example.smartclass.util.CircleBarView;
+import com.example.smartclass.util.CircleBarViewUtil;
+
+import java.util.Objects;
 
 import androidx.annotation.RequiresApi;
 import butterknife.BindView;
@@ -37,14 +46,38 @@ import io.reactivex.functions.Consumer;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class CurrentClassFragment extends Fragment {
+public class CurrentClassFragment extends BaseMvpFragment<CurrentClassPresenter> implements CurrentClassContract.View {
 
     @BindView(R.id.currentClassToolbar)
-    Toolbar mCurrentClassToolbar;
+    Toolbar currentClassToolbar;
     @BindView(R.id.currentClassCircleProgressBar)
     CircleBarView circleBarView;
     @BindView(R.id.currentClassProgressText)
     TextView currentClassProgressText;
+
+    @BindView(R.id.currentClassName)
+    TextView currentClassName;
+    @BindView(R.id.currentClassClassesName)
+    TextView currentClassClassesName;
+    @BindView(R.id.currentClassPersonOfLateTextView)
+    TextView currentClassPersonOfLateTextView;
+    @BindView(R.id.currentClassOverallPersonOfLateTextView)
+    TextView currentClassOverallPersonOfLateTextView;
+    @BindView(R.id.currentClassPersonOfAbsenteeTextView)
+    TextView currentClassPersonOfAbsenteeTextView;
+    @BindView(R.id.currentClassOverallPersonOfAbsenteeTextView)
+    TextView currentClassOverallPersonOfAbsenteeTextView;
+    @BindView(R.id.currentClassPersonOfLeaveEarlyTextView)
+    TextView currentClassPersonOfLeaveEarlyTextView;
+    @BindView(R.id.currentClassOverallPersonOfLeaveEarlyTextView)
+    TextView currentClassOverallPersonOfLeaveEarlyTextView;
+    @BindView(R.id.currentClassPersonOfAbnormalTextView)
+    TextView currentClassPersonOfAbnormalTextView;
+    @BindView(R.id.currentClassOverallPersonOfAbnormalTextView)
+    TextView currentClassOverallPersonOfAbnormalTextView;
+
+    @BindView(R.id.currentClassLoadingProgressBar)
+    LinearLayout loadingProgressBar;
 
     public static CurrentClassFragment newInstance() {
 
@@ -55,48 +88,96 @@ public class CurrentClassFragment extends Fragment {
         return fragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_current_class, container, false);
-        ButterKnife.bind(this, root);
+    public void onResume() {
+        super.onResume();
+        mPresenter.subscribe();
+    }
 
-        AppCompatActivity activity = (AppCompatActivity)getActivity();
-        activity.setSupportActionBar(mCurrentClassToolbar);
-        mCurrentClassToolbar.setTitle("");
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
+    }
 
-        circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
-                DecimalFormat decimalFormat=new DecimalFormat("0");
-                String s = decimalFormat.format(interpolatedTime * progressNum / maxNum * 100) + "%";
-                return s;
-            }
+    @Override
+    protected void initView(View view) {
 
-            @Override
-            public void howTiChangeProgressColor(Paint paint, float interpolatedTime, float updateNum, float maxNum) {
+        initToolbar();
+    }
 
-            }
-        });
-        circleBarView.setTextView(currentClassProgressText);
-        circleBarView.setProgressNum(80,3000);
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_current_class;
+    }
 
-        return root;
+    @Override
+    public void showAttendanceProfile(AttendanceProfileBean bean) {
+
+        setAttendanceProfileText(bean);
+        CircleBarViewUtil.setAttendanceCircleBarView(circleBarView, bean.getCurrent_attendance(), currentClassProgressText);
+    }
+
+    @Override
+    public void showLoading() {
+        loadingProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+
+    }
+
+    /**
+     * 设置当前课堂出勤统计的出勤概况
+     * @param bean 出勤概况
+     */
+    private void setAttendanceProfileText(AttendanceProfileBean bean){
+
+        String currentStudents = String.valueOf(bean.getTotal_students());
+        currentClassOverallPersonOfAbnormalTextView.setText(currentStudents);
+        currentClassOverallPersonOfAbsenteeTextView.setText(currentStudents);
+        currentClassOverallPersonOfLateTextView.setText(currentStudents);
+        currentClassOverallPersonOfLeaveEarlyTextView.setText(currentStudents);
+
+        currentClassPersonOfLateTextView.setText(formatAttendanceProfileText(bean.getLate()));
+        currentClassPersonOfAbsenteeTextView.setText(formatAttendanceProfileText(bean.getAbsent()));
+        currentClassPersonOfLeaveEarlyTextView.setText(formatAttendanceProfileText(bean.getEarly()));
+        currentClassPersonOfAbnormalTextView.setText(formatAttendanceProfileText(bean.getQingjia()));
+    }
+
+    /**
+     * 规范化出勤概况数据
+     * @param num 未规范的出勤概况数据
+     * @return 规范后的出勤概况
+     */
+    private String formatAttendanceProfileText(int num){
+        return String.valueOf(num) + "人";
     }
 
     @OnClick({R.id.attendanceStatisticsImageView, R.id.attendanceStatisticsTextView})
-    public void startAttendanceStatistics(){
+    public void openAttendanceStatistics(){
         Intent intent = new Intent(getContext(), AttendanceStatisticsActivity.class);
         startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @OnClick({R.id.studentStatusImageView, R.id.studentStatusTextView})
-    public void startStudentStatus(){
+    public void openStudentStatus(){
         Intent intent = new Intent(getContext(), StudentStatusActivity.class);
         startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    private void initToolbar(){
+
+        AppCompatActivity activity = (AppCompatActivity)getActivity();
+        activity.setSupportActionBar(currentClassToolbar);
+        currentClassToolbar.setTitle("");
+    }
 }

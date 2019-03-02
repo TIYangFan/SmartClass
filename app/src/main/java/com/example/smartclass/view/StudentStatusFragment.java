@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.smartclass.R;
@@ -47,6 +48,9 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
     WrapContentHeightViewPager unfocusedStudentStatisticsViewPager;
     @BindView(R.id.concentrationDistributionViewPager)
     ViewPager concentrationDistributionViewPager;
+
+    @BindView(R.id.studentStatusLoadingProgressBar)
+    LinearLayout loadingProgressBar;
 
     private List<Fragment> studentStatusFragments;
     private List<Fragment> concentrationDistributionFragments;
@@ -132,12 +136,12 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
 
     @Override
     public void showLoading() {
-
+        loadingProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        loadingProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override

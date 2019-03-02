@@ -1,10 +1,12 @@
 package com.example.smartclass.net;
 
+import com.example.smartclass.bean.AttendanceAndStatusBean;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ClassAndPercentageBean;
 import com.example.smartclass.bean.ClassInfoAboutTimeAndRelatedInfoBean;
 import com.example.smartclass.bean.ClassRankingBean;
+import com.example.smartclass.bean.ClassRecentRecordBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
@@ -57,4 +59,10 @@ public interface APIService {
 
     @GET("courses/recent_lesson/attendance/ranking/")
     Flowable<ClassRankingBean> getClassRankingStatistics(@Query("job_no")String jobNumber);
+
+    @GET("courses/classes/")
+    Flowable<BaseArrayBean<ClassRecentRecordBean>> getClassRecentRecord(@Query("job_no")String jobNumber);
+
+    @GET("courses/classes/attendance_focus/")
+    Flowable<AttendanceAndStatusBean> getClassRecentRecordDetails(@Query("job_no")String jobNumber, @Query("class_id")String classId);
 }

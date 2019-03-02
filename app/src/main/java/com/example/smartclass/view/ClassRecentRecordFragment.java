@@ -1,14 +1,22 @@
 package com.example.smartclass.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.smartclass.R;
 import com.example.smartclass.adapter.ClassRecentRecordExpandableListAdapter;
 import com.example.smartclass.base.BaseMvpFragment;
+import com.example.smartclass.bean.AttendanceAndStatusBean;
+import com.example.smartclass.bean.BaseArrayBean;
+import com.example.smartclass.bean.ClassRecentRecordBean;
 import com.example.smartclass.contract.ClassRecentRecordContract;
 import com.example.smartclass.presenter.ClassRecentRecordPresenter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -22,6 +30,8 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
 
     @BindView(R.id.classExpandableListView)
     ExpandableListView expandableListView;
+    @BindView(R.id.classRecentRecordLoadingProgressBar)
+    LinearLayout loadingProgressBar;
 
     private ClassRecentRecordExpandableListAdapter expandableListAdapter;
 
@@ -35,6 +45,18 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.subscribe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
+    }
+
+    @Override
     protected void initView(View view) {
 
         initExpandableListView();
@@ -43,6 +65,23 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_class_recent_record;
+    }
+
+    @Override
+    public void showClassRecentRecord(BaseArrayBean<ClassRecentRecordBean> bean) {
+
+        ArrayList<ClassRecentRecordBean> arrayList = bean.getArrayList();
+        for(int i = 0; i < arrayList.size(); i++){
+            expandableListAdapter.addTitleToGroup(arrayList.get(i).getClass_name());
+        }
+        expandableListAdapter.notifyDataSetChanged();
+        Log.e("RECORD", bean.getArrayList().get(0).getClass_name());
+    }
+
+    @Override
+    public void showClassRecentRecordDetails(AttendanceAndStatusBean bean) {
+
+        Log.e("RECORD", bean.getFocus().get(0).getDate());
     }
 
     @Override
@@ -72,12 +111,13 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
 
     @Override
     public void showLoading() {
-
+        loadingProgressBar.bringToFront();
+        loadingProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        loadingProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
