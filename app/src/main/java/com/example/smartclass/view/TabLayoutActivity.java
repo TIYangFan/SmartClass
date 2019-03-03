@@ -107,8 +107,10 @@ public class TabLayoutActivity extends BaseActivity {
         recentRecordFragments.add(OverallRecentRecordFragment.newInstance());
         recentRecordFragments.add(ClassRecentRecordFragment.newInstance());
 
+        RecentRecordFragment recentRecordFragment = RecentRecordFragment.newInstance(recentRecordFragments);
+
         mainPageFragments = new ArrayList<>();
-        mainPageFragments.add(RecentRecordFragment.newInstance(recentRecordFragments));
+        mainPageFragments.add(recentRecordFragment);
         mainPageFragments.add(CurrentClassFragment.newInstance());
         mainPageFragments.add(PersonalCenterFragment.newInstance());
     }

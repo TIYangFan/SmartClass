@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.smartclass.bean.AttendanceAndStatusBean;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ClassRecentRecordBean;
+import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.contract.ClassRecentRecordContract;
 import com.example.smartclass.net.RetrofitClient;
 import com.example.smartclass.util.SharedPreferencesUtil;
@@ -32,5 +33,10 @@ public class ClassRecentRecordModel implements ClassRecentRecordContract.Model {
     @Override
     public Flowable<AttendanceAndStatusBean> loadClassRecentRecordDetails(String jobNumber, String classId) {
         return RetrofitClient.getInstance().getApi().getClassRecentRecordDetails(jobNumber, classId);
+    }
+
+    @Override
+    public Flowable<StudentsWithAttendanceProblemsBean> loadProblemStudentStatistics(String jobNumber, String classId) {
+        return RetrofitClient.getInstance().getApi().getProblemStudentStatistics();
     }
 }

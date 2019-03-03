@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,10 @@ public class LoginFragment extends BaseMvpFragment<LoginPresenter> implements Lo
     TextView mTextViewRegistered;
     @BindView(R.id.textViewVerificationCodeLogin)
     TextView mTextViewVerificationCodeLogin;
+    @BindView(R.id.inputUserName)
+    EditText inputUserName;
+    @BindView(R.id.inputPassword)
+    EditText inputPassword;
 
     public static LoginFragment newInstance() {
 
@@ -79,8 +84,18 @@ public class LoginFragment extends BaseMvpFragment<LoginPresenter> implements Lo
     @OnClick(R.id.buttonLoginByPassword)
     public void loginByPassword() {
 
+        String userName = inputUserName.getText().toString();
+        String password = inputPassword.getText().toString();
+
+        if(!userName.equals("1030416601") || !password.equals("123456")){
+            Toast.makeText(getActivity(), "密码错误, 请重新输入", Toast.LENGTH_SHORT).show();
+            inputPassword.setText(null);
+            return;
+        }
+
         //mPresenter.login();
         SharedPreferencesUtil.setStoreJobNumber(getActivity(), "1030416601");
+        SharedPreferencesUtil.setStoreUserName(getActivity(), "杨帆");
         //((SmartClass) Objects.requireNonNull(getActivity()).getApplication()).setJobNumber("1030416601");
         Intent intent = new Intent(getContext(), TabLayoutActivity.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);

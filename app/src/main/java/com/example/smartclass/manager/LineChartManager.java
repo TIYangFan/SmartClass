@@ -51,7 +51,7 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         xAxis = chart.getXAxis();
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity(1f);
+        xAxis.setGranularity((maxOfYAxis-minOfYAxis)/5f);
         xAxis.setDrawGridLines(false);
 
         if(xAxisValueFormatter != null){

@@ -177,7 +177,6 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
         for(int i = 0; i < concentrationDistributionTitles.length; i++){
             concentrationDistributionFragments.add(ConcentrationDistributionFragment.newInstance());
         }
-//        fragments3.add(UnfocusedDistributionFragment.newInstance());
 
         unfocusedStudentDetailsFragments = new ArrayList<>();
         for(int i = 0; i < unfocusedStudentDetailsTitles.length; i++){

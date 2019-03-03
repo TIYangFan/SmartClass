@@ -1,6 +1,7 @@
 package com.example.smartclass.view;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -11,12 +12,15 @@ import com.example.smartclass.R;
 import com.example.smartclass.adapter.ClassRecentRecordExpandableListAdapter;
 import com.example.smartclass.base.BaseMvpFragment;
 import com.example.smartclass.bean.AttendanceAndStatusBean;
+import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ClassRecentRecordBean;
+import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.contract.ClassRecentRecordContract;
 import com.example.smartclass.presenter.ClassRecentRecordPresenter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -34,6 +38,18 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
     LinearLayout loadingProgressBar;
 
     private ClassRecentRecordExpandableListAdapter expandableListAdapter;
+    private List<String> groupString = new ArrayList<>();
+    private List<AttendanceProfileBean> groupAttendanceProfileBeans = new ArrayList<>();
+
+    private List<String> classIdList = new ArrayList<>();
+
+    private ArrayList childAttendanceStatistics;
+    private ArrayList childStudentStatusStatistics;
+    private StudentsWithAttendanceProblemsBean childStudentsWithAttendanceProblems;
+
+    private int lastGroupPosition = -1;
+    private boolean isExpand = false;
+
 
     public static ClassRecentRecordFragment newInstance() {
 
@@ -47,7 +63,13 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.subscribe();
+        if(mPresenter != null){
+            mPresenter.subscribe();
+            if (groupString.isEmpty()){
+                showLoading();
+                mPresenter.loadClassRecentRecord();
+            }
+        }
     }
 
     @Override
@@ -59,7 +81,6 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
     @Override
     protected void initView(View view) {
 
-        initExpandableListView();
     }
 
     @Override
@@ -72,21 +93,34 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
 
         ArrayList<ClassRecentRecordBean> arrayList = bean.getArrayList();
         for(int i = 0; i < arrayList.size(); i++){
-            expandableListAdapter.addTitleToGroup(arrayList.get(i).getClass_name());
+
+            classIdList.add(String.valueOf(arrayList.get(i).getClass_id()));
+            groupString.add(arrayList.get(i).getClass_name());
+            groupAttendanceProfileBeans.add(setAttendanceProfileBean(arrayList.get(i)));
         }
+        initExpandableListView();
+        //initExpandableListViewByOnce();
+    }
+
+    @Override
+    public void showClassRecentRecordDetails(AttendanceAndStatusBean bean, StudentsWithAttendanceProblemsBean biBean, int groupPosition) {
+
+        expandableListAdapter.bindDataToChildView(groupPosition, bean.getAttendance(), bean.getFocus(), biBean);
+        expandableListView.expandGroup(groupPosition);
+    }
+
+    public void showClassRecentRecordDetails(AttendanceAndStatusBean bean, StudentsWithAttendanceProblemsBean biBean) {
+
+        ArrayList[] childAttendanceStatistics = new ArrayList[]{bean.getAttendance(),bean.getAttendance()};
+        ArrayList[] childStudentStatusStatistics = new ArrayList[]{bean.getFocus(),bean.getFocus()};
+        StudentsWithAttendanceProblemsBean[] childStudentsWithAttendanceProblems = new StudentsWithAttendanceProblemsBean[]{biBean,biBean};
+
+        expandableListAdapter = new ClassRecentRecordExpandableListAdapter(this, groupString, groupAttendanceProfileBeans,
+                childAttendanceStatistics, childStudentStatusStatistics, childStudentsWithAttendanceProblems);
+        expandableListView.setAdapter(expandableListAdapter);
+        expandableListView.setGroupIndicator(null);
+        expandableListView.setDivider(null);
         expandableListAdapter.notifyDataSetChanged();
-        Log.e("RECORD", bean.getArrayList().get(0).getClass_name());
-    }
-
-    @Override
-    public void showClassRecentRecordDetails(AttendanceAndStatusBean bean) {
-
-        Log.e("RECORD", bean.getFocus().get(0).getDate());
-    }
-
-    @Override
-    public void showClassInformation() {
-
     }
 
     @Override
@@ -95,18 +129,9 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
     }
 
     @Override
-    public void showAttendanceLineChart() {
+    public void showProblemStudentsList(StudentsWithAttendanceProblemsBean bean) {
 
-    }
-
-    @Override
-    public void showClassStatusLineChart() {
-
-    }
-
-    @Override
-    public void showProblemStudentsList() {
-
+        childStudentsWithAttendanceProblems = bean;
     }
 
     @Override
@@ -125,11 +150,60 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
 
     }
 
+    private AttendanceProfileBean setAttendanceProfileBean(ClassRecentRecordBean bean){
+
+        AttendanceProfileBean attendanceProfileBean = new AttendanceProfileBean();
+        attendanceProfileBean.setCurrent_attendance(bean.getPercent());
+        attendanceProfileBean.setTotal_students(bean.getTotal_students());
+        attendanceProfileBean.setLate(bean.getLate());
+        attendanceProfileBean.setAbsent(bean.getAbsent());
+        attendanceProfileBean.setEarly(bean.getEarly());
+        attendanceProfileBean.setQingjia(bean.getQingjia());
+        return attendanceProfileBean;
+    }
+
+    private void initExpandableListViewByOnce(){
+
+        mPresenter.loadClassRecentRecordDetails(classIdList.get(0), 0);
+    }
+
     private void initExpandableListView(){
 
-        expandableListAdapter = new ClassRecentRecordExpandableListAdapter(this);
+        expandableListAdapter = new ClassRecentRecordExpandableListAdapter(this, groupString, groupAttendanceProfileBeans);
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setGroupIndicator(null);
         expandableListView.setDivider(null);
+
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+
+                parent.expandGroup(groupPosition);
+
+                if(lastGroupPosition == groupPosition && isExpand){
+                    parent.collapseGroup(groupPosition);
+                    isExpand = !isExpand;
+                    return true;
+                }else{
+                    lastGroupPosition = groupPosition;
+                    isExpand = !isExpand;
+                }
+
+                for(int i = 0; i < groupString.size(); i++){
+                    if(parent.isGroupExpanded(i)){
+                        parent.collapseGroup(i);
+                    }
+                }
+
+                String classId = classIdList.get(groupPosition);
+                if(classId != null){
+                    mPresenter.loadClassRecentRecordDetails(classId, groupPosition);
+                    classIdList.set(groupPosition, null);
+                }else{
+                    expandableListView.expandGroup(groupPosition);
+                }
+                return true;
+            }
+        });
     }
 }

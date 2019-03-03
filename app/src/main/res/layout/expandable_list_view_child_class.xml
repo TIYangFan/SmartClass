@@ -10,6 +10,8 @@
         android:layout_marginStart="@dimen/px_24"
         android:background="@color/colorWhite">
 
+
+        <!--
         <android.support.design.widget.TabLayout
             android:id="@+id/recentRecordStatisticsTabLayout"
             android:layout_width="@dimen/px_998"
@@ -22,6 +24,61 @@
             app:tabRippleColor="@android:color/transparent">
 
         </android.support.design.widget.TabLayout>
+        -->
+
+        <RelativeLayout
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_93"
+            android:layout_marginStart="@dimen/px_17">
+
+            <RelativeLayout
+                android:id="@+id/tabLeftView"
+                android:layout_width="@dimen/px_499"
+                android:layout_height="@dimen/px_93">
+
+                <TextView
+                    android:id="@+id/tabLeftText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/px_42"
+                    android:textColor="@color/colorThemeTitle"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+                <View
+                    android:id="@+id/tabLeftUnderline"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_5"
+                    android:layout_marginTop="@dimen/px_88"
+                    android:background="@color/colorPrimary"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tabRightView"
+                android:layout_width="@dimen/px_499"
+                android:layout_height="@dimen/px_93"
+                android:layout_marginStart="@dimen/px_499">
+
+                <TextView
+                    android:id="@+id/tabRightText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/px_42"
+                    android:textColor="@color/colorTextColorHint"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+                <View
+                    android:id="@+id/tabRightUnderline"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_5"
+                    android:layout_marginTop="@dimen/px_88"
+                    android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
         <View
             android:layout_width="@dimen/px_998"
@@ -30,6 +87,7 @@
             android:layout_marginStart="@dimen/px_17"
             android:background="@color/colorUnderLine"/>
 
+        <!--
         <com.example.smartclass.util.NoScrollViewPager
             android:id="@+id/recentRecordStatisticsViewPager"
             android:layout_width="@dimen/px_998"
@@ -38,10 +96,32 @@
             android:layout_marginStart="@dimen/px_17">
 
         </com.example.smartclass.util.NoScrollViewPager>
+        -->
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/recentClassAttendanceLineChart"
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_432"
+            android:layout_marginTop="@dimen/px_95"
+            android:layout_marginStart="@dimen/px_17">
+
+        </com.github.mikephil.charting.charts.LineChart>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/recentClassStateLineChart"
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_432"
+            android:layout_marginTop="@dimen/px_95"
+            android:layout_marginStart="@dimen/px_17"
+            android:visibility="invisible">
+
+        </com.github.mikephil.charting.charts.LineChart>
 
     </RelativeLayout>
 
     <!--next view-->
+
+    <!--
     <RelativeLayout
         android:layout_width="@dimen/px_1032"
         android:layout_height="wrap_content"
@@ -76,6 +156,268 @@
             android:layout_marginTop="@dimen/px_95">
 
         </com.example.smartclass.util.NoScrollAndWrapContentHeightViewPager>
+
+    </RelativeLayout>
+    -->
+
+    <RelativeLayout
+        android:layout_width="@dimen/px_1032"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_552"
+        android:layout_marginStart="@dimen/px_24"
+        android:background="@drawable/bg_bottom_border_radius">
+
+        <!--
+        <android.support.design.widget.TabLayout
+            android:id="@+id/recentRecordStatisticsDetailTabLayout"
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_93"
+            android:layout_marginStart="@dimen/px_17"
+            app:tabIndicatorHeight="@dimen/px_5"
+            app:tabTextColor="@color/colorTextColorHint"
+            app:tabSelectedTextColor="@color/colorThemeTitle"
+            app:tabBackground="@android:color/transparent"
+            app:tabRippleColor="@android:color/transparent">
+
+        </android.support.design.widget.TabLayout>
+        -->
+
+        <RelativeLayout
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_93"
+            android:layout_marginStart="@dimen/px_17">
+
+            <RelativeLayout
+                android:id="@+id/tabFirstView"
+                android:layout_width="@dimen/px_249"
+                android:layout_height="@dimen/px_93">
+
+                <TextView
+                    android:id="@+id/tabFirstText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/px_42"
+                    android:textColor="@color/colorTextColorHint"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+                <View
+                    android:id="@+id/tabFirstUnderline"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_5"
+                    android:layout_marginTop="@dimen/px_88"
+                    android:background="@color/colorTransparent"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tabSecondView"
+                android:layout_width="@dimen/px_250"
+                android:layout_height="@dimen/px_93"
+                android:layout_marginStart="@dimen/px_249">
+
+                <TextView
+                    android:id="@+id/tabSecondText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/px_42"
+                    android:textColor="@color/colorTextColorHint"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+                <View
+                    android:id="@+id/tabSecondUnderline"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_5"
+                    android:layout_marginTop="@dimen/px_88"
+                    android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tabThirdView"
+                android:layout_width="@dimen/px_250"
+                android:layout_height="@dimen/px_93"
+                android:layout_marginStart="@dimen/px_499">
+
+                <TextView
+                    android:id="@+id/tabThirdText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/px_42"
+                    android:textColor="@color/colorTextColorHint"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+                <View
+                    android:id="@+id/tabThirdUnderline"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_5"
+                    android:layout_marginTop="@dimen/px_88"
+                    android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tabFourthView"
+                android:layout_width="@dimen/px_249"
+                android:layout_height="@dimen/px_93"
+                android:layout_marginStart="@dimen/px_749">
+
+                <TextView
+                    android:id="@+id/tabFourthText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/px_42"
+                    android:textColor="@color/colorTextColorHint"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+                <View
+                    android:id="@+id/tabFourthUnderline"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_5"
+                    android:layout_marginTop="@dimen/px_88"
+                    android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_2"
+            android:layout_marginTop="@dimen/px_93"
+            android:layout_marginStart="@dimen/px_17"
+            android:background="@color/colorUnderLine"/>
+
+        <RelativeLayout
+            android:id="@+id/tabPromptText"
+            android:layout_width="@dimen/px_998"
+            android:layout_height="@dimen/px_117"
+            android:layout_marginTop="@dimen/px_95">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="点击一下查看名单"
+                    android:textColor="@color/colorLightText"
+                    android:textSize="@dimen/px_34"/>
+                
+                <ImageView
+                    android:layout_width="@dimen/px_64"
+                    android:layout_height="@dimen/px_64"
+                    android:layout_marginStart="@dimen/px_19"
+                    app:srcCompat="@mipmap/ic_launcher_round"/>
+                
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tabTitleDetailsText"
+            android:layout_width="@dimen/px_1032"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_95"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="@dimen/px_2"
+                android:layout_height="@dimen/px_40"
+                android:layout_marginTop="@dimen/px_41"
+                android:layout_marginStart="@dimen/px_41"
+                android:background="@color/colorSubtitle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/class_text"
+                android:textColor="@color/colorSubtitle"
+                android:textSize="@dimen/px_40"
+                android:layout_marginTop="@dimen/px_41"
+                android:layout_marginStart="@dimen/px_49"/>
+
+            <View
+                android:layout_width="@dimen/px_2"
+                android:layout_height="@dimen/px_40"
+                android:layout_marginTop="@dimen/px_41"
+                android:layout_marginStart="@dimen/px_461"
+                android:background="@color/colorSubtitle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_text"
+                android:textColor="@color/colorSubtitle"
+                android:textSize="@dimen/px_40"
+                android:layout_marginTop="@dimen/px_41"
+                android:layout_marginStart="@dimen/px_469"/>
+
+            <View
+                android:layout_width="@dimen/px_2"
+                android:layout_height="@dimen/px_40"
+                android:layout_marginTop="@dimen/px_41"
+                android:layout_marginStart="@dimen/px_706"
+                android:background="@color/colorSubtitle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student_id_text"
+                android:textColor="@color/colorSubtitle"
+                android:textSize="@dimen/px_40"
+                android:layout_marginTop="@dimen/px_41"
+                android:layout_marginStart="@dimen/px_714"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/firstTabRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_24"
+                android:layout_marginTop="@dimen/px_112"
+                android:visibility="gone">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/secondTabRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_24"
+                android:layout_marginTop="@dimen/px_112"
+                android:visibility="gone">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/thirdTabRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_24"
+                android:layout_marginTop="@dimen/px_112"
+                android:visibility="gone">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fourthTabRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px_24"
+                android:layout_marginTop="@dimen/px_112"
+                android:visibility="gone">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

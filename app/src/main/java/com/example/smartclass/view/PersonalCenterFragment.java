@@ -1,5 +1,6 @@
 package com.example.smartclass.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.example.smartclass.R;
 import com.example.smartclass.base.BaseMvpFragment;
 import com.example.smartclass.contract.PersonalCenterContract;
 import com.example.smartclass.presenter.PersonalCenterPresenter;
+import com.example.smartclass.util.SharedPreferencesUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +51,7 @@ public class PersonalCenterFragment extends BaseMvpFragment<PersonalCenterPresen
     protected void initView(View view) {
 
         initToolbar();
+        showUserInformation();
     }
 
     @Override
@@ -59,6 +62,10 @@ public class PersonalCenterFragment extends BaseMvpFragment<PersonalCenterPresen
     @Override
     public void showUserInformation() {
 
+        String userJobNumber = SharedPreferencesUtil.getStoreJobNumber(getActivity());
+        this.userJobNumber.setText(userJobNumber);
+        String userName = SharedPreferencesUtil.getStoreUserName(getActivity());
+        this.userName.setText(userName);
     }
 
     @Override

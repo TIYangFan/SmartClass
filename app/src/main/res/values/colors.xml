@@ -12,4 +12,5 @@
     <color name="colorThemeTitle">#231815</color>
     <color name="colorSubtitle">#727171</color>
     <color name="colorLightText">#b5b5b6</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>

@@ -65,9 +65,11 @@ public class StudentsWithAttendanceProblemsFragment extends Fragment {
 
     public void initRecyclerView(ArrayList<StudentInformationBean> listData){
 
-        recyclerViewAdapter = new StudentsWithAttendanceProblemsRecyclerViewAdapter(listData);
-        studentsWithAttendanceProblemsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        studentsWithAttendanceProblemsRecyclerView.setAdapter(recyclerViewAdapter);
+        if(studentsWithAttendanceProblemsRecyclerView != null){
+            recyclerViewAdapter = new StudentsWithAttendanceProblemsRecyclerViewAdapter(listData);
+            studentsWithAttendanceProblemsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            studentsWithAttendanceProblemsRecyclerView.setAdapter(recyclerViewAdapter);
+        }
     }
 
     public void updateListData(ArrayList<StudentInformationBean> listData){

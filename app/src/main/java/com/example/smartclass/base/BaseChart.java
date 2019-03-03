@@ -1,6 +1,7 @@
 package com.example.smartclass.base;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.XAxis;

@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 public class SharedPreferencesUtil {
 
     private static final String JOB_NUMBER = "jobNumber";
+    private static final String USER_NAME = "userName";
 
     public static String getStoreJobNumber(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
@@ -26,6 +27,24 @@ public class SharedPreferencesUtil {
     }
 
     public static void clearStoreJobNumber(Context context){
+
+        setStoreJobNumber(context, null);
+    }
+
+
+    public static String getStoreUserName(Context context){
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(USER_NAME, null);
+    }
+
+    public static void setStoreUserName(Context context, String jobNumber){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit()
+                .putString(USER_NAME, jobNumber)
+                .apply();
+    }
+
+    public static void clearStoreUserName(Context context){
 
         setStoreJobNumber(context, null);
     }

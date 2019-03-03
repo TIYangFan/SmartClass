@@ -6,6 +6,9 @@ import com.example.smartclass.base.BaseView;
 import com.example.smartclass.bean.AttendanceAndStatusBean;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ClassRecentRecordBean;
+import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
+
+import org.reactivestreams.Publisher;
 
 import io.reactivex.Flowable;
 
@@ -24,23 +27,19 @@ public interface ClassRecentRecordContract {
         Flowable<BaseArrayBean<ClassRecentRecordBean>> loadClassRecentRecord(String jobNumber);
 
         Flowable<AttendanceAndStatusBean> loadClassRecentRecordDetails(String jobNumber, String classId);
+
+        Flowable<StudentsWithAttendanceProblemsBean> loadProblemStudentStatistics(String jobNumber, String classId);
     }
 
     interface View extends BaseView {
 
         void showClassRecentRecord(BaseArrayBean<ClassRecentRecordBean> bean);
 
-        void showClassRecentRecordDetails(AttendanceAndStatusBean bean);
-
-        void showClassInformation();
+        void showClassRecentRecordDetails(AttendanceAndStatusBean bean, StudentsWithAttendanceProblemsBean biBean, int groupPosition);
 
         void showAttendanceProfile();
 
-        void showAttendanceLineChart();
-
-        void showClassStatusLineChart();
-
-        void showProblemStudentsList();
+        void showProblemStudentsList(StudentsWithAttendanceProblemsBean bean);
     }
 
     interface Presenter {
@@ -48,5 +47,9 @@ public interface ClassRecentRecordContract {
         void loadJobNumber();
 
         void loadClassRecentRecord();
+
+        void loadClassRecentRecordDetails(String classId, int groupPosition);
+
+        void loadProblemStudentStatistics(String classId, int groupPosition, AttendanceAndStatusBean bean);
     }
 }

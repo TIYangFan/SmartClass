@@ -42,7 +42,7 @@ public class RecentRecordFragment extends Fragment {
     @BindView(R.id.topTabLayout)
     TabLayout mTopTabLayout;
 
-    private List<Fragment> mFragments;
+    private List<Fragment> mFragments = new ArrayList<>();
     private String[] mTitles;
 
     public static RecentRecordFragment newInstance(List<Fragment> fragments) {
@@ -53,6 +53,8 @@ public class RecentRecordFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+    public RecentRecordFragment(){}
 
     @SuppressLint("ValidFragment")
     public RecentRecordFragment(List<Fragment> fragments){
@@ -78,10 +80,11 @@ public class RecentRecordFragment extends Fragment {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(mRecentRecordToolbar);
         mRecentRecordToolbar.setTitle("");
+
         TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getChildFragmentManager(), mFragments);
         mRecentRecordViewPager.setAdapter(adapter);
         mTopTabLayout.setupWithViewPager(mRecentRecordViewPager);
-        for (int i = 0; i < mTitles.length; i++){
+        for (int i = 0; i < mTitles.length && mTopTabLayout.getTabAt(i) != null; i++){
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.custom_top_tab, null);
             TextView textView = (TextView)view.findViewById(R.id.topTabTextView);
             textView.setText(mTitles[i]);
@@ -89,17 +92,21 @@ public class RecentRecordFragment extends Fragment {
         }
     }
 
-    public void initFragment(){
+    public void initFragments(){
 
         mFragments = new ArrayList<>();
         mFragments.add(OverallRecentRecordFragment.newInstance());
         mFragments.add(ClassRecentRecordFragment.newInstance());
     }
 
+    public List<Fragment> getFragments(){
+
+        return mFragments;
+    }
+
     public Fragment getFragmentByIndex(int index){
 
         if(mFragments == null){
-            Log.e("TAB","TAB");
             return null;
         }
         return mFragments.get(index);

@@ -91,7 +91,9 @@ public class CurrentClassFragment extends BaseMvpFragment<CurrentClassPresenter>
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.subscribe();
+        if(mPresenter != null){
+            mPresenter.subscribe();
+        }
     }
 
     @Override
@@ -144,6 +146,8 @@ public class CurrentClassFragment extends BaseMvpFragment<CurrentClassPresenter>
         currentClassOverallPersonOfAbsenteeTextView.setText(currentStudents);
         currentClassOverallPersonOfLateTextView.setText(currentStudents);
         currentClassOverallPersonOfLeaveEarlyTextView.setText(currentStudents);
+        currentClassName.setText(bean.getLesson_name());
+        currentClassClassesName.setText(bean.getClasses());
 
         currentClassPersonOfLateTextView.setText(formatAttendanceProfileText(bean.getLate()));
         currentClassPersonOfAbsenteeTextView.setText(formatAttendanceProfileText(bean.getAbsent()));

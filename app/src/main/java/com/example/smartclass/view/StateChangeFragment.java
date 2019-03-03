@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,6 +87,7 @@ public class StateChangeFragment extends Fragment implements BaseChartView {
     @Override
     public void initChartView(){
 
+        if (lineChart == null) return;
         LineChartManager lineChartManager = new LineChartManager(lineChart);
         lineChartManager.setChartData(lineData);
         lineChartManager.setMinOfYAxis(minOfYAxis);

@@ -63,6 +63,9 @@
     <string name="backslash">/</string>
     <string name="loading_text">数据加载中</string>
 
+    <string name="class_text">班级</string>
+    <string name="name_text">姓名</string>
+    <string name="student_id_text">学号</string>
 
     <!--Current Class-->
     <string name="common_tools">常用工具</string>

@@ -99,7 +99,9 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.subscribe();
+        if(mPresenter != null){
+            mPresenter.subscribe();
+        }
     }
 
     @Override

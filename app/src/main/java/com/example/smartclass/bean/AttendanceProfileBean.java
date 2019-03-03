@@ -9,6 +9,7 @@ package com.example.smartclass.bean;
 public class AttendanceProfileBean {
 
     private boolean status;
+    private String lesson_name;
     private String classes;
     private float current_attendance;
     private int total_students;
@@ -23,6 +24,14 @@ public class AttendanceProfileBean {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getLesson_name() {
+        return lesson_name;
+    }
+
+    public void setLesson_name(String lesson_name) {
+        this.lesson_name = lesson_name;
     }
 
     public String getClasses() {
