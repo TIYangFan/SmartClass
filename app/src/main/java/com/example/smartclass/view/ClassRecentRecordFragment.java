@@ -19,6 +19,7 @@ import com.example.smartclass.bean.ClassRecentRecordBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.contract.ClassRecentRecordContract;
 import com.example.smartclass.presenter.ClassRecentRecordPresenter;
+import com.example.smartclass.util.OnMultiClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,8 +96,8 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
             groupString.add(arrayList.get(i).getClass_name());
             groupAttendanceProfileBeans.add(setAttendanceProfileBean(arrayList.get(i)));
         }
-        initExpandableListView();
-        //initExpandableListViewByOnce();
+        //initExpandableListView();
+        initExpandableListViewByOnce();
     }
 
     @Override
@@ -106,18 +107,9 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
         expandableListView.expandGroup(groupPosition);
     }
 
-    public void showClassRecentRecordDetails(AttendanceAndStatusBean bean, StudentsWithAttendanceProblemsBean biBean) {
+    public void showClassRecentRecordDetailsByOnce(AttendanceAndStatusBean bean, StudentsWithAttendanceProblemsBean biBean, int groupPosition) {
 
-        ArrayList[] childAttendanceStatistics = new ArrayList[]{bean.getAttendance(),bean.getAttendance()};
-        ArrayList[] childStudentStatusStatistics = new ArrayList[]{bean.getFocus(),bean.getFocus()};
-        StudentsWithAttendanceProblemsBean[] childStudentsWithAttendanceProblems = new StudentsWithAttendanceProblemsBean[]{biBean,biBean};
-
-        expandableListAdapter = new ClassRecentRecordExpandableListAdapter(this, groupString, groupAttendanceProfileBeans,
-                childAttendanceStatistics, childStudentStatusStatistics, childStudentsWithAttendanceProblems);
-        expandableListView.setAdapter(expandableListAdapter);
-        expandableListView.setGroupIndicator(null);
-        expandableListView.setDivider(null);
-        expandableListAdapter.notifyDataSetChanged();
+        expandableListAdapter.bindDataToChildView(groupPosition, bean.getAttendance(), bean.getFocus(), biBean);
     }
 
     @Override
@@ -150,7 +142,45 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
 
     private void initExpandableListViewByOnce(){
 
-        mPresenter.loadClassRecentRecordDetails(classIdList.get(0), 0);
+        expandableListAdapter = new ClassRecentRecordExpandableListAdapter(this, groupString, groupAttendanceProfileBeans);
+        expandableListView.setAdapter(expandableListAdapter);
+        expandableListView.setGroupIndicator(null);
+        expandableListView.setDivider(null);
+
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+
+                if(lastGroupPosition == groupPosition && isExpand){
+                    parent.collapseGroup(groupPosition);
+                    isExpand = !isExpand;
+                    return true;
+                }else{
+                    lastGroupPosition = groupPosition;
+                    isExpand = !isExpand;
+                }
+
+                for(int i = 0; i < groupString.size(); i++){
+                    if(parent.isGroupExpanded(i)){
+                        parent.collapseGroup(i);
+                    }
+                }
+
+                parent.expandGroup(groupPosition);
+                return true;
+            }
+        });
+
+        for(int groupPosition = 0; groupPosition < groupString.size(); groupPosition++){
+
+            String classId = classIdList.get(groupPosition);
+            if(expandableListAdapter.isAlreadyLoaded(groupPosition)){
+                expandableListView.expandGroup(groupPosition);
+            }else{
+                mPresenter.loadClassRecentRecordDetails(classId, groupPosition);
+                classIdList.set(groupPosition, null);
+            }
+        }
     }
 
     private void initExpandableListView(){

@@ -61,7 +61,6 @@ public class ClassRecentRecordPresenter extends BaseMvpPresenter<ClassRecentReco
                 .subscribe(new Consumer<BaseArrayBean<ClassRecentRecordBean>>() {
                     @Override
                     public void accept(BaseArrayBean<ClassRecentRecordBean> bean) throws Exception {
-
                         mView.showClassRecentRecord(bean);
                         mView.hideLoading();
                     }
@@ -75,6 +74,10 @@ public class ClassRecentRecordPresenter extends BaseMvpPresenter<ClassRecentReco
     @Override
     public void loadClassRecentRecordDetails(final String classId, final int groupPosition) {
 
+        //View是否绑定 如果没有绑定，就不执行网络请求
+        if (!isViewAttached()) {
+            return;
+        }
         model.loadClassRecentRecordDetails(jobNumber, classId)
                 .compose(RxScheduler.<AttendanceAndStatusBean>Flo_io_main())
                 .as(mView.<AttendanceAndStatusBean>bindAutoDispose())
@@ -105,8 +108,8 @@ public class ClassRecentRecordPresenter extends BaseMvpPresenter<ClassRecentReco
                 .subscribe(new Consumer<StudentsWithAttendanceProblemsBean>() {
                     @Override
                     public void accept(StudentsWithAttendanceProblemsBean biBean) throws Exception {
-                        mView.showClassRecentRecordDetails(bean, biBean, groupPosition);
-                        //mView.showClassRecentRecordDetails(bean, biBean);
+                        //mView.showClassRecentRecordDetails(bean, biBean, groupPosition);
+                        mView.showClassRecentRecordDetailsByOnce(bean, biBean, groupPosition);
                         mView.hideLoading();
                     }
                 }, new Consumer<Throwable>() {

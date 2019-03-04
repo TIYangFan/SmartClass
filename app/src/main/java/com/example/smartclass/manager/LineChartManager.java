@@ -51,7 +51,7 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         xAxis = chart.getXAxis();
 
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity((maxOfYAxis-minOfYAxis)/5f);
+        xAxis.setGranularity(1f);
         xAxis.setDrawGridLines(false);
 
         if(xAxisValueFormatter != null){
@@ -71,6 +71,7 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
         yAxis.setSpaceTop(15f);
         yAxis.setAxisMinimum(minOfYAxis);
         yAxis.setDrawGridLines(false);
+        yAxis.setGranularity((maxOfYAxis-minOfYAxis)/5f);
 
         if(isPercentage){
             yAxis.setAxisMinimum(minOfYAxis);
@@ -88,7 +89,7 @@ public class LineChartManager extends BaseChart<LineChart, LineData> implements 
     @Override
     protected void setAnimate() {
         super.setAnimate();
-        chart.animateX(2500);
+        chart.animateX(1000);
     }
 
     /**
