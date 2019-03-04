@@ -12,16 +12,25 @@ public interface PersonalCenterContract {
 
     interface Model {
 
+        /**
+         * 加载用户信息
+         */
         void loadUserInformation();
     }
 
     interface View extends BaseView {
 
+        /**
+         * 显示用户信息
+         */
         void showUserInformation();
     }
 
     interface Presenter {
 
+        /**
+         * 加载用户信息
+         */
         void loadUserInformation();
     }
 }

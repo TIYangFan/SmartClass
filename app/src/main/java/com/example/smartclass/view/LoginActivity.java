@@ -13,7 +13,6 @@ import com.example.smartclass.util.ActivityUtils;
  */
 public class LoginActivity extends BaseMvpActivity<LoginPresenter> {
 
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;

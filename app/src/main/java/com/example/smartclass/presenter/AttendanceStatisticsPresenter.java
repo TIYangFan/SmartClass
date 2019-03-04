@@ -11,7 +11,6 @@ import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.contract.AttendanceStatisticsContract;
 import com.example.smartclass.model.AttendanceStatisticsModel;
 import com.example.smartclass.net.RxScheduler;
-import com.example.smartclass.util.SharedPreferencesUtil;
 import com.example.smartclass.view.AttendanceStatisticsFragment;
 
 import io.reactivex.functions.Consumer;

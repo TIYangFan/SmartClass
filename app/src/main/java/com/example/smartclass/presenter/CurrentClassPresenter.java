@@ -5,7 +5,6 @@ import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.contract.CurrentClassContract;
 import com.example.smartclass.model.CurrentClassModel;
 import com.example.smartclass.net.RxScheduler;
-import com.example.smartclass.util.SharedPreferencesUtil;
 import com.example.smartclass.view.CurrentClassFragment;
 
 import io.reactivex.functions.Consumer;

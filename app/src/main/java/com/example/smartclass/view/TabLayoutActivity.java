@@ -55,7 +55,6 @@ public class TabLayoutActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //String jobNumber = ((SmartClass) getApplication()).getJobNumber();
         String jobNumber = SharedPreferencesUtil.getStoreJobNumber(this);
         if(jobNumber == null){
             Intent intent = new Intent(this, LoginActivity.class);

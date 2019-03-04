@@ -8,7 +8,6 @@ import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 import com.example.smartclass.contract.StudentStatusContract;
 import com.example.smartclass.model.StudentStatusModel;
 import com.example.smartclass.net.RxScheduler;
-import com.example.smartclass.util.SharedPreferencesUtil;
 import com.example.smartclass.view.StudentStatusFragment;
 
 import io.reactivex.functions.Consumer;

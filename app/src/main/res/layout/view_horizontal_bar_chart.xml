@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <com.github.mikephil.charting.charts.HorizontalBarChart
-        android:id="@+id/classAttendanceStatisticsHorizontalBarChart"
+        android:id="@+id/horizontalBarChartView"
         android:layout_width="@dimen/px_998"
         android:layout_height="@dimen/px_432"
         android:layout_marginTop="@dimen/px_24">

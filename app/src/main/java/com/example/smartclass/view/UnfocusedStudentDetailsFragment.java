@@ -9,12 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.smartclass.R;
 import com.example.smartclass.adapter.UnfocusedStudentDetailsRecyclerViewAdapter;
 import com.example.smartclass.bean.StudentStatusDetailsBean;
-import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 
 import java.util.ArrayList;
 
@@ -34,15 +32,6 @@ public class UnfocusedStudentDetailsFragment extends Fragment {
 
     private UnfocusedStudentDetailsRecyclerViewAdapter recyclerViewAdapter;
 
-//    private String[][] data = {
-//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-//            {"15min", "/45min", "杨帆", "计科1706", "1033170614"},
-//    };
-
     public static UnfocusedStudentDetailsFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -55,7 +44,7 @@ public class UnfocusedStudentDetailsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_unfocused_student_details, container, false);
+        View root = inflater.inflate(R.layout.fragment_unfocused_student_and_unfocused_time, container, false);
         ButterKnife.bind(this, root);
         return root;
     }

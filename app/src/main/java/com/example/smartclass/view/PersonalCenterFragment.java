@@ -19,6 +19,8 @@ import com.example.smartclass.contract.PersonalCenterContract;
 import com.example.smartclass.presenter.PersonalCenterPresenter;
 import com.example.smartclass.util.SharedPreferencesUtil;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -86,7 +88,7 @@ public class PersonalCenterFragment extends BaseMvpFragment<PersonalCenterPresen
     private void initToolbar(){
 
         AppCompatActivity activity = (AppCompatActivity)getActivity();
-        activity.setSupportActionBar(personalCenterToolbar);
+        Objects.requireNonNull(activity).setSupportActionBar(personalCenterToolbar);
         personalCenterToolbar.setTitle("");
     }
 }

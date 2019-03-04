@@ -4,12 +4,9 @@ import android.content.res.Resources;
 import android.graphics.Paint;
 import android.icu.text.DecimalFormat;
 import android.os.Build;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,21 +17,13 @@ import android.widget.TextView;
 import com.example.smartclass.Formatter.PercentageAxisValueFormatter;
 import com.example.smartclass.Formatter.StringAxisValueFormatter;
 import com.example.smartclass.R;
-import com.example.smartclass.base.BaseChartView;
-import com.example.smartclass.base.BaseTabLayoutView;
 import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.DateAndPercentageBean;
 import com.example.smartclass.bean.StudentInformationBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
-import com.example.smartclass.contract.ClassRecentRecordContract;
 import com.example.smartclass.manager.LineChartManager;
 import com.example.smartclass.util.CircleBarView;
-import com.example.smartclass.util.NoScrollAndWrapContentHeightViewPager;
-import com.example.smartclass.util.NoScrollViewPager;
-import com.example.smartclass.util.WrapContentHeightViewPager;
-import com.example.smartclass.view.RecentOverallStudentStatusRankingsFragment;
-import com.example.smartclass.view.StateChangeFragment;
-import com.example.smartclass.view.StudentsWithAttendanceProblemsFragment;
+import com.example.smartclass.util.CircleBarViewUtil;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -43,31 +32,28 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import androidx.annotation.RequiresApi;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.http.PUT;
 
 /**
  * Created by YangFan
  * On 2019/1/31
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
+ * Description: 近期记录中班级页面的 ExpandableListAdapter
  */
 public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAdapter {
 
+    private Fragment parentFragment;
+
     private List<String> groupString;
     private List<AttendanceProfileBean> groupAttendanceProfileBeans;
-
     private ArrayList[] childAttendanceStatistics;
     private ArrayList[] childStudentStatusStatistics;
     private StudentsWithAttendanceProblemsBean[] childStudentsWithAttendanceProblems;
 
-    private Fragment parentFragment;
-    private GroupViewHolder groupViewHolder;
-    private ChildViewHolder childViewHolder;
 
     public ClassRecentRecordExpandableListAdapter(Fragment fragment, List<String> groupString, List<AttendanceProfileBean> groupAttendanceProfileBeans){
         parentFragment = fragment;
@@ -128,6 +114,7 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
+        GroupViewHolder groupViewHolder;
         if(convertView == null){
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_list_view_group_class,
                     parent, false);
@@ -145,6 +132,7 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 
+        ChildViewHolder childViewHolder;
         if(convertView == null){
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_list_view_child_class,
                     parent, false);
@@ -168,6 +156,11 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         return true;
     }
 
+
+    public boolean isAlreadyLoaded(int groupPosition){
+        return childAttendanceStatistics[groupPosition] != null;
+    }
+
     public void bindDataToChildView(int position, ArrayList childAttendanceStatistics, ArrayList childStudentStatusStatistics,
                                     StudentsWithAttendanceProblemsBean studentsWithAttendanceProblemsBean){
 
@@ -175,6 +168,7 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         this.childStudentStatusStatistics[position] = childStudentStatusStatistics;
         this.childStudentsWithAttendanceProblems[position] = studentsWithAttendanceProblemsBean;
     }
+
 
     static class GroupViewHolder{
 
@@ -184,7 +178,6 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         CircleBarView circleBarView;
         @BindView(R.id.classRecentRecordProgressText)
         TextView classRecentRecordProgressText;
-
 
         @BindView(R.id.recentRecordPersonOfLateTextView)
         TextView recentRecordPersonOfLateTextView;
@@ -209,21 +202,22 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
             ButterKnife.bind(this, view);
         }
 
-        public void setTabTitle(String title){
+        public void showAttendanceProfile(AttendanceProfileBean bean) {
+
+            setAttendanceProfileText(bean);
+            if(isFirst){
+                CircleBarViewUtil.setAttendanceCircleBarView(circleBarView, bean.getCurrent_attendance(), classRecentRecordProgressText, 3000);
+                isFirst = false;
+            }else{
+                CircleBarViewUtil.setAttendanceCircleBarView(circleBarView, bean.getCurrent_attendance(), classRecentRecordProgressText, 0);
+            }
+        }
+
+        private void setTabTitle(String title){
 
             expandableListItemTitle.setText(title);
         }
 
-        public void showAttendanceProfile(AttendanceProfileBean bean) {
-
-            setAttendanceProfileText(bean);
-            setAttendanceCircleBarView(bean.getCurrent_attendance());
-        }
-
-        /**
-         * 设置当前课堂出勤统计的出勤概况
-         * @param bean 出勤概况
-         */
         private void setAttendanceProfileText(AttendanceProfileBean bean){
 
             String currentStudents = String.valueOf(bean.getTotal_students());
@@ -238,43 +232,6 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
             recentRecordPersonOfAbnormalTextView.setText(formatAttendanceProfileText(bean.getQingjia()));
         }
 
-
-        /**
-         * 设置出勤率环状进度条
-         * @param currentAttendance 当前出勤率
-         */
-        private void setAttendanceCircleBarView(float currentAttendance){
-
-            circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
-                    DecimalFormat decimalFormat = new DecimalFormat("0.0");
-                    String s = decimalFormat.format(interpolatedTime * progressNum / maxNum * 100) + "%";
-                    return s;
-                }
-
-                @Override
-                public void howTiChangeProgressColor(Paint paint, float interpolatedTime, float updateNum, float maxNum) {
-
-                }
-            });
-
-            circleBarView.setTextView(classRecentRecordProgressText);
-            if(isFirst){
-                circleBarView.setProgressNum(currentAttendance * 100f,3000);
-                isFirst = false;
-            }else{
-                circleBarView.setProgressNum(currentAttendance * 100f,0);
-            }
-        }
-
-
-        /**
-         * 规范化出勤概况数据
-         * @param num 未规范的出勤概况数据
-         * @return 规范后的出勤概况
-         */
         private String formatAttendanceProfileText(int num){
             return String.valueOf(num) + "人";
         }
@@ -341,6 +298,8 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         RelativeLayout tabPromptText;
 
         private Fragment parentFragment;
+        private int currentSelectTab = Integer.MIN_VALUE;
+        private boolean selectLeftOfFirstTab = true;
 
         private LineData attendanceLineData;
         private String[] attendanceXAxisValue;
@@ -352,8 +311,10 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         private float stateMinOfYAxis = Integer.MAX_VALUE;
         private float stateMaxOfYAxis = Integer.MIN_VALUE;
 
-        private boolean selectLeftOfFirstTab = true;
-        private int currentSelectTab = -1;
+        private static final int FIRST_PAGE = 0;
+        private static final int SECOND_PAGE = 1;
+        private static final int THIRD_PAGE = 2;
+        private static final int FOURTH_PAGE = 3;
 
         ChildViewHolder(View view, Fragment fragment){
             ButterKnife.bind(this, view);
@@ -364,6 +325,52 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         private void initView(){
 
             initTitles();
+            initTabCustomViewList();
+        }
+
+        private void initTitles() {
+
+            Resources resources = parentFragment.getResources();
+            String[] titleArray = resources.getStringArray(R.array.overall_student_recent_status_titles);
+            tabLeftText.setText(titleArray[0]);
+            tabRightText.setText(titleArray[1]);
+
+            titleArray = resources.getStringArray(R.array.attendance_statistics_details_titles);
+            tabFirstText.setText(titleArray[0]);
+            tabSecondText.setText(titleArray[1]);
+            tabThirdText.setText(titleArray[2]);
+            tabFourthText.setText(titleArray[3]);
+        }
+
+        private void initTabCustomViewList(){
+
+            final List<TextView> tabTextList = new ArrayList<>();
+            tabTextList.add(tabFirstText);
+            tabTextList.add(tabSecondText);
+            tabTextList.add(tabThirdText);
+            tabTextList.add(tabFourthText);
+
+            final List<View> tabUnderLineList = new ArrayList<>();
+            tabUnderLineList.add(tabFirstUnderline);
+            tabUnderLineList.add(tabSecondUnderline);
+            tabUnderLineList.add(tabThirdUnderline);
+            tabUnderLineList.add(tabFourthUnderline);
+
+            final List<RecyclerView> tabRecyclerView = new ArrayList<>();
+            tabRecyclerView.add(firstTabRecyclerView);
+            tabRecyclerView.add(secondTabRecyclerView);
+            tabRecyclerView.add(thirdTabRecyclerView);
+            tabRecyclerView.add(fourthTabRecyclerView);
+            initViewOnClickListener(tabTextList, tabUnderLineList, tabRecyclerView);
+        }
+
+        private void initViewOnClickListener(List<TextView> tabTextList, List<View> tabUnderLineList, List<RecyclerView> tabRecyclerView){
+
+            initFirstTabViewOnClickListener();
+            initSecondTabViewOnClickListener(tabTextList, tabUnderLineList, tabRecyclerView);
+        }
+
+        private void initFirstTabViewOnClickListener(){
 
             tabLeftView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -400,31 +407,14 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
                     }
                 }
             });
+        }
 
-
-            final List<TextView> tabTextList = new ArrayList<>();
-            tabTextList.add(tabFirstText);
-            tabTextList.add(tabSecondText);
-            tabTextList.add(tabThirdText);
-            tabTextList.add(tabFourthText);
-
-            final List<View> tabUnderLineList = new ArrayList<>();
-            tabUnderLineList.add(tabFirstUnderline);
-            tabUnderLineList.add(tabSecondUnderline);
-            tabUnderLineList.add(tabThirdUnderline);
-            tabUnderLineList.add(tabFourthUnderline);
-
-            final List<RecyclerView> tabRecyclerView = new ArrayList<>();
-            tabRecyclerView.add(firstTabRecyclerView);
-            tabRecyclerView.add(secondTabRecyclerView);
-            tabRecyclerView.add(thirdTabRecyclerView);
-            tabRecyclerView.add(fourthTabRecyclerView);
-
+        private void initSecondTabViewOnClickListener(final List<TextView> tabTextList, final List<View> tabUnderLineList, final List<RecyclerView> tabRecyclerView){
 
             tabFirstView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeTabTextViewAndRecyclerView(tabTextList, tabUnderLineList, tabRecyclerView,0);
+                    changeTabTextViewAndRecyclerView(tabTextList, tabUnderLineList, tabRecyclerView, FIRST_PAGE);
 
                 }
             });
@@ -432,37 +422,23 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
             tabSecondView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeTabTextViewAndRecyclerView(tabTextList, tabUnderLineList, tabRecyclerView, 1);
+                    changeTabTextViewAndRecyclerView(tabTextList, tabUnderLineList, tabRecyclerView, SECOND_PAGE);
                 }
             });
 
             tabThirdView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeTabTextViewAndRecyclerView(tabTextList, tabUnderLineList, tabRecyclerView, 2);
+                    changeTabTextViewAndRecyclerView(tabTextList, tabUnderLineList, tabRecyclerView, THIRD_PAGE);
                 }
             });
 
             tabFourthView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeTabTextViewAndRecyclerView(tabTextList, tabUnderLineList, tabRecyclerView, 3);
+                    changeTabTextViewAndRecyclerView(tabTextList, tabUnderLineList, tabRecyclerView, FOURTH_PAGE);
                 }
             });
-        }
-
-        private void initTitles() {
-
-            Resources resources = parentFragment.getResources();
-            String[] titleArray = resources.getStringArray(R.array.overall_student_recent_status_titles);
-            tabLeftText.setText(titleArray[0]);
-            tabRightText.setText(titleArray[1]);
-
-            titleArray = resources.getStringArray(R.array.attendance_statistics_details_titles);
-            tabFirstText.setText(titleArray[0]);
-            tabSecondText.setText(titleArray[1]);
-            tabThirdText.setText(titleArray[2]);
-            tabFourthText.setText(titleArray[3]);
         }
 
         private void changeTabTextViewAndRecyclerView(List<TextView> tabTextList, List<View> tabUnderLineList, List<RecyclerView> tabRecyclerView,
@@ -531,10 +507,6 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
             stateLineChartManager.initChartView();
         }
 
-        /**
-         * 设置 x轴坐标值格式化
-         * @param lineChartManager 曲线管理工具类
-         */
         private void setXAxisValueFormatter(LineChartManager lineChartManager, String[] XAxisValue){
 
             StringAxisValueFormatter xAxisValueFormatter = new StringAxisValueFormatter(XAxisValue);

@@ -1,9 +1,6 @@
 package com.example.smartclass.contract;
 
 import com.example.smartclass.base.BaseView;
-import com.example.smartclass.bean.test;
-
-import io.reactivex.Flowable;
 
 /**
  * Created by YangFan
@@ -13,15 +10,20 @@ import io.reactivex.Flowable;
  */
 public interface LoginContract {
 
+    /**
+     * 用户登陆
+     */
     interface Model {
-        Flowable<test> login();
+        void login();
     }
 
     interface View extends BaseView {
 
-        void test(test bean);
     }
 
+    /**
+     * 用户登陆
+     */
     interface Presenter {
 
         void login();

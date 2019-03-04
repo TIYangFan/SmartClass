@@ -1,15 +1,14 @@
 package com.example.smartclass.view;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.smartclass.R;
 import com.example.smartclass.base.BaseMvpActivity;
 import com.example.smartclass.presenter.StudentStatusPresenter;
 import com.example.smartclass.util.ActivityUtils;
 
-import butterknife.ButterKnife;
+import butterknife.BindView;
 
 /**
  * Created by YangFan
@@ -18,6 +17,9 @@ import butterknife.ButterKnife;
  * Email: yangfan_98@163.com
  */
 public class StudentStatusActivity extends BaseMvpActivity<StudentStatusPresenter> {
+
+    @BindView(R.id.backFromStudentStatus)
+    ImageView backFromStudentStatus;
 
     @Override
     public int getLayoutId() {
@@ -35,6 +37,7 @@ public class StudentStatusActivity extends BaseMvpActivity<StudentStatusPresente
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), studentStatusFragment, R.id.studentStatusContentFrame);
         }
 
+        setBackButton();
         mPresenter = new StudentStatusPresenter(studentStatusFragment);
     }
 
@@ -57,5 +60,15 @@ public class StudentStatusActivity extends BaseMvpActivity<StudentStatusPresente
     @Override
     public void onError(Throwable throwable) {
 
+    }
+
+    private void setBackButton() {
+
+        backFromStudentStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }

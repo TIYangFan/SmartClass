@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
  * On 2019/2/17
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
+ * Description: 课堂未专注学生列表的 RecyclerViewAdapter
  */
 public class UnfocusedStudentDetailsRecyclerViewAdapter extends RecyclerView.Adapter<UnfocusedStudentDetailsRecyclerViewAdapter.holder> {
 
@@ -66,7 +67,7 @@ public class UnfocusedStudentDetailsRecyclerViewAdapter extends RecyclerView.Ada
     @Override
     public holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_unfocused_student_details, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_student_info_and_unfocused_time, viewGroup, false);
         return new holder(view);
     }
 

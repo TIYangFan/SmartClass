@@ -29,20 +29,20 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class ConcentrationDistributionFragment extends Fragment implements BaseChartView {
+public class PieChartView extends Fragment implements BaseChartView {
 
-    @BindView(R.id.concentrationDistributionPieChart)
+    @BindView(R.id.pieChartView)
     PieChart pieChart;
 
     private PieData pieData;
 
     public static final String  CONCENTRATION_DISTRIBUTION = "concentrationDistribution";
 
-    public static ConcentrationDistributionFragment newInstance() {
+    public static PieChartView newInstance() {
 
         Bundle args = new Bundle();
 
-        ConcentrationDistributionFragment fragment = new ConcentrationDistributionFragment();
+        PieChartView fragment = new PieChartView();
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,7 +50,7 @@ public class ConcentrationDistributionFragment extends Fragment implements BaseC
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_concentration_distribution, container, false);
+        View root = inflater.inflate(R.layout.view_pie_chart, container, false);
         ButterKnife.bind(this, root);
         return root;
     }
@@ -76,10 +76,6 @@ public class ConcentrationDistributionFragment extends Fragment implements BaseC
 
     }
 
-    /**
-     * 设置当前课堂——学生状态页面的专注度分布和未专注分布数据
-     * @param chartData 总体数据
-     */
     private void setConcentrationDistributionData(ArrayList chartData) {
 
         List<PieEntry> pieDataList = new ArrayList<>();
@@ -95,10 +91,6 @@ public class ConcentrationDistributionFragment extends Fragment implements BaseC
         setPieData(pieDataSet);
     }
 
-    /**
-     * 打包创建 PieData
-     * @param pieDataSet 饼图数据集合
-     */
     private void setPieData(PieDataSet pieDataSet){
 
         pieData = new PieData(pieDataSet);

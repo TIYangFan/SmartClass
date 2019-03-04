@@ -57,4 +57,13 @@ dependencies {
     implementation 'com.uber.autodispose:autodispose-android-archcomponents:0.7.0'
 
     //jetbrains 注解
-    implementation 'org.jetbrains:annotations-java5:15.0'}
+    implementation 'org.jetbrains:annotations-java5:15.0'
+
+    //Junit
+    testImplementation 'junit:junit:4.12'
+    // Mockito
+    testImplementation 'org.mockito:mockito-core:1.+'
+    // Mockito Android instrumentation tests
+    androidTestImplementation 'org.mockito:mockito-core:1.+'
+    androidTestImplementation "com.google.dexmaker:dexmaker:1.2"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:1.2"}

@@ -51,7 +51,7 @@
         android:layout_marginStart="@dimen/px_24"
         android:background="@drawable/bg_border_radius">
 
-        <include layout="@layout/loading"
+        <include layout="@layout/view_loading"
             android:id="@+id/studentStatusLoadingProgressBar"/>
 
         <android.support.design.widget.TabLayout

@@ -34,9 +34,9 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class ClassAttendanceStatisticsFragment extends Fragment implements BaseChartView {
+public class HorizontalBarChartView extends Fragment implements BaseChartView {
 
-    @BindView(R.id.classAttendanceStatisticsHorizontalBarChart)
+    @BindView(R.id.horizontalBarChartView)
     HorizontalBarChart horizontalBarChart;
 
     private BarData barData;
@@ -44,11 +44,11 @@ public class ClassAttendanceStatisticsFragment extends Fragment implements BaseC
     private float minOfYAxis = Integer.MAX_VALUE;
     public static final String  CLASS_ATTENDANCE_STATISTICS = "classAttendanceStatistics";
 
-    public static ClassAttendanceStatisticsFragment newInstance() {
+    public static HorizontalBarChartView newInstance() {
         
         Bundle args = new Bundle();
         
-        ClassAttendanceStatisticsFragment fragment = new ClassAttendanceStatisticsFragment();
+        HorizontalBarChartView fragment = new HorizontalBarChartView();
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,7 +56,7 @@ public class ClassAttendanceStatisticsFragment extends Fragment implements BaseC
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_class_attendance_statistics, container, false);
+        View root = inflater.inflate(R.layout.view_horizontal_bar_chart, container, false);
         ButterKnife.bind(this, root);
         return root;
     }

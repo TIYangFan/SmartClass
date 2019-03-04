@@ -34,9 +34,9 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class RecentOverallStudentStatusRankingsFragment extends Fragment implements BaseChartView {
+public class BarChartView extends Fragment implements BaseChartView {
 
-    @BindView(R.id.recentOverallStudentStatusBarChart)
+    @BindView(R.id.barChartView)
     BarChart barChart;
 
     private BarData barData;
@@ -46,11 +46,11 @@ public class RecentOverallStudentStatusRankingsFragment extends Fragment impleme
     public static final String RECENT_OVERALL_ATTENDANCE_RANKING_STATISTICS = "recentOverallAttendanceRankingStatistics";
     public static final String RECENT_OVERALL_STUDENT_STATUS_RANKING_STATISTICS = "recentOverallStudentStatusRankingStatistics";
 
-    public static RecentOverallStudentStatusRankingsFragment newInstance() {
+    public static BarChartView newInstance() {
 
         Bundle args = new Bundle();
 
-        RecentOverallStudentStatusRankingsFragment fragment = new RecentOverallStudentStatusRankingsFragment();
+        BarChartView fragment = new BarChartView();
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,7 +58,7 @@ public class RecentOverallStudentStatusRankingsFragment extends Fragment impleme
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_recent_overall_student_status_rankings, container, false);
+        View root = inflater.inflate(R.layout.view_bar_chart, container, false);
         ButterKnife.bind(this, root);
         return root;
     }

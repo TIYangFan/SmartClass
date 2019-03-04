@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.smartclass.R;
 import com.example.smartclass.adapter.TabFragmentPagerAdapter;
@@ -101,7 +100,7 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
     public void showStateChangeLineChart(BaseArrayBean<TimeAndNumberOfPeopleBean> bean) {
 
         BaseChartView chartView = (BaseChartView) studentStatusFragments.get(1);
-        chartView.setChartData(bean.getArrayList(), StateChangeFragment.STATE_CHANGE_STATISTICS);
+        chartView.setChartData(bean.getArrayList(), LineChartView.STATE_CHANGE_STATISTICS);
         chartView.initChartView();
     }
 
@@ -109,17 +108,12 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
     public void showConcentrationDistributionPieChart(ConcentrationDistributionBean bean) {
 
         BaseChartView focusChartView = (BaseChartView) concentrationDistributionFragments.get(0);
-        focusChartView.setChartData(bean.getFocus(), ConcentrationDistributionFragment.CONCENTRATION_DISTRIBUTION);
+        focusChartView.setChartData(bean.getFocus(), PieChartView.CONCENTRATION_DISTRIBUTION);
         focusChartView.initChartView();
 
         BaseChartView unfocusedChartView = (BaseChartView) concentrationDistributionFragments.get(1);
-        unfocusedChartView.setChartData(bean.getUnfocus(), ConcentrationDistributionFragment.CONCENTRATION_DISTRIBUTION);
+        unfocusedChartView.setChartData(bean.getUnfocus(), PieChartView.CONCENTRATION_DISTRIBUTION);
         unfocusedChartView.initChartView();
-    }
-
-    @Override
-    public void showUnfocusedDistributionPieChart() {
-
     }
 
     @Override
@@ -170,12 +164,12 @@ public class StudentStatusFragment extends BaseMvpFragment<StudentStatusPresente
     public void initFragments(){
 
         studentStatusFragments = new ArrayList<>();
-        studentStatusFragments.add(CurrentStateFragment.newInstance());
-        studentStatusFragments.add(StateChangeFragment.newInstance());
+        studentStatusFragments.add(ScatterChartView.newInstance());
+        studentStatusFragments.add(LineChartView.newInstance());
 
         concentrationDistributionFragments = new ArrayList<>();
         for(int i = 0; i < concentrationDistributionTitles.length; i++){
-            concentrationDistributionFragments.add(ConcentrationDistributionFragment.newInstance());
+            concentrationDistributionFragments.add(PieChartView.newInstance());
         }
 
         unfocusedStudentDetailsFragments = new ArrayList<>();

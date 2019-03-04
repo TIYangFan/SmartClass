@@ -12,7 +12,6 @@ import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.bean.DateAndPercentageBean;
 import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
-import com.example.smartclass.bean.test;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
@@ -26,9 +25,6 @@ import retrofit2.http.Query;
  * Email: yangfan_98@163.com
  */
 public interface APIService {
-
-    @POST("test.php")
-    Flowable<test> login();
 
     @GET("courses/current_lesson/main/")
     Flowable<AttendanceProfileBean> getAttendanceProfile(@Query("job_no")String jobNumber);

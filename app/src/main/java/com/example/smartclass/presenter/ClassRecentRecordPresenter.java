@@ -1,10 +1,8 @@
 package com.example.smartclass.presenter;
 
-import android.util.Log;
 
 import com.example.smartclass.base.BaseMvpPresenter;
 import com.example.smartclass.bean.AttendanceAndStatusBean;
-import com.example.smartclass.bean.AttendanceProfileBean;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ClassRecentRecordBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
@@ -13,18 +11,7 @@ import com.example.smartclass.model.ClassRecentRecordModel;
 import com.example.smartclass.net.RxScheduler;
 import com.example.smartclass.view.ClassRecentRecordFragment;
 
-import org.reactivestreams.Publisher;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by YangFan
@@ -36,8 +23,6 @@ public class ClassRecentRecordPresenter extends BaseMvpPresenter<ClassRecentReco
 
     private ClassRecentRecordContract.Model model;
     private String jobNumber;
-
-    private AttendanceAndStatusBean bean;
 
     public ClassRecentRecordPresenter(ClassRecentRecordFragment view) {
         super(view);

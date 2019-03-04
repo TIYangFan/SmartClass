@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,7 +14,8 @@
         android:textColor="@color/colorThemeTitle"
         android:layout_marginStart="@dimen/px_57"
         android:layout_marginTop="@dimen/px_243"
-        android:text="@string/title_registered" />
+        android:text="@string/title_registered"
+        tools:ignore="RelativeOverlap" />
 
     <EditText
         android:layout_width="@dimen/px_971"
@@ -27,7 +29,8 @@
         android:maxLines="1"
         android:layout_marginStart="@dimen/px_55"
         android:layout_marginTop="@dimen/px_420"
-        android:background="@color/colorWhite"/>
+        android:background="@color/colorWhite"
+        tools:ignore="Autofill" />
 
     <View
         android:layout_width="@dimen/px_971"
@@ -48,7 +51,8 @@
         android:maxLines="1"
         android:layout_marginStart="@dimen/px_55"
         android:layout_marginTop="@dimen/px_585"
-        android:background="@color/colorWhite"/>
+        android:background="@color/colorWhite"
+        tools:ignore="Autofill" />
 
     <TextView
         android:id="@+id/textView711"
@@ -59,7 +63,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/px_59"
         android:layout_marginTop="@dimen/px_585"
-        android:text="@string/hint_get_vc_code" />
+        android:text="@string/hint_get_vc_code"
+        tools:ignore="RelativeOverlap" />
 
     <View
         android:layout_width="@dimen/px_971"
@@ -81,7 +86,8 @@
         android:maxLines="1"
         android:layout_marginStart="@dimen/px_55"
         android:layout_marginTop="@dimen/px_751"
-        android:background="@color/colorWhite"/>
+        android:background="@color/colorWhite"
+        tools:ignore="Autofill" />
 
     <ImageView
         android:layout_width="@dimen/px_46"
@@ -89,7 +95,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/px_757"
         android:layout_marginEnd="@dimen/px_64"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@mipmap/ic_launcher_round"
+        tools:ignore="ContentDescription" />
 
     <View
         android:layout_width="@dimen/px_971"

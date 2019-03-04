@@ -1,9 +1,14 @@
 package com.example.smartclass.view;
 
+import android.view.View;
+import android.widget.ImageView;
+
 import com.example.smartclass.R;
 import com.example.smartclass.base.BaseMvpActivity;
 import com.example.smartclass.presenter.AttendanceStatisticsPresenter;
 import com.example.smartclass.util.ActivityUtils;
+
+import butterknife.BindView;
 
 /**
  * Created by YangFan
@@ -13,6 +18,8 @@ import com.example.smartclass.util.ActivityUtils;
  */
 public class AttendanceStatisticsActivity extends BaseMvpActivity<AttendanceStatisticsPresenter> {
 
+    @BindView(R.id.backFromAttendance)
+    ImageView backFromAttendance;
 
     @Override
     public int getLayoutId() {
@@ -31,6 +38,7 @@ public class AttendanceStatisticsActivity extends BaseMvpActivity<AttendanceStat
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), attendanceStatisticsFragment, R.id.attendanceStatisticsContentFrame);
         }
 
+        setBackButton();
         mPresenter = new AttendanceStatisticsPresenter(attendanceStatisticsFragment);
     }
 
@@ -53,5 +61,14 @@ public class AttendanceStatisticsActivity extends BaseMvpActivity<AttendanceStat
     @Override
     public void onError(Throwable throwable) {
 
+    }
+
+    private void setBackButton() {
+        backFromAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }

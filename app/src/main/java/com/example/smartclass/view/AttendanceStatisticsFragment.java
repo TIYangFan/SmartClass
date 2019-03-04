@@ -25,6 +25,7 @@ import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.contract.AttendanceStatisticsContract;
 import com.example.smartclass.presenter.AttendanceStatisticsPresenter;
 import com.example.smartclass.util.CircleBarView;
+import com.example.smartclass.util.CircleBarViewUtil;
 import com.example.smartclass.util.WrapContentHeightViewPager;
 
 import java.util.ArrayList;
@@ -118,14 +119,14 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     public void showAttendanceProfile(AttendanceProfileBean bean) {
 
         setAttendanceProfileText(bean);
-        setAttendanceCircleBarView(bean.getCurrent_attendance());
+        CircleBarViewUtil.setAttendanceCircleBarView(circleBarView, bean.getCurrent_attendance(), attendanceStatisticsProgressText, 3000);
     }
 
     @Override
     public void showOverallAttendanceLineChart(BaseArrayBean<TimeAndNumberOfPeopleBean> bean) {
 
         BaseChartView chartView = (BaseChartView) attendanceStatisticsFragments.get(0);
-        chartView.setChartData(bean.getArrayList(), StateChangeFragment.OVERALL_ATTENDANCE_STATISTICS);
+        chartView.setChartData(bean.getArrayList(), LineChartView.OVERALL_ATTENDANCE_STATISTICS);
         chartView.initChartView();
     }
 
@@ -133,7 +134,7 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
     public void showClassAttendanceHorizontalBarChart(BaseArrayBean<ClassAndPercentageBean> bean) {
 
         BaseChartView chartView = (BaseChartView) attendanceStatisticsFragments.get(1);
-        chartView.setChartData(bean.getArrayList(), ClassAttendanceStatisticsFragment.CLASS_ATTENDANCE_STATISTICS);
+        chartView.setChartData(bean.getArrayList(), HorizontalBarChartView.CLASS_ATTENDANCE_STATISTICS);
         chartView.initChartView();
     }
 
@@ -174,9 +175,6 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         initTabLayout();
     }
 
-    /**
-     * 初始化各部分标题
-     */
     @Override
     public void initTitles(){
 
@@ -185,16 +183,12 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         studentsWithAttendanceProblemsTitles = resources.getStringArray(R.array.attendance_statistics_details_titles);
     }
 
-    /**
-     * 初始化图表部分的 fragment
-     */
     @Override
     public void initFragments(){
 
         attendanceStatisticsFragments = new ArrayList<>();
-//        mFragment1.add(OverallAttendanceStatisticsFragment.newInstance());
-        attendanceStatisticsFragments.add(StateChangeFragment.newInstance());
-        attendanceStatisticsFragments.add(ClassAttendanceStatisticsFragment.newInstance());
+        attendanceStatisticsFragments.add(LineChartView.newInstance());
+        attendanceStatisticsFragments.add(HorizontalBarChartView.newInstance());
 
         studentsWithAttendanceProblemsFragments = new ArrayList<>();
         for(int i = 0; i < studentsWithAttendanceProblemsTitles.length; i++){
@@ -202,9 +196,6 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         }
     }
 
-    /**
-     * 初始化 ViewPagerAdapter
-     */
     @Override
     public void initViewPagerAdapter(){
 
@@ -216,9 +207,6 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         studentsWithAttendanceProblemsViewPager.setOffscreenPageLimit(3);
     }
 
-    /**
-     * 初始化 TabLayout
-     */
     @Override
     public void initTabLayout(){
 
@@ -234,11 +222,6 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         }
     }
 
-
-    /**
-     * 设置当前课堂出勤统计的出勤概况
-     * @param bean 出勤概况
-     */
     private void setAttendanceProfileText(AttendanceProfileBean bean){
 
         String currentStudents = String.valueOf(bean.getTotal_students());
@@ -253,38 +236,6 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         currentPersonOfAbnormalTextView.setText(formatAttendanceProfileText(bean.getQingjia()));
     }
 
-
-    /**
-     * 设置出勤率环状进度条
-     * @param currentAttendance 当前出勤率
-     */
-    private void setAttendanceCircleBarView(float currentAttendance){
-
-        circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
-                DecimalFormat decimalFormat = new DecimalFormat("0.0");
-                String s = decimalFormat.format(interpolatedTime * progressNum / maxNum * 100) + "%";
-                return s;
-            }
-
-            @Override
-            public void howTiChangeProgressColor(Paint paint, float interpolatedTime, float updateNum, float maxNum) {
-
-            }
-        });
-
-        circleBarView.setTextView(attendanceStatisticsProgressText);
-        circleBarView.setProgressNum(currentAttendance * 100f,3000);
-    }
-
-
-    /**
-     * 规范化出勤概况数据
-     * @param num 未规范的出勤概况数据
-     * @return 规范后的出勤概况
-     */
     private String formatAttendanceProfileText(int num){
         return String.valueOf(num) + "人";
     }

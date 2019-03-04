@@ -10,12 +10,10 @@ import android.widget.Toast;
 
 import com.example.smartclass.R;
 import com.example.smartclass.base.BaseMvpFragment;
-import com.example.smartclass.bean.test;
 import com.example.smartclass.contract.LoginContract;
 import com.example.smartclass.presenter.LoginPresenter;
 import com.example.smartclass.util.PageSwitchingAnimation;
 import com.example.smartclass.util.SharedPreferencesUtil;
-import com.example.smartclass.util.SmartClass;
 
 import java.util.Objects;
 
@@ -76,11 +74,6 @@ public class LoginFragment extends BaseMvpFragment<LoginPresenter> implements Lo
 
     }
 
-    public void test(test bean){
-        Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), bean.getName(), Toast.LENGTH_SHORT).show();
-    }
-
     @OnClick(R.id.buttonLoginByPassword)
     public void loginByPassword() {
 
@@ -93,14 +86,11 @@ public class LoginFragment extends BaseMvpFragment<LoginPresenter> implements Lo
             return;
         }
 
-        //mPresenter.login();
         SharedPreferencesUtil.setStoreJobNumber(getActivity(), "1030416601");
         SharedPreferencesUtil.setStoreUserName(getActivity(), "杨帆");
-        //((SmartClass) Objects.requireNonNull(getActivity()).getApplication()).setJobNumber("1030416601");
         Intent intent = new Intent(getContext(), TabLayoutActivity.class);
-        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        PageSwitchingAnimation.startActivityAnimation(getActivity());
+        PageSwitchingAnimation.startActivityAnimation(Objects.requireNonNull(getActivity()));
     }
 
     @OnClick(R.id.textViewRegistered)
@@ -108,7 +98,7 @@ public class LoginFragment extends BaseMvpFragment<LoginPresenter> implements Lo
 
         Intent intent = new Intent(getContext(), RegisteredActivity.class);
         startActivity(intent);
-        PageSwitchingAnimation.startActivityAnimation(getActivity());
+        PageSwitchingAnimation.startActivityAnimation(Objects.requireNonNull(getActivity()));
     }
 
     @OnClick(R.id.textViewVerificationCodeLogin)
@@ -116,7 +106,7 @@ public class LoginFragment extends BaseMvpFragment<LoginPresenter> implements Lo
 
         Intent intent = new Intent(getContext(), VerificationCodeLoginActivity.class);
         startActivity(intent);
-        PageSwitchingAnimation.startActivityAnimation(getActivity());
+        PageSwitchingAnimation.startActivityAnimation(Objects.requireNonNull(getActivity()));
     }
 
 }

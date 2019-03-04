@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
@@ -11,7 +12,7 @@
         android:textColor="@color/colorThemeTitle"
         android:layout_marginStart="@dimen/px_57"
         android:layout_marginTop="@dimen/px_243"
-        android:text="验证码登录" />
+        android:text="@string/btm_login_by_code" />
 
 
     <EditText
@@ -19,14 +20,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/px_56"
         android:layout_marginTop="@dimen/px_475"
-        android:hint="手机号或邮箱"
+        android:hint="@string/hint_phone_or_email"
         android:inputType="textEmailAddress"
         android:textColorHint="@color/colorTextColorHint"
         android:textColor="@color/colorText"
         android:textSize="@dimen/px_40"
         android:maxLength="48"
         android:lines="1"
-        android:background="@color/colorWhite"/>
+        android:background="@color/colorWhite"
+        tools:ignore="Autofill" />
 
     <View
         android:layout_width="@dimen/px_971"
@@ -40,14 +42,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/px_56"
         android:layout_marginTop="@dimen/px_641"
-        android:hint="验证码"
+        android:hint="@string/hint_vc_code"
         android:inputType="textPassword"
         android:textColorHint="@color/colorTextColorHint"
         android:textColor="@color/colorText"
         android:textSize="@dimen/px_40"
         android:maxLength="40"
         android:lines="1"
-        android:background="@color/colorWhite"/>
+        android:background="@color/colorWhite"
+        tools:ignore="Autofill" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,7 +60,8 @@
         android:layout_marginTop="@dimen/px_644"
         android:textSize="@dimen/px_40"
         android:textColor="@color/colorTextColorHint"
-        android:text="忘记密码" />
+        android:text="@string/hint_forget_password"
+        tools:ignore="RelativeOverlap" />
 
     <View
         android:layout_width="@dimen/px_971"
@@ -72,7 +76,7 @@
         android:layout_height="@dimen/px_127"
         android:layout_marginStart="@dimen/px_53"
         android:layout_marginTop="@dimen/px_840"
-        android:text="登陆"
+        android:text="@string/btm_login"
         android:textSize="@dimen/px_42"
         android:textColor="@color/colorWhite"
         android:background="@drawable/bg_btm_border_radius"

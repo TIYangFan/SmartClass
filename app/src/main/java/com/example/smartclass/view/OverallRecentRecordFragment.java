@@ -5,14 +5,9 @@ import android.graphics.Paint;
 import android.icu.text.DecimalFormat;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,6 +24,7 @@ import com.example.smartclass.bean.DateAndPercentageBean;
 import com.example.smartclass.contract.OverallRecentRecordContract;
 import com.example.smartclass.presenter.OverallRecentRecordPresenter;
 import com.example.smartclass.util.CircleBarView;
+import com.example.smartclass.util.CircleBarViewUtil;
 import com.example.smartclass.util.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -37,7 +33,6 @@ import java.util.Objects;
 
 import androidx.annotation.RequiresApi;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by YangFan
@@ -125,14 +120,14 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
     public void showAttendanceProfile(AttendanceProfileBean bean) {
 
         setAttendanceProfileText(bean);
-        setAttendanceCircleBarView(bean.getCurrent_attendance());
+        CircleBarViewUtil.setAttendanceCircleBarView(circleBarView, bean.getCurrent_attendance(), overallRecentRecordProgressText, 3000);
     }
 
     @Override
     public void showAttendanceLineChart(BaseArrayBean<ClassInfoAboutTimeAndRelatedInfoBean<DateAndPercentageBean>> bean) {
 
         BaseChartView chartView = (BaseChartView) studentStatusFragments.get(0);
-        chartView.setChartData(bean.getArrayList(), StateChangeFragment.RECENT_OVERALL_ATTENDANCE_STATISTICS);
+        chartView.setChartData(bean.getArrayList(), LineChartView.RECENT_OVERALL_ATTENDANCE_STATISTICS);
         chartView.initChartView();
     }
 
@@ -140,7 +135,7 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
     public void showClassStatusLineChart(BaseArrayBean<ClassInfoAboutTimeAndRelatedInfoBean<DateAndPercentageBean>> bean) {
 
         BaseChartView chartView = (BaseChartView) studentStatusFragments.get(1);
-        chartView.setChartData(bean.getArrayList(), StateChangeFragment.RECENT_OVERALL_CLASS_STATUS_STATISTICS);
+        chartView.setChartData(bean.getArrayList(), LineChartView.RECENT_OVERALL_CLASS_STATUS_STATISTICS);
         chartView.initChartView();
     }
 
@@ -148,11 +143,11 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
     public void showClassRankingBarChart(ClassRankingBean bean) {
 
         BaseChartView chartView = (BaseChartView) studentStatusRankingFragments.get(0);
-        chartView.setChartData(bean.getAttendance(), RecentOverallStudentStatusRankingsFragment.RECENT_OVERALL_ATTENDANCE_RANKING_STATISTICS);
+        chartView.setChartData(bean.getAttendance(), BarChartView.RECENT_OVERALL_ATTENDANCE_RANKING_STATISTICS);
         chartView.initChartView();
 
         chartView = (BaseChartView) studentStatusRankingFragments.get(1);
-        chartView.setChartData(bean.getFocus(), RecentOverallStudentStatusRankingsFragment.RECENT_OVERALL_STUDENT_STATUS_RANKING_STATISTICS);
+        chartView.setChartData(bean.getFocus(), BarChartView.RECENT_OVERALL_STUDENT_STATUS_RANKING_STATISTICS);
         chartView.initChartView();
     }
 
@@ -179,9 +174,6 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
         initTabLayout();
     }
 
-    /**
-     * 初始化各部分标题
-     */
     @Override
     public void initTitles(){
 
@@ -190,31 +182,20 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
         studentStatusRankingTitles = resources.getStringArray(R.array.overall_student_recent_status_ranking_titles);
     }
 
-    /**
-     * 初始化图表部分的 fragment
-     */
     @Override
     public void initFragments(){
 
         studentStatusFragments = new ArrayList<>();
         for(int i = 0; i < studentStatusTitles.length; i++){
-            studentStatusFragments.add(StateChangeFragment.newInstance());
+            studentStatusFragments.add(LineChartView.newInstance());
         }
 
         studentStatusRankingFragments = new ArrayList<>();
         for(int i = 0; i < studentStatusRankingTitles.length; i++){
-            studentStatusRankingFragments.add(RecentOverallStudentStatusRankingsFragment.newInstance());
+            studentStatusRankingFragments.add(BarChartView.newInstance());
         }
-
-
-        //        fragments1.add(RecentOverallAttendanceFragment.newInstance());
-//        fragments2.add(RecentOverallAttendanceRankingsFragment.newInstance());
-
     }
 
-    /**
-     * 初始化 ViewPagerAdapter
-     */
     @Override
     public void initViewPagerAdapter(){
 
@@ -225,9 +206,6 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
         overallClassroomInformationRankingViewPager.setAdapter(studentStatusRankingAdapter);
     }
 
-    /**
-     * 初始化 TabLayout
-     */
     @Override
     public void initTabLayout(){
 
@@ -243,10 +221,6 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
         }
     }
 
-    /**
-     * 设置当前课堂出勤统计的出勤概况
-     * @param bean 出勤概况
-     */
     private void setAttendanceProfileText(AttendanceProfileBean bean){
 
         String recentStudents = String.valueOf(bean.getTotal_students());
@@ -261,36 +235,6 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
         recentPersonOfAbnormalTextView.setText(formatAttendanceProfileText(bean.getQingjia()));
     }
 
-    /**
-     * 设置出勤率环状进度条
-     * @param currentAttendance 当前出勤率
-     */
-    private void setAttendanceCircleBarView(float currentAttendance){
-
-        circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
-                DecimalFormat decimalFormat = new DecimalFormat("0.0");
-                String s = decimalFormat.format(interpolatedTime * progressNum / maxNum * 100) + "%";
-                return s;
-            }
-
-            @Override
-            public void howTiChangeProgressColor(Paint paint, float interpolatedTime, float updateNum, float maxNum) {
-
-            }
-        });
-
-        circleBarView.setTextView(overallRecentRecordProgressText);
-        circleBarView.setProgressNum(currentAttendance * 100f,3000);
-    }
-
-    /**
-     * 规范化出勤概况数据
-     * @param num 未规范的出勤概况数据
-     * @return 规范后的出勤概况
-     */
     private String formatAttendanceProfileText(int num){
         return String.valueOf(num) + "人";
     }

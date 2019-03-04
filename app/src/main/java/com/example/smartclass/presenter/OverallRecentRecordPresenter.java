@@ -9,7 +9,6 @@ import com.example.smartclass.bean.DateAndPercentageBean;
 import com.example.smartclass.contract.OverallRecentRecordContract;
 import com.example.smartclass.model.OverallRecentRecordModel;
 import com.example.smartclass.net.RxScheduler;
-import com.example.smartclass.util.SharedPreferencesUtil;
 import com.example.smartclass.view.OverallRecentRecordFragment;
 
 import io.reactivex.functions.Consumer;

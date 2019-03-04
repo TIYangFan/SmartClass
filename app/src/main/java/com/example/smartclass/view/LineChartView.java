@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +36,9 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class StateChangeFragment extends Fragment implements BaseChartView {
+public class LineChartView extends Fragment implements BaseChartView {
 
-    @BindView(R.id.stateChangeLineChart)
+    @BindView(R.id.lineChartView)
     LineChart lineChart;
 
     private LineData lineData;
@@ -53,11 +52,11 @@ public class StateChangeFragment extends Fragment implements BaseChartView {
     public static final String RECENT_OVERALL_ATTENDANCE_STATISTICS = "recentOverallAttendanceStatistics";
     public static final String RECENT_OVERALL_CLASS_STATUS_STATISTICS = "recentOverallClassStatusStatistics";
 
-    public static StateChangeFragment newInstance() {
+    public static LineChartView newInstance() {
 
         Bundle args = new Bundle();
 
-        StateChangeFragment fragment = new StateChangeFragment();
+        LineChartView fragment = new LineChartView();
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,7 +64,7 @@ public class StateChangeFragment extends Fragment implements BaseChartView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_state_change, container, false);
+        View root = inflater.inflate(R.layout.view_line_chart, container, false);
         ButterKnife.bind(this, root);
         return root;
     }

@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/concentrationDistributionPieChart"
+        android:id="@+id/pieChartView"
         android:layout_width="@dimen/px_998"
         android:layout_height="@dimen/px_456">
 

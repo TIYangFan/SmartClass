@@ -1,44 +1,25 @@
 package com.example.smartclass.view;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.icu.text.DecimalFormat;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.smartclass.R;
 import com.example.smartclass.base.BaseMvpFragment;
 import com.example.smartclass.bean.AttendanceProfileBean;
-import com.example.smartclass.bean.test;
 import com.example.smartclass.contract.CurrentClassContract;
-import com.example.smartclass.model.LoginModel;
-import com.example.smartclass.net.RxScheduler;
 import com.example.smartclass.presenter.CurrentClassPresenter;
 import com.example.smartclass.util.CircleBarView;
 import com.example.smartclass.util.CircleBarViewUtil;
 
 import java.util.Objects;
 
-import androidx.annotation.RequiresApi;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by YangFan
@@ -117,7 +98,7 @@ public class CurrentClassFragment extends BaseMvpFragment<CurrentClassPresenter>
     public void showAttendanceProfile(AttendanceProfileBean bean) {
 
         setAttendanceProfileText(bean);
-        CircleBarViewUtil.setAttendanceCircleBarView(circleBarView, bean.getCurrent_attendance(), currentClassProgressText);
+        CircleBarViewUtil.setAttendanceCircleBarView(circleBarView, bean.getCurrent_attendance(), currentClassProgressText, 3000);
     }
 
     @Override
@@ -155,11 +136,6 @@ public class CurrentClassFragment extends BaseMvpFragment<CurrentClassPresenter>
         currentClassPersonOfAbnormalTextView.setText(formatAttendanceProfileText(bean.getQingjia()));
     }
 
-    /**
-     * 规范化出勤概况数据
-     * @param num 未规范的出勤概况数据
-     * @return 规范后的出勤概况
-     */
     private String formatAttendanceProfileText(int num){
         return String.valueOf(num) + "人";
     }

@@ -22,6 +22,7 @@ import com.example.smartclass.adapter.TabFragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,7 +44,6 @@ public class RecentRecordFragment extends Fragment {
     TabLayout mTopTabLayout;
 
     private List<Fragment> mFragments = new ArrayList<>();
-    private String[] mTitles;
 
     public static RecentRecordFragment newInstance(List<Fragment> fragments) {
 
@@ -75,33 +75,21 @@ public class RecentRecordFragment extends Fragment {
     private void initView(){
 
         Resources resources = getResources();
-        mTitles = resources.getStringArray(R.array.top_tab_bar_titles);
+        String[] titles = resources.getStringArray(R.array.top_tab_bar_titles);
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.setSupportActionBar(mRecentRecordToolbar);
+        Objects.requireNonNull(activity).setSupportActionBar(mRecentRecordToolbar);
         mRecentRecordToolbar.setTitle("");
 
         TabFragmentPagerAdapter adapter = new TabFragmentPagerAdapter(getChildFragmentManager(), mFragments);
         mRecentRecordViewPager.setAdapter(adapter);
         mTopTabLayout.setupWithViewPager(mRecentRecordViewPager);
-        for (int i = 0; i < mTitles.length && mTopTabLayout.getTabAt(i) != null; i++){
+        for (int i = 0; i < titles.length && mTopTabLayout.getTabAt(i) != null; i++){
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.custom_top_tab, null);
-            TextView textView = (TextView)view.findViewById(R.id.topTabTextView);
-            textView.setText(mTitles[i]);
-            mTopTabLayout.getTabAt(i).setCustomView(view);
+            TextView textView = view.findViewById(R.id.topTabTextView);
+            textView.setText(titles[i]);
+            Objects.requireNonNull(mTopTabLayout.getTabAt(i)).setCustomView(view);
         }
-    }
-
-    public void initFragments(){
-
-        mFragments = new ArrayList<>();
-        mFragments.add(OverallRecentRecordFragment.newInstance());
-        mFragments.add(ClassRecentRecordFragment.newInstance());
-    }
-
-    public List<Fragment> getFragments(){
-
-        return mFragments;
     }
 
     public Fragment getFragmentByIndex(int index){

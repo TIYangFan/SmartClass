@@ -15,7 +15,6 @@ import com.example.smartclass.adapter.StudentsWithAttendanceProblemsRecyclerView
 import com.example.smartclass.bean.StudentInformationBean;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,19 +32,6 @@ public class StudentsWithAttendanceProblemsFragment extends Fragment {
 
     private StudentsWithAttendanceProblemsRecyclerViewAdapter recyclerViewAdapter;
 
-//    private String[][] data = {
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//            {"计科1706", "杨帆", "1033170614"},
-//    };
-
     public static StudentsWithAttendanceProblemsFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -58,7 +44,7 @@ public class StudentsWithAttendanceProblemsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_unfocused_detail, container, false);
+        View root = inflater.inflate(R.layout.fragment_unfocused_student, container, false);
         ButterKnife.bind(this, root);
         return root;
     }

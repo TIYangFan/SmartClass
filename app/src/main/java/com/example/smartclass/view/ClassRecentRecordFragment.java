@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -42,10 +43,6 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
     private List<AttendanceProfileBean> groupAttendanceProfileBeans = new ArrayList<>();
 
     private List<String> classIdList = new ArrayList<>();
-
-    private ArrayList childAttendanceStatistics;
-    private ArrayList childStudentStatusStatistics;
-    private StudentsWithAttendanceProblemsBean childStudentsWithAttendanceProblems;
 
     private int lastGroupPosition = -1;
     private boolean isExpand = false;
@@ -124,17 +121,6 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
     }
 
     @Override
-    public void showAttendanceProfile() {
-
-    }
-
-    @Override
-    public void showProblemStudentsList(StudentsWithAttendanceProblemsBean bean) {
-
-        childStudentsWithAttendanceProblems = bean;
-    }
-
-    @Override
     public void showLoading() {
         loadingProgressBar.bringToFront();
         loadingProgressBar.setVisibility(View.VISIBLE);
@@ -196,12 +182,20 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
                 }
 
                 String classId = classIdList.get(groupPosition);
-                if(classId != null){
+                if(expandableListAdapter.isAlreadyLoaded(groupPosition)){
+                    expandableListView.expandGroup(groupPosition);
+                }else{
                     mPresenter.loadClassRecentRecordDetails(classId, groupPosition);
                     classIdList.set(groupPosition, null);
-                }else{
-                    expandableListView.expandGroup(groupPosition);
                 }
+
+//                if(classId != null){
+//                    mPresenter.loadClassRecentRecordDetails(classId, groupPosition);
+//                    classIdList.set(groupPosition, null);
+//                }else{
+//                    expandableListView.expandGroup(groupPosition);
+//                }
+
                 return true;
             }
         });

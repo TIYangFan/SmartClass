@@ -28,20 +28,20 @@ import butterknife.ButterKnife;
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
  */
-public class CurrentStateFragment extends Fragment implements BaseChartView {
+public class ScatterChartView extends Fragment implements BaseChartView {
 
-    @BindView(R.id.scatterChart)
+    @BindView(R.id.scatterChartView)
     ScatterChart scatterChart;
     private ScatterData scatterData;
     private Entry averageValue;
 
     public static final String CURRENT_CLASS_STATISTICS = "currentClassStatistics";
 
-    public static CurrentStateFragment newInstance() {
+    public static ScatterChartView newInstance() {
 
         Bundle args = new Bundle();
 
-        CurrentStateFragment fragment = new CurrentStateFragment();
+        ScatterChartView fragment = new ScatterChartView();
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,7 +49,7 @@ public class CurrentStateFragment extends Fragment implements BaseChartView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_current_state, container, false);
+        View root = inflater.inflate(R.layout.view_scatter_chart, container, false);
         ButterKnife.bind(this, root);
         return root;
     }

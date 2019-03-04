@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
  * On 2019/2/17
  * GitHub: https://github.com/TIYangFan
  * Email: yangfan_98@163.com
+ * Description: 出勤异常列表的 RecyclerViewAdapter
  */
 public class StudentsWithAttendanceProblemsRecyclerViewAdapter extends RecyclerView.Adapter<StudentsWithAttendanceProblemsRecyclerViewAdapter.holder> {
 
@@ -60,7 +61,7 @@ public class StudentsWithAttendanceProblemsRecyclerViewAdapter extends RecyclerV
     @Override
     public holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_unfocused_detail, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_student_info, viewGroup, false);
         return new holder(view);
     }
 

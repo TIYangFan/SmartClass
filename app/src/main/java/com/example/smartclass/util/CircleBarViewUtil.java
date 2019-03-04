@@ -19,7 +19,7 @@ public class CircleBarViewUtil {
      * 设置出勤率环状进度条
      * @param currentAttendance 当前出勤率
      */
-    public static void setAttendanceCircleBarView(CircleBarView circleBarView, float currentAttendance, TextView textView){
+    public static void setAttendanceCircleBarView(CircleBarView circleBarView, float currentAttendance, TextView textView, int animTime){
 
         circleBarView.setOnAnimationListener(new CircleBarView.OnAnimationListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -37,6 +37,6 @@ public class CircleBarViewUtil {
         });
 
         circleBarView.setTextView(textView);
-        circleBarView.setProgressNum(currentAttendance * 100f,3000);
+        circleBarView.setProgressNum(currentAttendance * 100f, animTime);
     }
 }

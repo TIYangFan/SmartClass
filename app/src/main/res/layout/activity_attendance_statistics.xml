@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_height="match_parent"
-android:layout_width="match_parent"
-android:orientation="vertical"
-android:focusableInTouchMode="true"
-android:focusable="true"
-xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.v7.widget.Toolbar android:layout_width="match_parent"
         android:layout_height="@dimen/px_109"
@@ -12,11 +14,20 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:id="@+id/AttendanceStatisticsToolbar"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
+        <ImageView
+            android:id="@+id/backFromAttendance"
+            android:layout_width="@dimen/px_21"
+            android:layout_height="@dimen/px_40"
+            android:layout_marginTop="@dimen/px_35"
+            android:layout_marginStart="@dimen/px_56"
+            app:srcCompat="@mipmap/ic_launcher_round"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/px_457"
-            android:text="出勤统计"
+            android:layout_marginStart="@dimen/px_380"
+            android:text="@string/attendance_statistics"
             android:textColor="@color/colorThemeTitle"
             android:textSize="@dimen/px_42"/>
 
