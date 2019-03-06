@@ -17,13 +17,29 @@
             android:layout_width="@dimen/px_998"
             android:layout_height="@dimen/px_93"
             android:layout_marginStart="@dimen/px_17"
-            app:tabIndicatorHeight="@dimen/px_5"
-            app:tabTextColor="@color/colorTextColorHint"
-            app:tabSelectedTextColor="@color/colorThemeTitle"
+            app:tabIndicatorHeight="0dp"
+            android:textColor="@drawable/text_tab_selector"
             app:tabBackground="@android:color/transparent"
             app:tabRippleColor="@android:color/transparent">
 
         </android.support.design.widget.TabLayout>
+
+        <View
+            android:id="@+id/leftOfFirstTabOfStudentStatus"
+            android:layout_width="@dimen/px_499"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_17"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightOfFirstTabOfStudentStatus"
+            android:layout_width="@dimen/px_499"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_516"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
 
         <View
             android:layout_width="@dimen/px_998"
@@ -59,13 +75,29 @@
             android:layout_width="@dimen/px_998"
             android:layout_height="@dimen/px_93"
             android:layout_marginStart="@dimen/px_17"
-            app:tabIndicatorHeight="@dimen/px_5"
-            app:tabTextColor="@color/colorTextColorHint"
-            app:tabSelectedTextColor="@color/colorThemeTitle"
+            app:tabIndicatorHeight="0dp"
+            android:textColor="@drawable/text_tab_selector"
             app:tabBackground="@android:color/transparent"
             app:tabRippleColor="@android:color/transparent">
 
         </android.support.design.widget.TabLayout>
+
+        <View
+            android:id="@+id/leftOfSecondTabOfStudentStatus"
+            android:layout_width="@dimen/px_499"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_17"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightOfSecondTabOfStudentStatus"
+            android:layout_width="@dimen/px_499"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_516"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
 
         <View
             android:layout_width="@dimen/px_998"
@@ -98,13 +130,38 @@
             android:layout_width="@dimen/px_998"
             android:layout_height="@dimen/px_93"
             android:layout_marginStart="@dimen/px_17"
-            app:tabIndicatorHeight="@dimen/px_5"
-            app:tabTextColor="@color/colorTextColorHint"
-            app:tabSelectedTextColor="@color/colorThemeTitle"
+            app:tabIndicatorHeight="0dp"
+            android:textColor="@drawable/text_tab_selector"
             app:tabBackground="@android:color/transparent"
             app:tabRippleColor="@android:color/transparent">
 
         </android.support.design.widget.TabLayout>
+
+        <View
+            android:id="@+id/leftOfThirdTabOfStudentStatus"
+            android:layout_width="@dimen/px_333"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_17"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/midOfThirdTabOfStudentStatus"
+            android:layout_width="@dimen/px_332"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_350"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightOfThirdTabOfStudentStatus"
+            android:layout_width="@dimen/px_333"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_682"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
 
         <View
             android:layout_width="@dimen/px_998"

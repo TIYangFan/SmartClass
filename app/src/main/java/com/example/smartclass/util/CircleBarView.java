@@ -36,7 +36,7 @@ public class CircleBarView extends View {
 
     private int progressColor;//进度条圆弧颜色
     private int bgColor;//背景圆弧颜色
-    private int[] colorArray = new int[] { Color.parseColor("#27B197"), Color.parseColor("#00A6D5") };
+    private int[] colorArray = new int[] { Color.parseColor("#5abcf2"), Color.parseColor("#86efda") };
     private float startAngle;//背景圆弧的起始角度
     private float sweepAngle;//背景圆弧扫过的角度
     private float barWidth;//圆弧进度条宽度

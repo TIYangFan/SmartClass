@@ -1,9 +1,11 @@
 package com.example.smartclass.manager;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.example.smartclass.base.BaseChart;
 import com.github.mikephil.charting.charts.ScatterChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -12,6 +14,8 @@ import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+
+import java.util.List;
 
 /**
  * Created by YangFan
@@ -68,6 +72,8 @@ public class ScatterChartManager extends BaseChart<ScatterChart, ScatterData> im
         for(int i = 0; i < data.getDataSetCount(); i++){
             ScatterDataSet dataSet = (ScatterDataSet)data.getDataSetByIndex(i);
             dataSet.setColor(colorArray[i]);
+            dataSet.setDrawValues(false);
+            dataSet.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
         }
     }
 
@@ -78,7 +84,7 @@ public class ScatterChartManager extends BaseChart<ScatterChart, ScatterData> im
     public void setLimitLine(Entry averageValue){
 
         //设置均值
-        LimitLine ll1 = new LimitLine(Math.round(averageValue.getX()), "均值");
+        LimitLine ll1 = new LimitLine(Math.round(averageValue.getX()), "");
         ll1.setLabel("均值");
         ll1.setTextColor(Color.parseColor("#5dbcfe"));
         ll1.setLineWidth(1f);
@@ -89,7 +95,7 @@ public class ScatterChartManager extends BaseChart<ScatterChart, ScatterData> im
         ll1.setTextSize(10f);
 
         //设置均值
-        LimitLine ll2 = new LimitLine(Math.round(averageValue.getY()), "均值");
+        LimitLine ll2 = new LimitLine(Math.round(averageValue.getY()), "");
         ll2.setLabel("均值");
         ll2.setTextColor(Color.parseColor("#5dbcfe"));
         ll2.setLineWidth(1f);
@@ -101,6 +107,13 @@ public class ScatterChartManager extends BaseChart<ScatterChart, ScatterData> im
 
         yAxis.addLimitLine(ll1);
         xAxis.addLimitLine(ll2);
+    }
+
+    @Override
+    protected void setLegend() {
+        super.setLegend();
+        Legend legend = chart.getLegend();
+        legend.setEnabled(false);
     }
 
     @Override

@@ -86,10 +86,15 @@ public class RecentRecordFragment extends Fragment {
         mTopTabLayout.setupWithViewPager(mRecentRecordViewPager);
         for (int i = 0; i < titles.length && mTopTabLayout.getTabAt(i) != null; i++){
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.custom_top_tab, null);
+            if(i == 0){
+                View underLine = view.findViewById(R.id.topTabUnderLine);
+                underLine.setBackground(resources.getDrawable(R.drawable.color_gradient));
+            }
             TextView textView = view.findViewById(R.id.topTabTextView);
             textView.setText(titles[i]);
             Objects.requireNonNull(mTopTabLayout.getTabAt(i)).setCustomView(view);
         }
+        setTabLayoutOnClickListener();
     }
 
     public Fragment getFragmentByIndex(int index){
@@ -98,5 +103,30 @@ public class RecentRecordFragment extends Fragment {
             return null;
         }
         return mFragments.get(index);
+    }
+
+    private void setTabLayoutOnClickListener(){
+
+        final Resources resources = getResources();
+        mTopTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                View underLine = Objects.requireNonNull(tab.getCustomView()).findViewById(R.id.topTabUnderLine);
+                underLine.setBackground(resources.getDrawable(R.drawable.color_gradient));
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+                View underLine = Objects.requireNonNull(tab.getCustomView()).findViewById(R.id.topTabUnderLine);
+                underLine.setBackgroundColor(resources.getColor(R.color.colorTransparent));
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.smartclass.base.BaseView;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
+import com.example.smartclass.bean.ScatterCoordinateBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 
@@ -28,7 +29,11 @@ public interface StudentStatusContract {
         String loadJobNumber(Context context);
 
 
-        void loadCurrentStatusStatistics();
+        /**
+         * 加载当前课堂专注度分布
+         * @return 当前课堂专注度坐标集合
+         */
+        Flowable<BaseArrayBean<ScatterCoordinateBean>> loadCurrentStatusStatistics();
 
         /**
          * 加载当前课堂状态数据变化
@@ -53,7 +58,11 @@ public interface StudentStatusContract {
 
     interface View extends BaseView {
 
-        void showCurrentStatusScatterChart();
+        /**
+         * 显示当前课堂的专注度分布散点图
+         * @param bean 当前课堂专注度分布坐标集合
+         */
+        void showCurrentStatusScatterChart(BaseArrayBean<ScatterCoordinateBean> bean);
 
         /**
          * 显示当前课堂专注度随时间变化曲线图

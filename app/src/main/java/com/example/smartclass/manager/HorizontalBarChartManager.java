@@ -103,6 +103,7 @@ public class HorizontalBarChartManager extends BaseChart<HorizontalBarChart, Bar
         for(int i = 0; i < data.getDataSetCount(); i++){
             BarDataSet dataSet = (BarDataSet)data.getDataSetByIndex(i);
             dataSet.setColor(colorArray[i]);
+            dataSet.setGradientColor(colorArray[1], colorArray[0]);
         }
     }
 

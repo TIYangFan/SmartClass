@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
+import com.example.smartclass.bean.ScatterCoordinateBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 import com.example.smartclass.contract.StudentStatusContract;
@@ -28,8 +29,8 @@ public class StudentStatusModel implements StudentStatusContract.Model {
     }
 
     @Override
-    public void loadCurrentStatusStatistics() {
-
+    public Flowable<BaseArrayBean<ScatterCoordinateBean>> loadCurrentStatusStatistics() {
+        return RetrofitClient.getInstance().getApi().getCurrentStatusStatistics();
     }
 
     @Override

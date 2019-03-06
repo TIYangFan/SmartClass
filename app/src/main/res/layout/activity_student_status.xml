@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/px_380"
             android:text="@string/student_status"
-            android:textColor="@color/colorThemeTitle"
+            android:textColor="@color/colorMainGray"
             android:textSize="@dimen/px_42"/>
 
     </android.support.v7.widget.Toolbar>

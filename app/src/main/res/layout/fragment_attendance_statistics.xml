@@ -36,7 +36,7 @@
                 android:layout_marginTop="@dimen/px_91"
                 android:layout_centerHorizontal="true"
                 android:textSize="@dimen/px_54"
-                android:textColor="@color/colorThemeTitle"/>
+                android:textColor="@color/colorMainGray"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,19 +45,29 @@
                 android:layout_centerHorizontal="true"
                 android:text="@string/attendance"
                 android:textSize="@dimen/px_28"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorAttendance"/>
 
         </RelativeLayout>
 
         <!--Late-->
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_38"
             android:layout_marginStart="@dimen/px_321"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            tools:ignore="ContentDescription" />
+            android:background="@drawable/ic_ring">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/late"
+                android:textSize="@dimen/px_40"
+                android:textColor="@color/colorSubtitle"
+                />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -76,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
+                android:textColor="@color/colorUnelectedText"
                 android:text="@string/backslash" />
 
             <TextView
@@ -84,19 +94,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"/>
+                android:textColor="@color/colorUnelectedText"/>
 
         </LinearLayout>
 
         <!--Absentee-->
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_38"
             android:layout_marginStart="@dimen/px_668"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            tools:ignore="ContentDescription" />
+            android:background="@drawable/ic_ring">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/ask_for_leave"
+                android:textSize="@dimen/px_40"
+                android:textColor="@color/colorSubtitle"
+                />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -115,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
+                android:textColor="@color/colorUnelectedText"
                 android:text="@string/backslash" />
 
             <TextView
@@ -123,19 +143,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"/>
+                android:textColor="@color/colorUnelectedText"/>
 
         </LinearLayout>
 
         <!--LeaveEarly-->
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_198"
             android:layout_marginStart="@dimen/px_321"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            tools:ignore="ContentDescription" />
+            android:background="@drawable/ic_ring">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/leave_early"
+                android:textSize="@dimen/px_40"
+                android:textColor="@color/colorSubtitle"
+                />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -154,7 +184,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
+                android:textColor="@color/colorUnelectedText"
                 android:text="@string/backslash" />
 
             <TextView
@@ -162,19 +192,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"/>
+                android:textColor="@color/colorUnelectedText"/>
 
         </LinearLayout>
 
         <!--Abnormal-->
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_198"
             android:layout_marginStart="@dimen/px_668"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            tools:ignore="ContentDescription" />
+            android:background="@drawable/ic_ring">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/ask_for_leave"
+                android:textSize="@dimen/px_40"
+                android:textColor="@color/colorSubtitle"
+                />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -193,7 +233,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
+                android:textColor="@color/colorUnelectedText"
                 android:text="@string/backslash" />
 
             <TextView
@@ -201,7 +241,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"/>
+                android:textColor="@color/colorUnelectedText"/>
 
         </LinearLayout>
 
@@ -243,13 +283,29 @@
             android:layout_width="@dimen/px_998"
             android:layout_height="@dimen/px_93"
             android:layout_marginStart="@dimen/px_17"
-            app:tabIndicatorHeight="@dimen/px_5"
-            app:tabTextColor="@color/colorTextColorHint"
-            app:tabSelectedTextColor="@color/colorThemeTitle"
+            android:textColor="@drawable/text_tab_selector"
+            app:tabIndicatorHeight="0dp"
             app:tabBackground="@android:color/transparent"
             app:tabRippleColor="@android:color/transparent">
 
         </android.support.design.widget.TabLayout>
+
+        <View
+            android:id="@+id/leftOfFirstTabOfAttendance"
+            android:layout_width="@dimen/px_499"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_17"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightOfFirstTabOfAttendance"
+            android:layout_width="@dimen/px_499"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_516"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
 
         <View
             android:layout_width="@dimen/px_998"
@@ -282,13 +338,47 @@
             android:layout_width="@dimen/px_998"
             android:layout_height="@dimen/px_93"
             android:layout_marginStart="@dimen/px_17"
-            app:tabIndicatorHeight="@dimen/px_5"
-            app:tabTextColor="@color/colorTextColorHint"
-            app:tabSelectedTextColor="@color/colorThemeTitle"
+            app:tabIndicatorHeight="0dp"
+            android:textColor="@drawable/text_tab_selector"
             app:tabBackground="@android:color/transparent"
             app:tabRippleColor="@android:color/transparent">
 
         </android.support.design.widget.TabLayout>
+
+        <View
+            android:id="@+id/leftOfSecondTabOfAttendance"
+            android:layout_width="@dimen/px_250"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_17"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/leftMidOfSecondTabOfAttendance"
+            android:layout_width="@dimen/px_249"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_267"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightMidOfSecondTabOfAttendance"
+            android:layout_width="@dimen/px_249"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_516"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightOfSecondTabOfAttendance"
+            android:layout_width="@dimen/px_250"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_765"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
 
         <View
             android:layout_width="@dimen/px_998"

@@ -26,6 +26,7 @@ import com.example.smartclass.presenter.OverallRecentRecordPresenter;
 import com.example.smartclass.util.CircleBarView;
 import com.example.smartclass.util.CircleBarViewUtil;
 import com.example.smartclass.util.NoScrollViewPager;
+import com.example.smartclass.util.TabLayoutUnderLineChangeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +76,15 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
 
     @BindView(R.id.overallRecentRecordLoadingProgressBar)
     LinearLayout loadingProgressBar;
+
+    @BindView(R.id.leftOfFirstTabOfOverallRecentRecord)
+    View leftOfFirstTabOfOverallRecentRecord;
+    @BindView(R.id.rightOfFirstTabOfOverallRecentRecord)
+    View rightOfFirstTabOfOverallRecentRecord;
+    @BindView(R.id.leftOfSecondTabOfOverallRecentRecord)
+    View leftOfSecondTabOfOverallRecentRecord;
+    @BindView(R.id.rightOfSecondTabOfOverallRecentRecord)
+    View rightOfSecondTabOfOverallRecentRecord;
 
     private List<Fragment> studentStatusFragments;
     private List<Fragment> studentStatusRankingFragments;
@@ -219,6 +229,21 @@ public class OverallRecentRecordFragment extends BaseMvpFragment<OverallRecentRe
         for(int i = 0; i < studentStatusRankingTitles.length; i++){
             Objects.requireNonNull(overallClassroomInformationRankingTabLayout.getTabAt(i)).setText(studentStatusRankingTitles[i]);
         }
+        setTabLayoutOnClickListener();
+    }
+
+    private void setTabLayoutOnClickListener(){
+
+        List<View> firstTabLayout = new ArrayList<>();
+        firstTabLayout.add(leftOfFirstTabOfOverallRecentRecord);
+        firstTabLayout.add(rightOfFirstTabOfOverallRecentRecord);
+
+        List<View> secondTabLayout = new ArrayList<>();
+        secondTabLayout.add(leftOfSecondTabOfOverallRecentRecord);
+        secondTabLayout.add(rightOfSecondTabOfOverallRecentRecord);
+
+        TabLayoutUnderLineChangeUtil.changeTabLayoutUnderLineView(overallClassroomInformationTabLayout, firstTabLayout);
+        TabLayoutUnderLineChangeUtil.changeTabLayoutUnderLineView(overallClassroomInformationRankingTabLayout, secondTabLayout);
     }
 
     private void setAttendanceProfileText(AttendanceProfileBean bean){

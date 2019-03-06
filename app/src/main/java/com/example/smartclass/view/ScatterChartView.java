@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.smartclass.R;
 import com.example.smartclass.base.BaseChartView;
+import com.example.smartclass.bean.ScatterCoordinateBean;
 import com.example.smartclass.manager.ScatterChartManager;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
@@ -18,6 +19,7 @@ import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -100,7 +102,7 @@ public class ScatterChartView extends Fragment implements BaseChartView {
 
         ScatterChartManager scatterChartManager = new ScatterChartManager(scatterChart);
         scatterChartManager.setChartData(scatterData);
-        scatterChartManager.setLimitLine(averageValue);
+        //scatterChartManager.setLimitLine(averageValue);
         scatterChartManager.initChartView();
     }
 
@@ -111,10 +113,38 @@ public class ScatterChartView extends Fragment implements BaseChartView {
 
     private void setCurrentClassStatistics(ArrayList chartData){
 
+        List<Entry> chartDataList = new ArrayList<>();
+        List<IScatterDataSet> dataSets = new ArrayList<>();
+
+        ScatterCoordinateBean bean;
+        for(int i = 0; i < chartData.size(); i++){
+
+            bean = (ScatterCoordinateBean)chartData.get(i);
+            chartDataList.add(new Entry(bean.getFocus_index(), bean.getMark()));
+        }
+
+        setAverageValue(chartDataList);
+        ScatterDataSet scatterDataSet = new ScatterDataSet(chartDataList, "currentClassStatistics");
+        dataSets.add(scatterDataSet);
+        setScatterData(dataSets);
     }
 
-    private void setScatterData(ScatterDataSet scatterDataSet){
+    private void setAverageValue(List<Entry> chartDataList){
 
-        scatterData = new ScatterData(scatterDataSet);
+        float avX = 0;
+        float avY = 0;
+        for(int i = 0; i < chartDataList.size(); i++){
+            avX += chartDataList.get(i).getX();
+            avY += chartDataList.get(i).getY();
+        }
+
+        avX /= chartDataList.size();
+        avY /= chartDataList.size();
+        averageValue =  new Entry(avX, avY);
+    }
+
+    private void setScatterData(List<IScatterDataSet> dataSets){
+
+        scatterData = new ScatterData(dataSets);
     }
 }

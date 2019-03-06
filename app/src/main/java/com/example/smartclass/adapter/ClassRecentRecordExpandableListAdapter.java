@@ -260,10 +260,6 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         TextView tabLeftText;
         @BindView(R.id.tabRightText)
         TextView tabRightText;
-        @BindView(R.id.tabLeftUnderline)
-        View tabLeftUnderline;
-        @BindView(R.id.tabRightUnderline)
-        View tabRightUnderline;
 
         @BindView(R.id.tabFirstView)
         RelativeLayout tabFirstView;
@@ -283,14 +279,18 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         @BindView(R.id.tabFourthText)
         TextView tabFourthText;
 
-        @BindView(R.id.tabFirstUnderline)
-        View tabFirstUnderline;
-        @BindView(R.id.tabSecondUnderline)
-        View tabSecondUnderline;
-        @BindView(R.id.tabThirdUnderline)
-        View tabThirdUnderline;
-        @BindView(R.id.tabFourthUnderline)
-        View tabFourthUnderline;
+        @BindView(R.id.leftOfFirstTabOfClassRecentRecord)
+        View leftOfFirstTabOfClassRecentRecord;
+        @BindView(R.id.rightOfFirstTabOfClassRecentRecord)
+        View rightOfFirstTabOfClassRecentRecord;
+        @BindView(R.id.leftOfSecondTabOfClassRecentRecord)
+        View leftOfSecondTabOfClassRecentRecord;
+        @BindView(R.id.leftMidOfSecondTabOfClassRecentRecord)
+        View leftMidOfSecondTabOfClassRecentRecord;
+        @BindView(R.id.rightMidOfSecondTabOfClassRecentRecord)
+        View rightMidOfSecondTabOfClassRecentRecord;
+        @BindView(R.id.rightOfSecondTabOfClassRecentRecord)
+        View rightOfSecondTabOfClassRecentRecord;
 
         @BindView(R.id.tabTitleDetailsText)
         RelativeLayout tabTitleDetailsText;
@@ -351,10 +351,10 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
             tabTextList.add(tabFourthText);
 
             final List<View> tabUnderLineList = new ArrayList<>();
-            tabUnderLineList.add(tabFirstUnderline);
-            tabUnderLineList.add(tabSecondUnderline);
-            tabUnderLineList.add(tabThirdUnderline);
-            tabUnderLineList.add(tabFourthUnderline);
+            tabUnderLineList.add(leftOfSecondTabOfClassRecentRecord);
+            tabUnderLineList.add(leftMidOfSecondTabOfClassRecentRecord);
+            tabUnderLineList.add(rightMidOfSecondTabOfClassRecentRecord);
+            tabUnderLineList.add(rightOfSecondTabOfClassRecentRecord);
 
             final List<RecyclerView> tabRecyclerView = new ArrayList<>();
             tabRecyclerView.add(firstTabRecyclerView);
@@ -372,15 +372,19 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
 
         private void initFirstTabViewOnClickListener(){
 
+            leftOfFirstTabOfClassRecentRecord.bringToFront();
+            rightOfFirstTabOfClassRecentRecord.bringToFront();
+
             tabLeftView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     if (!selectLeftOfFirstTab){
                         tabLeftText.setTextColor(parentFragment.getResources().getColor(R.color.colorThemeTitle));
-                        tabLeftUnderline.setBackgroundColor(parentFragment.getResources().getColor(R.color.colorPrimary));
                         tabRightText.setTextColor(parentFragment.getResources().getColor(R.color.colorTextColorHint));
-                        tabRightUnderline.setBackgroundColor(parentFragment.getResources().getColor(R.color.colorTransparent));
+
+                        leftOfFirstTabOfClassRecentRecord.setVisibility(View.VISIBLE);
+                        rightOfFirstTabOfClassRecentRecord.setVisibility(View.INVISIBLE);
 
                         recentClassAttendanceLineChart.setVisibility(View.VISIBLE);
                         recentClassStateLineChart.setVisibility(View.INVISIBLE);
@@ -396,9 +400,10 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
 
                     if (selectLeftOfFirstTab){
                         tabRightText.setTextColor(parentFragment.getResources().getColor(R.color.colorThemeTitle));
-                        tabRightUnderline.setBackgroundColor(parentFragment.getResources().getColor(R.color.colorPrimary));
                         tabLeftText.setTextColor(parentFragment.getResources().getColor(R.color.colorTextColorHint));
-                        tabLeftUnderline.setBackgroundColor(parentFragment.getResources().getColor(R.color.colorTransparent));
+
+                        rightOfFirstTabOfClassRecentRecord.setVisibility(View.VISIBLE);
+                        leftOfFirstTabOfClassRecentRecord.setVisibility(View.INVISIBLE);
 
                         recentClassStateLineChart.setVisibility(View.VISIBLE);
                         recentClassStateLineChart.setVisibility(View.INVISIBLE);
@@ -410,6 +415,11 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
         }
 
         private void initSecondTabViewOnClickListener(final List<TextView> tabTextList, final List<View> tabUnderLineList, final List<RecyclerView> tabRecyclerView){
+
+            leftOfSecondTabOfClassRecentRecord.bringToFront();
+            leftMidOfSecondTabOfClassRecentRecord.bringToFront();
+            rightMidOfSecondTabOfClassRecentRecord.bringToFront();
+            rightOfSecondTabOfClassRecentRecord.bringToFront();
 
             tabFirstView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -449,12 +459,12 @@ public class ClassRecentRecordExpandableListAdapter extends BaseExpandableListAd
             if(currentSelectTab != clickedTabPosition){
                 currentSelectTab = clickedTabPosition;
                 tabTextList.get(currentSelectTab).setTextColor(parentFragment.getResources().getColor(R.color.colorThemeTitle));
-                tabUnderLineList.get(currentSelectTab).setBackgroundColor(parentFragment.getResources().getColor(R.color.colorPrimary));
+                tabUnderLineList.get(currentSelectTab).setVisibility(View.VISIBLE);
                 tabRecyclerView.get(currentSelectTab).setVisibility(View.VISIBLE);
                 for(int i = 0; i < tabTextList.size(); i++){
                     if(i != currentSelectTab){
                         tabTextList.get(i).setTextColor(parentFragment.getResources().getColor(R.color.colorTextColorHint));
-                        tabUnderLineList.get(i).setBackgroundColor(parentFragment.getResources().getColor(R.color.colorTransparent));
+                        tabUnderLineList.get(i).setVisibility(View.INVISIBLE);
                         tabRecyclerView.get(i).setVisibility(View.INVISIBLE);
                     }
                 }

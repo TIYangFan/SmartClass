@@ -3,6 +3,7 @@ package com.example.smartclass.presenter;
 import com.example.smartclass.base.BaseMvpPresenter;
 import com.example.smartclass.bean.BaseArrayBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
+import com.example.smartclass.bean.ScatterCoordinateBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.bean.UnfocusedStudentDetailsBean;
 import com.example.smartclass.contract.StudentStatusContract;
@@ -52,6 +53,7 @@ public class StudentStatusPresenter extends BaseMvpPresenter<StudentStatusFragme
     @Override
     public void loadAllStatisticsOnThePage() {
 
+        loadCurrentStatusStatistics();
         loadStateChangeStatistics();
         loadConcentrationDistributionStatistics();
         loadUnfocusedStudentStatistics();
@@ -60,6 +62,24 @@ public class StudentStatusPresenter extends BaseMvpPresenter<StudentStatusFragme
     @Override
     public void loadCurrentStatusStatistics() {
 
+        //View是否绑定 如果没有绑定，就不执行网络请求
+        if (!isViewAttached()) {
+            return;
+        }
+        model.loadCurrentStatusStatistics()
+                .compose(RxScheduler.<BaseArrayBean<ScatterCoordinateBean>>Flo_io_main())
+                .as(mView.<BaseArrayBean<ScatterCoordinateBean>>bindAutoDispose())
+                .subscribe(new Consumer<BaseArrayBean<ScatterCoordinateBean>>() {
+                    @Override
+                    public void accept(BaseArrayBean<ScatterCoordinateBean> bean) throws Exception {
+                        mView.showCurrentStatusScatterChart(bean);
+                        mView.hideLoading();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                    }
+                });
     }
 
     @Override

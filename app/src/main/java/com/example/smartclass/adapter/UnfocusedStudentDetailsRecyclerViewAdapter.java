@@ -51,8 +51,9 @@ public class UnfocusedStudentDetailsRecyclerViewAdapter extends RecyclerView.Ada
 
         private void setText(StudentStatusDetailsBean itemData){
 
+            String totalTimeString = "/" + itemData.getLesson_duration();
             unfocusedTime.setText(itemData.getDuring());
-            totalTime.setText(itemData.getLesson_duration());
+            totalTime.setText(totalTimeString);
             studentName.setText(itemData.getName());
             studentClass.setText(itemData.getClass_no());
             studentId.setText(itemData.getStu_id());

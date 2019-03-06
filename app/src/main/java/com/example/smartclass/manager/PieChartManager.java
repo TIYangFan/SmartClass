@@ -67,6 +67,8 @@ public class PieChartManager extends BaseChart<PieChart, PieData> implements OnC
         dataSet.setSelectionShift(5f);
 
         dataSet.setValueLinePart1OffsetPercentage(80.f);
+        dataSet.setValueLineColor(Color.parseColor("#898989"));
+        dataSet.setValueTextColor(Color.parseColor("#898989"));
         dataSet.setValueLinePart1Length(0.5f);
         dataSet.setValueLinePart2Length(1.5f);
         dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);

@@ -26,6 +26,7 @@ import com.example.smartclass.contract.AttendanceStatisticsContract;
 import com.example.smartclass.presenter.AttendanceStatisticsPresenter;
 import com.example.smartclass.util.CircleBarView;
 import com.example.smartclass.util.CircleBarViewUtil;
+import com.example.smartclass.util.TabLayoutUnderLineChangeUtil;
 import com.example.smartclass.util.WrapContentHeightViewPager;
 
 import java.util.ArrayList;
@@ -75,6 +76,19 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
 
     @BindView(R.id.loadingProgressBar)
     LinearLayout loadingProgressBar;
+
+    @BindView(R.id.leftOfFirstTabOfAttendance)
+    View leftOfFirstTabOfAttendance;
+    @BindView(R.id.rightOfFirstTabOfAttendance)
+    View rightOfFirstTabOfAttendance;
+    @BindView(R.id.leftOfSecondTabOfAttendance)
+    View leftOfSecondTabOfAttendance;
+    @BindView(R.id.leftMidOfSecondTabOfAttendance)
+    View leftMidOfSecondTabOfAttendance;
+    @BindView(R.id.rightMidOfSecondTabOfAttendance)
+    View rightMidOfSecondTabOfAttendance;
+    @BindView(R.id.rightOfSecondTabOfAttendance)
+    View rightOfSecondTabOfAttendance;
 
     private List<Fragment> attendanceStatisticsFragments;
     private List<Fragment> studentsWithAttendanceProblemsFragments;
@@ -220,6 +234,24 @@ public class AttendanceStatisticsFragment extends BaseMvpFragment<AttendanceStat
         for(int i = 0; i < studentsWithAttendanceProblemsTitles.length; i++){
             Objects.requireNonNull(studentsWithAttendanceProblemsTabLayout.getTabAt(i)).setText(studentsWithAttendanceProblemsTitles[i]);
         }
+
+        setTabLayoutOnClickListener();
+    }
+
+    private void setTabLayoutOnClickListener(){
+
+        List<View> firstTabLayout = new ArrayList<>();
+        firstTabLayout.add(leftOfFirstTabOfAttendance);
+        firstTabLayout.add(rightOfFirstTabOfAttendance);
+
+        List<View> secondTabLayout = new ArrayList<>();
+        secondTabLayout.add(leftOfSecondTabOfAttendance);
+        secondTabLayout.add(leftMidOfSecondTabOfAttendance);
+        secondTabLayout.add(rightMidOfSecondTabOfAttendance);
+        secondTabLayout.add(rightOfSecondTabOfAttendance);
+
+        TabLayoutUnderLineChangeUtil.changeTabLayoutUnderLineView(attendanceStatisticsTabLayout, firstTabLayout);
+        TabLayoutUnderLineChangeUtil.changeTabLayoutUnderLineView(studentsWithAttendanceProblemsTabLayout, secondTabLayout);
     }
 
     private void setAttendanceProfileText(AttendanceProfileBean bean){

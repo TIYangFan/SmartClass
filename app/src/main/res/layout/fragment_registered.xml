@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/px_72"
-        android:textColor="@color/colorThemeTitle"
+        android:textColor="@color/colorSelectedText"
         android:layout_marginStart="@dimen/px_57"
         android:layout_marginTop="@dimen/px_243"
         android:text="@string/title_registered"

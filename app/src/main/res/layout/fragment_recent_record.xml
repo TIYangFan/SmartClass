@@ -16,6 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/px_101"
             app:tabIndicatorHeight="0dp"
+            android:textSize="@dimen/px_42"
+            android:textColor="@drawable/text_tab_selector"
             android:layout_marginStart="@dimen/px_372"
             app:tabBackground="@android:color/transparent"
             app:tabRippleColor="@android:color/transparent">

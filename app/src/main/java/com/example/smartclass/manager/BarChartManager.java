@@ -95,11 +95,11 @@ public class BarChartManager extends BaseChart<BarChart, BarData> implements OnC
     protected void setDataStyle() {
         super.setDataStyle();
         data.setValueTextSize(10f);
-        data.setBarWidth(0.5f);
+        data.setBarWidth(0.2f);
 
         for(int i = 0; i < data.getDataSetCount(); i++){
             BarDataSet dataSet = (BarDataSet)data.getDataSetByIndex(i);
-            dataSet.setColor(colorArray[i]);
+            dataSet.setGradientColor(colorArray[1], colorArray[0]);
         }
     }
 

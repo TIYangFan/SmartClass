@@ -8,6 +8,7 @@ import com.example.smartclass.bean.ClassInfoAboutTimeAndRelatedInfoBean;
 import com.example.smartclass.bean.ClassRankingBean;
 import com.example.smartclass.bean.ClassRecentRecordBean;
 import com.example.smartclass.bean.ConcentrationDistributionBean;
+import com.example.smartclass.bean.ScatterCoordinateBean;
 import com.example.smartclass.bean.StudentsWithAttendanceProblemsBean;
 import com.example.smartclass.bean.TimeAndNumberOfPeopleBean;
 import com.example.smartclass.bean.DateAndPercentageBean;
@@ -61,4 +62,7 @@ public interface APIService {
 
     @GET("courses/classes/attendance_focus/")
     Flowable<AttendanceAndStatusBean> getClassRecentRecordDetails(@Query("job_no")String jobNumber, @Query("class_id")String classId);
+
+    @GET("courses/current_lesson/student_state/current/")
+    Flowable<BaseArrayBean<ScatterCoordinateBean>> getCurrentStatusStatistics();
 }

@@ -18,7 +18,7 @@
         android:layout_height="@dimen/px_30"
         android:gravity="center"
         android:lines="1"
-        android:textColor="@drawable/text_tab_selector"
+        android:textColor="@drawable/text_bottom_tab_selector"
         android:textSize="@dimen/px_30"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/px_12"/>

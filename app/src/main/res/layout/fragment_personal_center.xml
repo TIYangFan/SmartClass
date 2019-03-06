@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/px_457"
             android:text="@string/personal_center"
-            android:textColor="@color/colorThemeTitle"
+            android:textColor="@color/colorMainGray"
             android:textSize="@dimen/px_42"/>
 
     </android.support.v7.widget.Toolbar>
@@ -83,7 +83,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_51"
             android:layout_marginStart="@dimen/px_90"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_12"
             android:contentDescription="@string/btm_my_class" />
 
         <ImageView
@@ -92,7 +92,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_51"
             android:layout_marginStart="@dimen/px_444"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_13"
             android:contentDescription="@string/btm_post_assignment" />
 
         <ImageView
@@ -101,7 +101,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_51"
             android:layout_marginStart="@dimen/px_797"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_14"
             android:contentDescription="@string/btm_upload_material" />
 
         <TextView
@@ -111,7 +111,7 @@
             android:layout_marginTop="@dimen/px_221"
             android:layout_marginStart="@dimen/px_92"
             android:textSize="@dimen/px_36"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:text="@string/btm_my_class" />
 
         <TextView
@@ -121,7 +121,7 @@
             android:layout_marginTop="@dimen/px_221"
             android:layout_marginStart="@dimen/px_445"
             android:textSize="@dimen/px_36"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:text="@string/btm_post_assignment" />
 
         <TextView
@@ -131,7 +131,7 @@
             android:layout_marginTop="@dimen/px_221"
             android:layout_marginStart="@dimen/px_799"
             android:textSize="@dimen/px_36"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:text="@string/btm_upload_material" />
     </RelativeLayout>
 
@@ -148,7 +148,7 @@
             android:layout_height="@dimen/px_81"
             android:layout_marginStart="@dimen/px_33"
             android:layout_marginTop="@dimen/px_28"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_15"
             android:contentDescription="@string/btm_scan_QR_code" />
 
         <ImageView
@@ -167,7 +167,7 @@
             android:layout_marginStart="@dimen/px_144"
             android:layout_marginTop="@dimen/px_49"
             android:textSize="@dimen/px_42"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:text="@string/btm_scan_QR_code" />
 
     </RelativeLayout>
@@ -185,7 +185,7 @@
             android:layout_height="@dimen/px_81"
             android:layout_marginStart="@dimen/px_33"
             android:layout_marginTop="@dimen/px_28"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_16"
             android:contentDescription="@string/btm_course" />
 
         <ImageView
@@ -194,7 +194,7 @@
             android:layout_height="@dimen/px_81"
             android:layout_marginStart="@dimen/px_33"
             android:layout_marginTop="@dimen/px_155"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_17"
             android:contentDescription="@string/btm_class_management" />
 
         <ImageView
@@ -220,7 +220,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/px_42"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginStart="@dimen/px_144"
             android:layout_marginTop="@dimen/px_49"
             android:text="@string/btm_course" />
@@ -230,7 +230,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/px_42"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginStart="@dimen/px_144"
             android:layout_marginTop="@dimen/px_177"
             android:text="@string/btm_class_management" />
@@ -257,7 +257,7 @@
             android:layout_height="@dimen/px_81"
             android:layout_marginStart="@dimen/px_33"
             android:layout_marginTop="@dimen/px_28"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_18"
             android:contentDescription="@string/btm_contact_us" />
 
         <ImageView
@@ -266,7 +266,7 @@
             android:layout_height="@dimen/px_81"
             android:layout_marginStart="@dimen/px_33"
             android:layout_marginTop="@dimen/px_155"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_19"
             android:contentDescription="@string/btm_settings" />
 
         <ImageView
@@ -292,7 +292,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/px_42"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginStart="@dimen/px_144"
             android:layout_marginTop="@dimen/px_49"
             android:text="@string/btm_contact_us" />
@@ -302,7 +302,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/px_42"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginStart="@dimen/px_144"
             android:layout_marginTop="@dimen/px_177"
             android:text="@string/btm_settings" />

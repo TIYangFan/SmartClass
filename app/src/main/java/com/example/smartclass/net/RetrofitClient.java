@@ -24,7 +24,7 @@ public class RetrofitClient {
 
     private static volatile RetrofitClient instance;
     private APIService apiService;
-    private String baseUrl = "http://fwwb.vipgz1.idcfengye.com/";
+    private String baseUrl = "https://www.viaviai.com/";
 
     private RetrofitClient() {
 

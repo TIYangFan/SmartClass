@@ -23,7 +23,7 @@ public abstract class BaseChart<T extends Chart, E extends ChartData> {
     protected YAxis yAxis;
     protected IAxisValueFormatter xAxisValueFormatter;
     protected IAxisValueFormatter yAxisValueFormatter;
-    protected int[] colorArray = new int[]{ Color.parseColor("#27B197"), Color.parseColor("#00A6D5")};
+    protected int[] colorArray = new int[]{ Color.parseColor("#5abcf2"), Color.parseColor("#86efda")};
     protected boolean isSingleLine = true;
 
     public BaseChart(T chart){

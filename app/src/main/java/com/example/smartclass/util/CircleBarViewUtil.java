@@ -25,7 +25,7 @@ public class CircleBarViewUtil {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public String howToChangeText(float interpolatedTime, float progressNum, float maxNum) {
-                DecimalFormat decimalFormat = new DecimalFormat("0.0");
+                DecimalFormat decimalFormat = new DecimalFormat("0");
                 String s = decimalFormat.format(interpolatedTime * progressNum / maxNum * 100) + "%";
                 return s;
             }

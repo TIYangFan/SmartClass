@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/px_457"
             android:text="@string/current_class"
-            android:textColor="@color/colorThemeTitle"
+            android:textColor="@color/colorMainGray"
             android:textSize="@dimen/px_42"/>
 
     </android.support.v7.widget.Toolbar>
@@ -92,7 +92,7 @@
                 android:layout_marginTop="@dimen/px_91"
                 android:layout_centerHorizontal="true"
                 android:textSize="@dimen/px_54"
-                android:textColor="@color/colorThemeTitle"/>
+                android:textColor="@color/colorMainGray"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -101,18 +101,29 @@
                 android:layout_centerHorizontal="true"
                 android:text="@string/attendance"
                 android:textSize="@dimen/px_28"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorAttendance"/>
 
         </RelativeLayout>
 
         <!--Late-->
-        <ImageView
+        <RelativeLayout
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_38"
             android:layout_marginStart="@dimen/px_321"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            lh2:ignore="ContentDescription" />
+            android:background="@drawable/ic_ring">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/late"
+                android:textSize="@dimen/px_40"
+                android:textColor="@color/colorSubtitle"
+                />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -131,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
+                android:textColor="@color/colorUnelectedText"
                 android:text="@string/backslash" />
 
             <TextView
@@ -139,18 +150,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"/>
+                android:textColor="@color/colorUnelectedText"/>
 
         </LinearLayout>
 
         <!--Absentee-->
-        <ImageView
+        <RelativeLayout
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_38"
             android:layout_marginStart="@dimen/px_668"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            lh2:ignore="ContentDescription" />
+            android:background="@drawable/ic_ring">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/absent"
+                android:textSize="@dimen/px_40"
+                android:textColor="@color/colorSubtitle"/>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -169,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
+                android:textColor="@color/colorUnelectedText"
                 android:text="@string/backslash" />
 
             <TextView
@@ -177,18 +198,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText" />
+                android:textColor="@color/colorUnelectedText" />
 
         </LinearLayout>
 
         <!--LeaveEarly-->
-        <ImageView
+        <RelativeLayout
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_198"
             android:layout_marginStart="@dimen/px_321"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            lh2:ignore="ContentDescription" />
+            android:background="@drawable/ic_ring">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/leave_early"
+                android:textSize="@dimen/px_40"
+                android:textColor="@color/colorSubtitle"/>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -207,7 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
+                android:textColor="@color/colorUnelectedText"
                 android:text="@string/backslash" />
 
             <TextView
@@ -215,19 +246,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"/>
+                android:textColor="@color/colorUnelectedText"/>
 
         </LinearLayout>
 
         <!--Abnormal-->
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="@dimen/px_121"
             android:layout_height="@dimen/px_121"
             android:layout_marginTop="@dimen/px_198"
             android:layout_marginStart="@dimen/px_668"
-            app:srcCompat="@mipmap/ic_launcher_round"
-            lh2:ignore="ContentDescription" />
+            android:background="@drawable/ic_ring">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/ask_for_leave"
+                android:textSize="@dimen/px_40"
+                android:textColor="@color/colorSubtitle"/>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="@dimen/px_280"
@@ -246,7 +286,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"
+                android:textColor="@color/colorUnelectedText"
                 android:text="@string/backslash" />
 
             <TextView
@@ -254,7 +294,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/px_36"
-                android:textColor="@color/colorLightText"/>
+                android:textColor="@color/colorUnelectedText"/>
 
         </LinearLayout>
 
@@ -291,7 +331,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_131"
             android:layout_marginStart="@dimen/px_90"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_1"
             android:contentDescription="@string/one_click_name" />
 
         <TextView
@@ -299,7 +339,7 @@
             android:layout_height="wrap_content"
             android:text="@string/one_click_name"
             android:textSize="@dimen/px_36"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_301"
             android:layout_marginStart="@dimen/px_92"
             lh2:ignore="RelativeOverlap" />
@@ -310,7 +350,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_131"
             android:layout_marginStart="@dimen/px_444"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_2"
             android:contentDescription="@string/student_status" />
 
         <TextView
@@ -319,7 +359,7 @@
             android:layout_height="wrap_content"
             android:text="@string/student_status"
             android:textSize="@dimen/px_36"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_301"
             android:layout_marginStart="@dimen/px_446"
             lh2:ignore="RelativeOverlap" />
@@ -331,7 +371,7 @@
             android:layout_marginTop="@dimen/px_131"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_90"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_3"
             android:contentDescription="@string/attendance_statistics" />
 
         <TextView
@@ -340,7 +380,7 @@
             android:layout_height="wrap_content"
             android:text="@string/attendance_statistics"
             android:textSize="@dimen/px_36"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_301"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_92"
@@ -377,7 +417,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_136"
             android:layout_marginStart="@dimen/px_72"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_4"
             android:contentDescription="@string/reissue_application" />
 
         <TextView
@@ -385,7 +425,7 @@
             android:layout_height="wrap_content"
             android:text="@string/reissue_application"
             android:textSize="@dimen/px_32"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_294"
             android:layout_marginStart="@dimen/px_81"
             lh2:ignore="RelativeOverlap" />
@@ -395,7 +435,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_136"
             android:layout_marginStart="@dimen/px_319"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_5"
             android:contentDescription="@string/absence_reminder" />
 
         <TextView
@@ -403,7 +443,7 @@
             android:layout_height="wrap_content"
             android:text="@string/absence_reminder"
             android:textSize="@dimen/px_32"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_294"
             android:layout_marginStart="@dimen/px_333"
             lh2:ignore="RelativeOverlap" />
@@ -414,7 +454,7 @@
             android:layout_marginTop="@dimen/px_136"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_320"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_6"
             android:contentDescription="@string/leave_management" />
 
         <TextView
@@ -422,7 +462,7 @@
             android:layout_height="wrap_content"
             android:text="@string/leave_management"
             android:textSize="@dimen/px_32"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_294"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_330"
@@ -434,7 +474,7 @@
             android:layout_marginTop="@dimen/px_136"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_72"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_7"
             android:contentDescription="@string/class_discussion" />
 
         <TextView
@@ -442,7 +482,7 @@
             android:layout_height="wrap_content"
             android:text="@string/class_discussion"
             android:textSize="@dimen/px_32"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_294"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_78"
@@ -455,7 +495,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_372"
             android:layout_marginStart="@dimen/px_72"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_8"
             android:contentDescription="@string/other_check_in_methods" />
 
         <TextView
@@ -463,7 +503,7 @@
             android:layout_height="wrap_content"
             android:text="@string/other_check_in_methods"
             android:textSize="@dimen/px_32"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_531"
             android:layout_marginStart="@dimen/px_81"
             lh2:ignore="RelativeOverlap" />
@@ -473,7 +513,7 @@
             android:layout_height="@dimen/px_145"
             android:layout_marginTop="@dimen/px_372"
             android:layout_marginStart="@dimen/px_319"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_9"
             android:contentDescription="@string/data_sharing" />
 
         <TextView
@@ -481,7 +521,7 @@
             android:layout_height="wrap_content"
             android:text="@string/data_sharing"
             android:textSize="@dimen/px_32"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_531"
             android:layout_marginStart="@dimen/px_333"
             lh2:ignore="RelativeOverlap" />
@@ -492,7 +532,7 @@
             android:layout_marginTop="@dimen/px_372"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_320"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_10"
             android:contentDescription="@string/post_assignment" />
 
         <TextView
@@ -500,7 +540,7 @@
             android:layout_height="wrap_content"
             android:text="@string/post_assignment"
             android:textSize="@dimen/px_32"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_531"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_330"
@@ -512,7 +552,7 @@
             android:layout_marginTop="@dimen/px_372"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_72"
-            app:srcCompat="@mipmap/ic_launcher_round"
+            app:srcCompat="@mipmap/icon_11"
             android:contentDescription="@string/more_applications" />
 
         <TextView
@@ -520,7 +560,7 @@
             android:layout_height="wrap_content"
             android:text="@string/more_applications"
             android:textSize="@dimen/px_32"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorMainGray"
             android:layout_marginTop="@dimen/px_531"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/px_78"

@@ -11,22 +11,6 @@
         android:layout_marginStart="@dimen/px_24"
         android:background="@color/colorWhite">
 
-
-        <!--
-        <android.support.design.widget.TabLayout
-            android:id="@+id/recentRecordStatisticsTabLayout"
-            android:layout_width="@dimen/px_998"
-            android:layout_height="@dimen/px_93"
-            android:layout_marginStart="@dimen/px_17"
-            app:tabIndicatorHeight="@dimen/px_5"
-            app:tabTextColor="@color/colorTextColorHint"
-            app:tabSelectedTextColor="@color/colorThemeTitle"
-            app:tabBackground="@android:color/transparent"
-            app:tabRippleColor="@android:color/transparent">
-
-        </android.support.design.widget.TabLayout>
-        -->
-
         <RelativeLayout
             android:layout_width="@dimen/px_998"
             android:layout_height="@dimen/px_93"
@@ -46,13 +30,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
 
-                <View
-                    android:id="@+id/tabLeftUnderline"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_5"
-                    android:layout_marginTop="@dimen/px_88"
-                    android:background="@color/colorPrimary"/>
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -70,16 +47,26 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
 
-                <View
-                    android:id="@+id/tabRightUnderline"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_5"
-                    android:layout_marginTop="@dimen/px_88"
-                    android:background="@android:color/transparent"/>
-
             </RelativeLayout>
 
         </RelativeLayout>
+
+        <View
+            android:id="@+id/leftOfFirstTabOfClassRecentRecord"
+            android:layout_width="@dimen/px_499"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_17"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightOfFirstTabOfClassRecentRecord"
+            android:layout_width="@dimen/px_499"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_516"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
 
         <View
             android:layout_width="@dimen/px_998"
@@ -87,17 +74,6 @@
             android:layout_marginTop="@dimen/px_93"
             android:layout_marginStart="@dimen/px_17"
             android:background="@color/colorUnderLine"/>
-
-        <!--
-        <com.example.smartclass.util.NoScrollViewPager
-            android:id="@+id/recentRecordStatisticsViewPager"
-            android:layout_width="@dimen/px_998"
-            android:layout_height="@dimen/px_457"
-            android:layout_marginTop="@dimen/px_95"
-            android:layout_marginStart="@dimen/px_17">
-
-        </com.example.smartclass.util.NoScrollViewPager>
-        -->
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/recentClassAttendanceLineChart"
@@ -122,66 +98,12 @@
 
     <!--next view-->
 
-    <!--
     <RelativeLayout
         android:layout_width="@dimen/px_1032"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/px_552"
         android:layout_marginStart="@dimen/px_24"
         android:background="@drawable/bg_bottom_border_radius">
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/recentRecordStatisticsDetailTabLayout"
-            android:layout_width="@dimen/px_998"
-            android:layout_height="@dimen/px_93"
-            android:layout_marginStart="@dimen/px_17"
-            app:tabIndicatorHeight="@dimen/px_5"
-            app:tabTextColor="@color/colorTextColorHint"
-            app:tabSelectedTextColor="@color/colorThemeTitle"
-            app:tabBackground="@android:color/transparent"
-            app:tabRippleColor="@android:color/transparent">
-
-        </android.support.design.widget.TabLayout>
-
-        <View
-            android:layout_width="@dimen/px_998"
-            android:layout_height="@dimen/px_2"
-            android:layout_marginTop="@dimen/px_93"
-            android:layout_marginStart="@dimen/px_17"
-            android:background="@color/colorUnderLine"/>
-
-        <com.example.smartclass.util.NoScrollAndWrapContentHeightViewPager
-            android:id="@+id/recentRecordStatisticsDetailViewPager"
-            android:layout_width="@dimen/px_1032"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/px_95">
-
-        </com.example.smartclass.util.NoScrollAndWrapContentHeightViewPager>
-
-    </RelativeLayout>
-    -->
-
-    <RelativeLayout
-        android:layout_width="@dimen/px_1032"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/px_552"
-        android:layout_marginStart="@dimen/px_24"
-        android:background="@drawable/bg_bottom_border_radius">
-
-        <!--
-        <android.support.design.widget.TabLayout
-            android:id="@+id/recentRecordStatisticsDetailTabLayout"
-            android:layout_width="@dimen/px_998"
-            android:layout_height="@dimen/px_93"
-            android:layout_marginStart="@dimen/px_17"
-            app:tabIndicatorHeight="@dimen/px_5"
-            app:tabTextColor="@color/colorTextColorHint"
-            app:tabSelectedTextColor="@color/colorThemeTitle"
-            app:tabBackground="@android:color/transparent"
-            app:tabRippleColor="@android:color/transparent">
-
-        </android.support.design.widget.TabLayout>
-        -->
 
         <RelativeLayout
             android:layout_width="@dimen/px_998"
@@ -202,13 +124,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
 
-                <View
-                    android:id="@+id/tabFirstUnderline"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_5"
-                    android:layout_marginTop="@dimen/px_88"
-                    android:background="@color/colorTransparent"/>
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -225,13 +140,6 @@
                     android:textColor="@color/colorTextColorHint"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
-
-                <View
-                    android:id="@+id/tabSecondUnderline"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_5"
-                    android:layout_marginTop="@dimen/px_88"
-                    android:background="@android:color/transparent"/>
 
             </RelativeLayout>
 
@@ -250,13 +158,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
 
-                <View
-                    android:id="@+id/tabThirdUnderline"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_5"
-                    android:layout_marginTop="@dimen/px_88"
-                    android:background="@android:color/transparent"/>
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -274,16 +175,45 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"/>
 
-                <View
-                    android:id="@+id/tabFourthUnderline"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/px_5"
-                    android:layout_marginTop="@dimen/px_88"
-                    android:background="@android:color/transparent"/>
-
             </RelativeLayout>
 
         </RelativeLayout>
+
+        <View
+            android:id="@+id/leftOfSecondTabOfClassRecentRecord"
+            android:layout_width="@dimen/px_250"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_17"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/leftMidOfSecondTabOfClassRecentRecord"
+            android:layout_width="@dimen/px_249"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_267"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightMidOfSecondTabOfClassRecentRecord"
+            android:layout_width="@dimen/px_249"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_516"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
+
+        <View
+            android:id="@+id/rightOfSecondTabOfClassRecentRecord"
+            android:layout_width="@dimen/px_250"
+            android:layout_height="@dimen/px_5"
+            android:layout_marginTop="@dimen/px_90"
+            android:layout_marginStart="@dimen/px_765"
+            android:visibility="invisible"
+            android:background="@drawable/color_gradient"/>
 
         <View
             android:layout_width="@dimen/px_998"
@@ -311,7 +241,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/click_to_see_details"
-                    android:textColor="@color/colorLightText"
+                    android:textColor="@color/colorUnelectedText"
                     android:textSize="@dimen/px_34"/>
                 
                 <ImageView
