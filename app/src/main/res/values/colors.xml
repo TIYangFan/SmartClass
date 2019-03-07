@@ -17,6 +17,8 @@
     <color name="colorSelectedText">#2bb9cc</color>
     <color name="colorIconLightBlue">#e9f7ff</color>
 
+    <color name="colorBottomTabText">#5ABCF2</color>
+
     <color name="colorUnelectedText">#b5b5b6</color>
     <color name="colorSubtitle">#727171</color>
     <color name="colorMainGray">#686868</color>

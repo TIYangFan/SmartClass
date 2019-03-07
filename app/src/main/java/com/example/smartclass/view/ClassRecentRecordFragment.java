@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -163,8 +164,13 @@ public class ClassRecentRecordFragment extends BaseMvpFragment<ClassRecentRecord
                 for(int i = 0; i < groupString.size(); i++){
                     if(parent.isGroupExpanded(i)){
                         parent.collapseGroup(i);
+                        parent.getChildAt(i).findViewById(R.id.imageViewExpanded).setVisibility(View.INVISIBLE);
+                        parent.getChildAt(i).findViewById(R.id.imageViewClosed).setVisibility(View.VISIBLE);
                     }
                 }
+
+                v.findViewById(R.id.imageViewExpanded).setVisibility(View.VISIBLE);
+                v.findViewById(R.id.imageViewClosed).setVisibility(View.INVISIBLE);
 
                 parent.expandGroup(groupPosition);
                 return true;
